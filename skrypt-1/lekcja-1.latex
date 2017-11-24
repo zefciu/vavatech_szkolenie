@@ -1,0 +1,686 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{minted}
+\begin{document}
+\title{Podstawy programowania w Pythonie}
+\author{Szymon Pyżalski}
+\maketitle
+
+\chapter{Lekcja 1: Wprowadzenie do języka}
+\section{Charakterystyka języka Python}
+Python powstał w roku 1991 jako prywatny projekt Guido van Rossuma. Obecnie
+jest rozwijany przez Python Software Foundation, w której Guido spełnia
+kierowniczą rolę.
+
+Należy do języków ogólnego przeznaczenia. Oznacza to, że nie jest on
+wyspecjalizowany do jakiegoś konkretnego rodzaju zadań. Znajduje on
+zastosowanie przede wszystkim w programowaniu webowym, obróbce danych,
+tworzeniu skryptów oraz aplikacji desktopowych. Można go używać także
+w programowaniu aplikacji mobilnych oraz mikrokontrolerów.
+
+Jest językiem wysokiego poziomu. Znaczy to, że jego kod ma jak
+najbardziej oddawać sposób myślenia programisty bez wnikania w szczegóły
+techniczne.
+
+\subsection{Zalety języka}
+\begin{enumerate}
+    \item Łatwy do nauczenia.
+    \item Duża siła wyrazu -- możliwość tworzenia złożone logiki w małej ilości
+        kodu.
+    \item Łatwy \emph{debugging}. Możliwość ,,podejrzenia'' działania programu.
+    \item Silna społeczność.
+    \item Dobra dokumentacja.
+\end{enumerate}
+
+\subsection{Wady języka}
+\begin{enumerate}
+    \item Stosunkowo powolny.
+    \item Łatwiej niż w językach statycznie typowanych o niewykryte błędy.
+    \item Dwie wersje języka wzajemnie niekompatybilne.
+\end{enumerate}
+
+\section{Uruchamianie Pythona}
+\subsection{Konsola interaktywna}
+Konsola interaktywna to narzędzie, które pozwala nam szybko i wygodnie wykonać
+proste operacje, przeczytać dokumentację, czy sprawdzić działanie pewnych
+obiektów. Do konsoli wchodzimy wykonując polecenie \verb|python| bez
+argumentów. Konsola uruchamia się też jako domyślne okno narzędzia IDLE.
+
+Znakiem zachęty w konsoli jest \verb|>>>| Każde polecenie, które wpisujemy
+w konsoli jest od razu wykonywane. Jeśli wpisaliśmy wyrażenie,
+które zwraca jakąś wartość, będzie ona wypisana.
+
+\begin{minted}{pycon}
+>>> 2 + 2
+4
+\end{minted}
+
+\section{Wywoływanie kodu z pliku}
+
+Pliki Pythona zapisujemy z rozszerzeniem \verb|.py|. Możemy je uruchomić
+poleceniem \verb|python nazwa_pliku.py|. Jeśli plik zawiera na początku tzw.
+she-bang \verb|#!/usr/bin/python3| i mamy uprawnienia do jego wykonania, możemy
+uruchomić plik jak inne programy konsolowe \verb|./nazwa_pliku.py|
+
+W przypadku uruchamiania plików nie działa automatyczne wyświetlanie wartości
+wyrażeń. Jeśli chcemy wypisać informację na konsolę musimy to uczynić
+\emph{explicite}: \verb|print(wartosc)|
+
+\section{Elementy składni}
+\subsection{Literały}
+
+Jeśli chcemy użyć w naszym kodzie jakiejś konkretnej wartości, możemy ją
+zapisać przy pomocy literału. Przykłady literałów to np. \verb|1|,
+\verb|False|, \verb|'tekst'|.
+
+\subsection{Identyfikatory}
+
+Identyfikator to ciąg znaków, który jest powiązany z jakąś wartością. Aby
+przypisać wartość do identyfikatora używany operatora przypisania \verb|=|
+
+\begin{minted}{pycon}
+>>> liczba = 2
+>>> 3 + a
+5
+\end{minted}
+
+Identyfikator może składać się z liter, znaków podkreślenia oraz cyfr (poza
+pierwszym znakiem). Tak więc prawidłowe identyfikatory to np. \verb|response|, 
+\verb|version2|, \verb|new_object|. Dodatkowo operator nie może być słowem
+kluczowym Pythona. Nie ma jednak większego sensu uczenia się listy tych słów na
+pamięć. Edytory tekstu kolorują słowa kluczowe, tak więc szybko zauważymy nasz
+błąd. Konwencja nakazuje, żeby identyfikatory zmiennych zaczynać od małej
+litery. Należy też dbać o to, żeby identyfikatory dobrze opisywały opiekt, z
+którym są powiązane. Unikamy nazw typu \verb|x|, \verb|asdfasdf|, \verb|dupa1|.
+
+
+\subsection{Operatory}
+
+Część operacji na obiektach możemy wykonać przy pomocy operatorów. Python
+posiada określoną pulę operatorów, z których część (jak \verb|+|, \verb|&|)
+składa się z symboli, a część (jak \verb|and|, \verb|in|) jest słowami
+kluczowymi. Operatory wykonują się według określonej kolejności. Np. operatory
+porównania wcześniej od operatorów porównania, a operatory logiczne po
+operatorach porównania. Dlatego wyrażenie:
+
+\begin{minted}{python}
+a + b * c == d or e + f * g == h
+\end{minted}
+
+Wykona się w kolejności: mnożenie, dodawanie, porównanie, logiczne ,,lub''.
+
+Istnieje seria operatorów wykonujących pewną operację i przypisujących jej
+wartość do użytej zmiennej. Np.
+
+\begin{minted}{python}
+liczba *= 2
+\end{minted}
+
+oznacza podwojenie wartości zawartej pod identyfikatorem \verb|liczba|
+
+\subsection{Wywołanie funkcji}
+
+Funkcje wywołujemy przez użycie nawiasów. Jeśli funkcja nie przyjmuje żadnych
+argumentów dajemy puste nawiasy. Np. \verb|print()| wypisze na ekran pustą
+linię. Jeśli podajemy kilka argumentów, oddzielamy je przecinkiem. Np.
+\verb|divmod(10, 3)| wykona operację dzielenia z resztą i zwróci wartości
+\verb|(3,1)|. Funkcje mogą też przyjmować argumenty nazwane. Np.
+\verb|int('10', base=2)| zinterpretuje łańcuch znaków \verb|'10'| jako liczbę w
+systemie dwójkowym i zwróci wartość \verb|2|.
+
+Metody to funkcje zdefiniowane dla określonych obiektów. Do ich wywołania
+używamy kropki. Np. \verb|napis.upper()| zwróci wartość zapisaną pod
+identyfikatorem \verb|napis| wielkimi literami.
+
+\subsection{Komentarze}
+
+Komentarze to informacje, które będą zignorowane przez interpreter Pythona.
+Stanowią one pomoc dla osoby czytającej kod. Komentarzem jest wszystko, co
+zaczyna się od znaku \verb|#| aż do końca linii:
+
+\begin{minted}{python}
+# Todo: Uprościć poniższy kod
+a -= 1 # Odrzucamy pierwszą wartość
+\end{minted}
+
+\section{Użyteczne funkcje}
+
+\section{Zadanie}
+
+\begin{enumerate}
+    \item Ustaw wartość zmiennej \verb|powitanie| na ,,Dzień dobry''
+    \item Ustaw wartość zmiennej \verb|powitanie2| na taką samą wartość jak
+        \verb|powitanie|
+    \item Dodaj do wartości zmiennej \verb|powitanie| łańcuch ,,Panu''
+\end{enumerate}
+
+
+
+\chapter{Najważniejsze typy danych w Pythonie}
+\section{Typy niezmienne}
+Typy niezmienne reprezentują najbardziej podstawowe rodzaje informacji.
+Obiekty tych typów nie mogą być modyfikowane. Można co najwyżej stworzyć nowy
+obiekt o nowej wartości. Na przykład:
+\begin{minted}{pycon}
+>>> a = 5
+>>> b = a # Obie zmiene pokazują na ten sam obiekt
+>>> a += 1
+>>> a
+6
+>>> b # Obiekt b nie zmienił się
+5
+\end{minted}
+
+
+\subsection{int}
+Typ ten reprezentuje liczby całkowite.
+
+Podstawowe operacje arytmetyczne umożliwiają nam operatory \verb|+|,  \verb|-|
+\verb|*| (mnożenie)  \verb|**| (potęgowanie). Jeśli chodzi o dzielenie w
+obrębie liczb całkowitych operator \verb|//| daje nam całkowitą wartość z
+dzielenia, a \verb|%| - resztę.
+
+\begin{minted}{pycon}
+>>> 10 // 3
+3
+>>> 10 % 3
+1
+\end{minted}
+
+W odróżnieniu od niektórych innych
+języków nie ma on w Pythonie3 ograniczonego zakresu. Python sam dba o
+właściwą wewnętrzną reprezentację i uniemożliwia ,,przekręcenie'' wartości.
+
+\begin{minted}{pycon}
+>>> 7 ** 77
+118181386580595879976868414312001964434038548836769923458287039207
+\end{minted}
+
+\subsection{str}
+Reprezentuje napis - dowolny łańcuch znaków Unicode.
+\subsubsection{Literał łańcucha}
+
+Łańcuchy umieszczać możemy w pojedynczym lub podwójnym cudzysłowie
+
+\begin{minted}{pycon}
+>>> "I don't think so"
+"I don't think so"
+\end{minted}
+
+\begin{minted}{pycon}
+>>> 'Mówię "tak"'
+'Mówię "tak"'
+\end{minted}
+
+Potrójny znak cudzysłowu pozwala nam pisać łańcuchy wielowierszowe:
+
+\begin{minted}{pycon}
+ """Litwo! Ojczyzno moja! ty jesteś jak zdrowie:
+ ... Ile cię trzeba cenić, ten tylko się dowie,"""
+ 'Litwo! Ojczyzno moja! ty jesteś jak zdrowie:\nIle cię trzeba cenić, ten
+    tylko się dowie,'
+\end{minted}
+
+Przy pomocy znaku \verb|\| możemy wprowadzać znaki specjalne.
+
+\begin{tabular}{ | l | l | }
+    \hline
+    \verb|\'| & Pojedynczy cudzysłów \\
+    \hline
+    \verb|\"| & Podwójny cudzysłów \\
+    \hline
+    \verb|\u10d0| & Znak unicode o danym kodzie szesnastkowym \\
+    \hline
+    \verb|\n| & Nowa linia \\
+    \hline
+    \verb|\\| & Znak \verb|\| \\
+    \hline
+
+\end{tabular}
+
+Łańcuchy ,,surowe'' nie pozwalają na używanie ww. sekwencji
+
+
+\begin{minted}{pycon}
+>>> r'\n'
+'\\n'
+\end{minted}
+
+
+\subsubsection{Operacje na łańcuchach}
+Łańcuchy możemy dodawać i mnożyć przez liczby naturalne.
+
+\begin{minted}{pycon}
+>>> "Dzień" + "dobry"
+'Dzieńdobry'
+>>> "la" * 10
+'lalalalalalalalalala
+\end{minted}
+
+Zdefiniowane są na nich też liczne funkcje umożliwiające często potrzebne
+manipulacje:
+
+\begin{minted}{pycon}
+>>> "cześć".upper()
+'CZEŚĆ'
+>>> "   cześć   ".strip()
+'cześć'
+>>> "nanana!".replace('na', 'la')
+'lalala!'
+\end{minted}
+
+\subsection{float}
+Float reprezentuje liczby zmiennoprzecinkowe. Do ich zapisu używamy kropki
+dziesiętnej (niezależnie od ustawień naszej maszyny).
+
+\begin{minted}{pycon}
+>>> 2.5
+2.5
+>>> 2.0
+2.0
+\end{minted}
+
+Wartości typu \verb|float| zwracane są też przez operator \verb|/|. Nawet
+jeśli wynik jest całkowity.
+
+\begin{minted}{pycon}
+>>> 5 / 2 
+2.5
+>>> 4 / 2 
+2.0
+\end{minted}
+
+Należy pamiętać o tym, że wartości te obarczone są błędem. Typu tego używamy
+tylko w razie konieczności i uwzględniamy niedokładności.
+
+\begin{minted}{pycon}
+>>> 0.1 + 0.2
+0.30000000000000004
+\end{minted}
+
+\subsection{bool}
+
+Obiekty tego typu mogą przyjmować tylko dwie wartości \verb|True| i
+\verb|False|. Są one zwracane przez operatory porównania.
+
+\begin{minted}{pycon}
+>>> 1 == 1
+True
+>>> 1 != 1 # Różne
+False
+>>> 1 > 1
+False
+>>> 1 >= 1 # Większe bądź równe
+True
+\end{minted}
+
+Na wartościach tych możemy wykonywać operacje logiki dwuwartościowej:
+
+\begin{minted}{pycon}
+>>> not True
+False
+>>> True or False
+True
+>>> True and False
+False
+\end{minted}
+
+Wartości logiczne mają kluczowe znaczenie dla poleceń sterujących
+
+\subsection{None}
+
+Specjalny typ danych \verb|NoneType| zawiera tylko jeden obiekt \verb|None|.
+Obiekt ten jest używany aby wskazać brak wartości.
+
+\subsection{tuple}
+
+Krotka to obiekt składający się z kilku obiektów dowolnego typu. 
+
+\begin{minted}{pycon}
+>>> ()
+()
+>>> 1, # Przypadkowe zostawienie przecinka może mieć nieoczekiwane skutki
+(1,)
+>>> (1,)
+(1,)
+>>> (1, 2)
+(1, 2)
+\end{minted}
+
+Można jej użyć do opisu prostych struktur danych, w których łatwo się nam
+,,połapać''. Możemy użyć nawiasów kwadratowych do uzyskania określonego
+elementu krotki, albo użyć tzw. rozpakowania.
+
+\begin{minted}{pycon}
+>>> a = 'Guido', 'van Rossum'
+>>> a[1]
+'van Rossum'
+>>> name, surname = a
+>>> name
+'Guido'
+>>> surname
+'van Rossum'
+\end{minted}
+
+Rozpakowanie krotki jest często używane aby dokonać jednoczesnego przypisania
+do dwóch zmiennych.
+
+\begin{minted}{pycon}
+>>> a = 1
+>>> b = 2
+>>> a, b = b, a
+>>> a
+2
+>>> b
+1
+\end{minted}
+
+\section{Typy zmienne}
+
+Typy zmienne mogą zmieniać swoją wartość po utworzeniu.
+\begin{minted}{pycon}
+
+>>> a = []
+>>> b = a # Obie zmiene pokazują na ten sam obiekt
+>>> a.append(1)
+>>> a = []
+>>> b = a
+>>> a.append(1)
+>>> a
+[1]
+>>> b
+[1]
+\end{minted}
+
+\subsection{list}
+
+Lista podobnie jak krotka zawiera uporządkowane elementy innego typu. Od krotki
+różni się w zasadzie tylko tym, że jest obiektem zmiennym.
+
+\subsection{dict}
+
+Słownik lub mapa to obiekt zawierający pary obiektów zwane kluczami i
+wartościami. Podstawowymi operacjami jest ustawienie i pobranie wartości dla
+danego klucza.
+
+\begin{minted}{pycon}
+>>> a = {'pl': 'Polska', 'ge': 'Gruzja'}
+>>> a['pl']
+'Polska'
+>>> a['es'] = 'Hiszpania'
+>>> a
+{'ge': 'Gruzja', 'es': 'Hiszpania', 'pl': 'Polska'}
+\end{minted}
+
+Słownik nie zapamiętuje kolejności w której dodawane były klucze.
+
+Przy pomocy operatora \verb|in| możemy sprawdzić obecność danego klucza w
+słowniku. Metoda \verb|.get()| umożliwia warunkowe pobranie klucza. Metoda
+\verb|.setdefault()| ustawienie brakującej wartości.
+
+\begin{minted}{pycon}
+>>> 'ge' in a
+True
+>>> 'it' in a
+False
+>>> a.get('ge', 'Nieznany')a
+'Gruzja'
+>>> a.get('it', 'Nieznany')
+'Nieznany'
+>>> a.setdefault('ge', 'Nieznany')
+'Gruzja'
+>>> a.setdefault('it', 'Nieznany')
+'Nieznany'
+>>> a
+{'ge': 'Gruzja', 'it': 'Nieznany', 'es': 'Hiszpania', 'pl': 'Polska'}
+\end{minted}
+
+\subsection{set}
+Zbiór to obiekt niezawierający powtórzeń i niepamiętający kolejności dodawania
+obiektów. Dodawanie obiektów już istniejących nie zmienia zbioru.
+\begin{minted}{pycon}
+>>> zwierzeta = {'Papuga', 'Pies', 'Nietoperz', 'Kangur'}
+>>> zwierzeta.add('Kot')
+>>> zwierzeta
+{'Pies', 'Nietoperz', 'Kangur', 'Kot', 'Papuga'}
+>>> zwierzeta.add('Pies')
+>>> zwierzeta                                                                                                                                                                                
+{'Pies', 'Nietoperz', 'Kangur', 'Kot', 'Papuga'}
+\end{minted}
+
+Na zbiorach możemy wykonywać operacje znane z teorii mnogości.
+
+\begin{minted}{pycon}
+>>> lozyskowe = {'Pies', 'Nietoperz', 'Kot'}
+>>> latajace = {'Papuga', 'Nietoperz', 'Helikopter', 'Samolot'}
+>>> zwierzeta - lozyskowe
+{'Kangur', 'Papuga'}
+>>> zwierzeta & latajace
+{'Nietoperz', 'Papuga'}
+>>> zwierzeta | latajace
+{'Papuga', 'Nietoperz', 'Helikopter', 'Samolot', 'Pies', 'Kangur', 'Kot'}
+\end{minted}
+
+
+\chapter{Instrukcje sterujące}
+\section{if-else}
+
+Instrukcja ta wykonuje blok instrukcji, jeśli warunek jest spełniony.
+W przeciwnym wypadku wykonuje inny blok instrukcji (można go pominąć)
+
+\begin{minted}{pycon}
+>>> a = 10
+>>> if a > 20:
+...     print('Większe')
+... else:
+...     print('Mniejsze')
+... 
+Mniejsze
+>>> if a > 20:
+...     print('Większe')
+...
+\end{minted}
+
+Dyrektywę \verb|else| można łączyć z następnym \verb|if|.
+
+\begin{minted}{pycon}
+>>> if a >= 20:
+...     print('Bardzo dużo')
+... elif a >= 10:
+...     print('Tak średnio')
+... else:
+...     print('Mało')
+... 
+Tak średnio
+\end{minted}
+
+Wyrażenie będące warunkiem nie musi być koniecznie typu \verb|bool|.
+Możemy uprościć notację pamiętając o następujących zasadach:
+
+\begin{itemize}
+    \item Liczby o wartości 0 są uznawane za \verb|False|
+    \item Łańcuchy, zbiory, krotki etc. jeśli są puste uważane są za
+        \verb|False|
+    \item \verb|None| uważany jest za \verb|False|
+    \item Inne obiekty uważane są za \verb|True|
+\end{itemize}
+
+\begin{minted}{pycon}
+>>> a = [1, 3, 5]
+>>> b = []
+>>> 
+>>> if a:
+...     print('Pełna')
+... 
+Pełna
+>>> if b:
+...     print('Pełna')
+...
+\end{minted}
+
+Powyższe tyczy się nie tylko instrukcji \verb|if| ale też \verb|while|
+
+\section{while}
+
+Pętla \verb|while| wykonuje się tak długo, aż spełniony jest warunek.
+
+\begin{minted}{pycon}
+>>> a = 1
+>>> while a < 1000:
+...     print(a)
+...     a *= 2
+... 
+1
+2
+4
+8
+16
+32
+64
+128
+256
+512
+\end{minted}
+
+Z pętli możemy też wyjść poleceniem \verb|break|
+
+\begin{minted}{pycon}
+>>> while True:
+...     print('Podaj liczbę mniejszą od 6')
+...     x = int(input())
+...     if x < 6:
+...         break
+...     print('Za duża')
+... 
+Podaj liczbę mniejszą od 6
+10
+Za duża
+Podaj liczbę mniejszą od 6
+7
+Za duża
+Podaj liczbę mniejszą od 6
+2
+>>> x
+2
+\end{minted}
+
+Z kolei polecenie \verb|continue| pozwala przejść do następnej iteracji pętli.
+\begin{minted}{pycon}
+>>> zebrane = []
+>>> a = 1
+>>> while a < 200:
+...     a *= 2
+...     print('Dodać {}?'.format(a))
+...     resp = input()
+...     if resp != 't':
+...         continue
+...     zebrane.append(a)
+... 
+Dodać 2?
+t
+Dodać 4?
+n
+Dodać 8?
+n
+Dodać 16?
+t
+Dodać 32?
+t
+Dodać 64?
+t
+Dodać 128?
+t
+Dodać 256?
+n
+>>> zebrane
+[2, 16, 32, 64, 128]
+\end{minted}
+
+\section{for}
+
+Instrukcja ta pozwala nam wykonać operację dla \emph{iteratora}. Rolę tę mogą
+spełniać różne obiekty.
+
+\begin{minted}{pycon}
+>>> a = "Cześć"
+>>> for c in a:
+...     print(c)
+... 
+C
+z
+e
+ś
+ć
+>>> b = ['Pies', 'Kot', 'Ptak']
+>>> for el in b:
+...     print(el)
+... 
+Pies
+Kot
+Ptak
+\end{minted}
+
+Jeśli chcemy się po prostu przeiterować po liczbach naturalnych, możemy
+skorzystać z funkcji \verb|range()|
+
+\begin{minted}{pycon}
+>>> for a in range(5):
+...     print(a)
+... 
+0
+1
+2
+3
+4
+>>> for a in range(2, 5):
+...     print(a)
+... 
+2
+3
+4
+>>> for a in range(2, 5, 2):
+...     print(a)
+... 
+2
+4
+\end{minted}
+
+Aby ponumerować iterowane elementy użyjemy funkcji \verb|enumerate()|
+
+\begin{minted}{pycon}
+>>> for n, el in enumerate(b):
+...     print("{}: {}".format(n, el))
+... 
+0: Pies
+1: Kot
+2: Ptak
+\end{minted}
+
+Słowniki iterują po kluczach. Możemy jednak użyć metody \verb|values()| lub
+\verb|items()| by przeiterować również wartości
+
+\begin{minted}{pycon}
+>>> a = {'ge': 'Gruzja', 'pl': 'Polska', 'it': 'Włochy'}
+>>> for k in a:
+...     print(k)
+... 
+ge
+it
+pl
+>>> for v in a.values():
+...     print(v)
+... 
+Gruzja
+Włochy
+Polska
+>>> for k, v in a.items():
+...     print("{}: {}".format(k, v))
+... 
+ge: Gruzja
+it: Włochy
+pl: Polska
+\end{minted}
+
+\tableofcontents
+\end{document}
