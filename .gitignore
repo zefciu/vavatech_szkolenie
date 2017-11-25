@@ -1,0 +1,12 @@
+*.aux
+*.nav
+*.pdf
+*.log
+_minted*
+*.toc
+*.tex
+*.out
+*.pyg
+*.snm
+*.swp
+*.swo

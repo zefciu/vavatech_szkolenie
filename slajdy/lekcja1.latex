@@ -1,0 +1,107 @@
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Singapore}
+}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{polski}
+
+% For pygmentize
+\usepackage{fancyvrb}
+\usepackage{color}
+
+\input{styles}
+\title{Podstawy Pythona}
+
+\author[]{Szymon Pyżalski}
+
+\date {4 -- 8 XII 2017}
+\logo {\includegraphics{vavatech_logo_small.png}}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage 
+\end{frame}
+
+\section{Wprowadzenie do Pythona}
+
+\begin{frame}{Historia języka}
+    \begin{itemize}
+        \pause
+        \item Język zaczął być tworzony w roku 1989 przez Guido van Rossuma.
+        \pause
+        \item Pierwsza publikacja kodu miała miejsce w 1991 roku
+        \pause
+        \item Wersja 2.0 zostaje opublikowana w 2000 roku. Ustalone zostają
+            zasady prac nad językiem.
+        \pause
+        \item W roku 2001 powstaje Python Software Foundation
+        \pause
+        \item W 2008 zostaje wydana wersja 3.0 niekompatybilna z wersją 2.0
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Cechy Pythona}
+    \begin{itemize}
+        \pause
+        \item Język ogólnego przeznaczenia
+        \pause
+        \item Język wysokiego poziomu
+        \pause
+        \item Dynamiczne typowanie
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Zalety}
+    \begin{itemize}
+        \pause
+        \item Łatwy do nauczenia
+        \pause
+        \item Zwięzły kod
+        \pause
+        \item Duża czytelność i łatwość współpracy
+        \pause
+        \item Łatwy \emph{debugging}
+        \pause
+        \item Silna i prężna społeczność
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Wady}
+    \begin{itemize}
+        \pause
+        \item Powolne wykonywanie
+        \pause
+        \item Mniej błędów wykrywanych na etapie kompilacji
+        \pause
+        \item Niekompatybilność wersji 3.0 i 2.0
+    \end{itemize}
+\end{frame}
+
+\section{Pierwsze kroki}
+\begin{frame}{Konsola interaktywna}
+    \input{console.tex}
+\end{frame}
+
+\begin{frame}{Skrypty}
+    \input{script.tex}
+\end{frame}
+
+\section{Podstawowe elementy języka}
+\begin{frame}{Literał}
+    \input{literals.tex}
+\end{frame}
+
+\begin{frame}{Operatory}
+    \input{operators.tex}
+\end{frame}
+
+\begin{frame}{Identyfikator}
+    \input{assignment.tex}
+\end{frame}
+
+\end{document}

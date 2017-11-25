@@ -1,10 +1,18 @@
-\documentclass{report}
+\documentclass{scrbook}
 \usepackage[utf8]{inputenc}
 \usepackage{polski}
 \usepackage{minted}
+\usepackage{ccicons}
 \begin{document}
 \title{Podstawy programowania w Pythonie}
 \author{Szymon Pyżalski}
+\lowertitleback{
+ Niniejszy skrypt dostępny jest na licencji
+ Creative Commons  Uznanie autorstwa -- Na tych samych warunkach 4.0
+ Pewne prawa zastrzeżone.
+ https://creativecommons.org/licenses/by-sa/4.0/legalcode.pl
+
+\ccbysa}
 \maketitle
 
 \chapter{Lekcja 1: Wprowadzenie do języka}
