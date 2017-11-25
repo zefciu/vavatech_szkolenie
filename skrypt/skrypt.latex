@@ -682,5 +682,76 @@ it: Włochy
 pl: Polska
 \end{minted}
 
+\chapter{Definiowanie własnych funkcji}
+
+Funkcja to fragment programu, który wykonuje określone zadanie.
+
+\begin{minted}{python}
+    def greeting():
+        """Wypisuje powitanie"""
+        print("Cześć!")
+\end{minted}
+
+Funkcja może przyjmować argumenty.
+
+\begin{minted}{python}
+    def greeting(name):
+        """Wypisuje powitanie dla danej osoby"""
+        print("Cześć {}!".format(name))
+\end{minted}
+
+Funkcja może też zwracać wartość. Użycie dyrektywy \verb|return| powoduje
+opuszczenie funkcji.
+
+\begin{minted}{python}
+    def factorial(n):
+        """Oblicza silnię danej liczby naturalnej."""
+        result = 1
+        for i in range(n + 1):
+            result *= i
+        return result
+\end{minted}
+
+Dyrektywa \verb|return| bez podanej wartości powoduje zwrócenie wartości
+\verb|None|. Podobny efekt osiągamy, gdy interpreter dociera do końca funkcji.
+\begin{minted}{pycon}
+    >>> a = greeting('Kasia')
+    Cześć Kasia!
+    >>> print(a)
+    None
+\end{minted}
+
+Możliwe jest tworzenie funkcji, które przyjmują dowolną liczbę argumentów lub
+dowolne argumenty pozycyjne.
+
+\begin{minted}{python}
+    def greeting(*args):
+        """Wyświetla powitanie dla kilku osób"""
+        for name in args:
+            print("Cześć {}!".format(name))
+\end{minted}
+
+Łańcuch znaków, który znajduje się pod nazwą funkcji nazywamy
+\emph{docstringiem}. Powinien on opisywać co robi funkcja. Możemy przeczytać,
+dokumentację przy pomocy funkcji \verb|help()|
+
+\chapter{Programowanie obiektowe}
+
+\chapter{Wyjątki}
+
+\chapter{Moduły i pakiety}
+\section{Polecenie import}
+\section{Biblioteka standardowa}
+\section{Definiowanie własnych modułów i pakietów}
+\section{Instalacja i dystrybucja pakietów }
+
+
+\chapter{Operacje I/O}
+\section{Praca na plikach}
+\section{Serializacja obiektów}
+\subsection{pickle}
+\subsection{json i yaml}
+\section{Tworzenie poleceń}
+
 \tableofcontents
 \end{document}
