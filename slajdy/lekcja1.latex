@@ -104,4 +104,70 @@
     \input{assignment.tex}
 \end{frame}
 
+\begin{frame}{Zadanie}
+    Napisz program który wypisze obwody i pola kół o promieniu 10 cm oraz 15 cm
+    Użyj zmiennych, aby nie musieć wielokrotnie podawać żadnego literału.
+\end{frame}
+
+\section{Typy danych}
+\subsection{Typy niezmienne}
+\begin{frame}{Typy niezmienne}
+    \begin{itemize}
+        \pause
+        \item Najbardziej podstawowe typy danych
+        \pause
+        \item Nie można zmodyfikować wartości obiektu
+        \pause
+        \item Możliwe jest tylko stworzenie obiektu o nowej wartości
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{int}
+    \begin{itemize}
+        \pause
+        \item Liczba całkowita
+        \pause
+        \item Nieograniczona wartość
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{str}
+    \begin{itemize}
+        \pause
+            \item Łańcuch znaków unicode (od Pythona 3.0)
+        \pause
+            \item Ujęty w pojedyncze lub podwójne cudzysłowy
+        \pause
+    \item Znaki specjalne przy pomocy \Verb|\PYZbs{}| 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{str - możliwe operacje}
+    \begin{itemize}
+        \pause
+            \item Dodawanie łańcuchów (konkatenacja)
+        \pause
+            \item Mnożenie łańcucha przez liczbę całkowitą
+        \pause
+            \item Formatowanie łańcucha
+        \pause
+            \item Inne metody
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{float}
+    \begin{itemize}
+        \pause
+            \item Liczba zmiennoprzecinkowa
+        \pause
+            \item Ograniczona dokładność
+        \pause
+            \item Błędy
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{float - problemy}
+    \input{float}
+\end{frame}
+
 \end{document}

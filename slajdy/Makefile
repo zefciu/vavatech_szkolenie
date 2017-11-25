@@ -1,4 +1,4 @@
-lekcja1.pdf: lekcja1.latex styles.tex console.tex script.tex literals.tex operators.tex assignment.tex
+lekcja1.pdf: lekcja1.latex styles.tex console.tex script.tex literals.tex operators.tex assignment.tex float.tex
 	latex -output-format pdf lekcja1.latex
 
 styles.tex: Makefile                                                            
@@ -18,3 +18,6 @@ operators.tex: operators.pycon Makefile
 
 assignment.tex: assignment.py Makefile
 	pygmentize -l py -o assignment.tex assignment.py
+
+float.tex: float.pycon Makefile
+	pygmentize -l pycon -o float.tex float.pycon
