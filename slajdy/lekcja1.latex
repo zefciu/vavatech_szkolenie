@@ -151,6 +151,8 @@
         \pause
             \item Formatowanie łańcucha
         \pause
+            \item Długość łańcucha \Verb|len(s)|
+        \pause
             \item Inne metody
     \end{itemize}
 \end{frame}
@@ -169,5 +171,40 @@
 \begin{frame}{float - problemy}
     \input{float}
 \end{frame}
+
+\begin{frame}{bool}
+    \begin{itemize}
+        \pause
+            \item Wartości logiki dwuwartościowej
+        \pause
+            \item Dwie wartości \Verb|True| i \Verb|False|
+        \pause
+            \item Wszystkie inne wartości da się skonwertować do \Verb|bool|
+        \pause
+            \item \Verb|bool('') == False; bool(0) == False|
+        \pause
+            \item Operatory \Verb|not|, \Verb|and|, \Verb|or|
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{tuple}
+    \input{tuple}
+\end{frame}
+
+\begin{frame}{None}
+    \begin{itemize}
+        \pause
+            \item Reprezentuje brak wartości
+        \pause
+            \item \Verb|bool(None) == False|
+        \pause
+            \item Jedyny przedstawiciel typu \Verb|NoneType|
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Zadanie}
+    \input{zadanie}
+\end{frame}
+
 
 \end{document}
