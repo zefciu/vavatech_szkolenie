@@ -2,7 +2,8 @@
 
 \mode<presentation>
 {
-  \usetheme{Singapore}
+  \usetheme{Berkeley}
+  \usecolortheme{crane}
 }
 
 \usepackage[utf8]{inputenc}
@@ -19,7 +20,7 @@
 \author[]{Szymon Pyżalski}
 
 \date {4 -- 8 XII 2017}
-\logo {\includegraphics{vavatech_logo_small.png}}
+\logo {\includegraphics[width=1.5cm]{vavatech_logo_small.png}}
 
 \begin{document}
 
@@ -203,8 +204,56 @@
 \end{frame}
 
 \begin{frame}{Zadanie}
-    \input{zadanie}
+    \input{zadanie1}
 \end{frame}
 
+\subsection{Typy zmienne}
+\begin{frame}{Typy zmienne}
+    \begin{itemize}
+        \pause
+            \item Reprezentują zwykle bardziej złożone dane
+        \pause
+            \item Ich wartość może się zmieniać
+        \pause
+            \item Uwaga na referencje!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Typ niezmienny}
+    \input{unmutable}
+\end{frame}
+
+\begin{frame}{Typ zmienny}
+    \input{mutable}
+\end{frame}
+
+\begin{frame}{Typ zmienny (kopia)}
+    \input{mutable-copy}
+\end{frame}
+
+\begin{frame}{Lista}
+    \input{list}
+\end{frame}
+
+\begin{frame}{Słownik}
+    \begin{itemize}
+        \pause
+            \item Opisuje pary klucz - wartość
+        \pause
+            \item Klucze muszą być unikalne
+        \pause
+            \item Klucze muszą być obiektami niezmiennymi
+        \pause
+            \item Nie pamięta kolejności
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Słownik}
+    \input{dict}
+\end{frame}
+
+\begin{frame}{Zadanie 2}
+    \Verb|kate zadania/zadanie2.py|
+\end{frame}
 
 \end{document}

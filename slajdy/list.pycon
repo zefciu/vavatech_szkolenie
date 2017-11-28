@@ -1,0 +1,7 @@
+>>> week = ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa']
+>>> week.append('Czwartek')
+>>> week += ['Piątek', 'Sobota']
+>>> len(week)
+7
+>>> week[2:5]
+['Wtorek', 'Środa', 'Czwartek']

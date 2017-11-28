@@ -1,0 +1,9 @@
+>>> week = {'Niedziela', 'pn': 'Poniedziałek', 'wt': 'Wtorek', 'śr': 'Środa'}
+>>> week['czw'] = 'Czwartek'
+>>> week.update({'pt': 'Piątek', 'sb': 'Sobota'})
+>>> week
+{'sb': 'Sobota', 'wt': 'Wtorek', 'pt': 'Piątek', 'czw': 'Czwartek', 'śr': 'Środa', 'pn': 'Poniedziałek', 'nd': 'Niedziela'}
+>>> week.keys()
+dict_keys(['sb', 'wt', 'pt', 'czw', 'śr', 'pn', 'nd'])
+>>> week.values()
+dict_values(['Sobota', 'Wtorek', 'Piątek', 'Czwartek', 'Środa', 'Poniedziałek', 'Niedziela'])
