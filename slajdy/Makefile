@@ -1,6 +1,11 @@
-lekcja1.pdf: lekcja1.latex styles.tex console.tex script.tex literals.tex operators.tex assignment.tex float.tex tuple.tex zadanie1.tex unmutable.tex mutable.tex mutable-copy.tex list.tex list.tex dict.tex
+all: lekcja1.pdf lekcja2.pdf
+lekcja2.pdf: lekcja2.latex styles.tex if_statement.tex while_statement.tex for_statement.tex Makefile
+	latex -output-format pdf lekcja2.latex
+
+lekcja1.pdf: lekcja1.latex styles.tex console.tex script.tex literals.tex operators.tex assignment.tex float.tex tuple.tex zadanie1.tex unmutable.tex mutable.tex mutable-copy.tex list.tex list.tex dict.tex Makefile
 	latex -output-format pdf lekcja1.latex
 
+# Lekcja 1
 styles.tex: Makefile                                                            
 	pygmentize -S manni -f latex > styles.tex                                   
 
@@ -42,3 +47,13 @@ list.tex: list.pycon Makefile
 
 dict.tex: dict.pycon Makefile                                               
 	pygmentize -l pycon -o dict.tex dict.pycon
+
+# Lekcja 2
+if_statement.tex: if_statement.py Makefile                                               
+	pygmentize -l py -o if_statement.tex if_statement.py
+
+while_statement.tex: while_statement.py Makefile                                               
+	pygmentize -l py -o while_statement.tex while_statement.py
+
+for_statement.tex: for_statement.py Makefile                                               
+	pygmentize -l py -o for_statement.tex for_statement.py

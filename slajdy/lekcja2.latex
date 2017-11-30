@@ -1,0 +1,86 @@
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Berkeley}
+  \usecolortheme{crane}
+}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{polski}
+
+% For pygmentize
+\usepackage{fancyvrb}
+\usepackage{color}
+
+\input{styles}
+\title{Funkcje i struktury Pythona}
+
+\author[]{Szymon Pyżalski}
+
+\date {4 -- 8 XII 2017}
+\logo {\includegraphics[width=1.5cm]{vavatech_logo_small.png}}
+
+\author[]{Szymon Pyżalski}
+
+\date {4 -- 8 XII 2017}
+\logo {\includegraphics[width=1.5cm]{vavatech_logo_small.png}}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage 
+\end{frame}
+
+\section{Instrukcje sterujące}
+\insertsectionhead
+\begin{frame}{if}
+    \begin{itemize}
+        \pause
+            \item Powoduje wykonanie bloku instrukcji, jeśli warunek jest
+                spełniony
+        \pause
+            \item Opcjonalna klauzula \Verb|else| -- w przeciwnym wypadku
+        \pause
+            \item Połączenie \Verb|else| i \Verb|if| -- \Verb|elif|
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{if}
+    \input{if_statement}
+\end{frame}
+
+\begin{frame}{while}
+    \begin{itemize}
+        \pause
+            \item Wykonuje się \emph{dopóki} warunek jest spełniony
+        \pause
+            \item Może się nie wykonać w ogóle
+        \pause
+            \item Możliwe opuszczenie bloku przy pomocy \Verb|break| i
+                \Verb|continue|
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{while}
+    \input{while_statement}
+\end{frame}
+
+\begin{frame}{for}
+    \begin{itemize}
+        \pause
+            \item Przyjmuje jako argument obiekt \Verb|iterowalny|
+        \pause
+            \item Przypisuje kolejne wartości zmiennej
+        \pause
+            \item Możliwe opuszczenie bloku przy pomocy \Verb|break| i
+                \Verb|continue|
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{for}
+    \input{for_statement}
+\end{frame}
+
+\end{document}
