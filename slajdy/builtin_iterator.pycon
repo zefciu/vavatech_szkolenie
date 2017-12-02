@@ -1,0 +1,12 @@
+>>> pol = ['nd', 'pn', 'wt', 'śr', 'czw', 'pt', 'sb']
+>>> eng = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
+>>> list(zip(pol, eng))
+[('nd', 'su'), ('pn', 'mo'), ('wt', 'tu'), ('śr', 'we'), ('czw', 'th'), ('pt', 'fr'), ('sb', 'sa')]
+>>> list(enumerate(pol))
+[(0, 'nd'), (1, 'pn'), (2, 'wt'), (3, 'śr'), (4, 'czw'), (5, 'pt'), (6, 'sb')]
+>>> sorted(pol)
+['czw', 'nd', 'pn', 'pt', 'sb', 'wt', 'śr']
+>>> max(eng)
+'we'
+>>> max(eng), min(eng)
+('we', 'fr')

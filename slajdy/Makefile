@@ -1,5 +1,5 @@
 all: lekcja1.pdf lekcja2.pdf
-lekcja2.pdf: lekcja2.latex styles.tex if_statement.tex while_statement.tex for_statement.tex Makefile
+lekcja2.pdf: lekcja2.latex styles.tex if_statement.tex while_statement.tex for_statement.tex conversions.tex print_input.tex builtin_iterator.tex builtin_math.tex Makefile
 	latex -output-format pdf lekcja2.latex
 
 lekcja1.pdf: lekcja1.latex styles.tex console.tex script.tex literals.tex operators.tex assignment.tex float.tex tuple.tex zadanie1.tex unmutable.tex mutable.tex mutable-copy.tex list.tex list.tex dict.tex Makefile
@@ -57,3 +57,18 @@ while_statement.tex: while_statement.py Makefile
 
 for_statement.tex: for_statement.py Makefile                                               
 	pygmentize -l py -o for_statement.tex for_statement.py
+
+conversions.tex: conversions.pycon Makefile                                               
+	pygmentize -l pycon -o conversions.tex conversions.pycon
+
+print_input.tex: print_input.pycon Makefile                                               
+	pygmentize -l pycon -o print_input.tex print_input.pycon
+
+builtin_iterator.tex: builtin_iterator.pycon Makefile                                               
+	pygmentize -l pycon -o builtin_iterator.tex builtin_iterator.pycon
+
+builtin_math.tex: builtin_math.pycon Makefile                                               
+	pygmentize -l pycon -o builtin_math.tex builtin_math.pycon
+
+builtin_other.tex: builtin_other.pycon Makefile                                               
+	pygmentize -l pycon -o builtin_other.tex builtin_other.pycon

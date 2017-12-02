@@ -1,0 +1,10 @@
+>>> int('10') # Konwersja łańcucha na liczbę
+10
+>>> int('10', 16) # W systemie szesnastkowym
+16
+>>> tuple([1, 2, 4]) # Tworzenie krotki z listy
+(1, 2, 4)
+>>> list(range(10)) # Do utworzenia kontenera można użyć dowolnego iteratora
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> dict([(1, 3), (6, 7)]) # Słowniki inicjalizujemy iteratorem par
+{1: 3, 6: 7}

@@ -1,0 +1,9 @@
+>>> print('Katarzyna', 'Joanna') # domyślnie sep=' ', end='\n'
+Katarzyna Joanna
+>>> print('Katarzyna', 'Joanna', sep=',', end='\n===\n')
+Katarzyna,Joanna
+===
+>>> a = input('Podaj imię: ')
+Podaj imię: Joanna
+>>> a
+'Joanna'

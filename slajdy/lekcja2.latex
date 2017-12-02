@@ -83,4 +83,47 @@
     \input{for_statement}
 \end{frame}
 
+\begin{frame}{zadanie}
+    \Verb|zadanie2-1.py|
+\end{frame}
+
+\section{Funkcje i typy wbudowane}
+
+\begin{frame}{Konwersje typów}
+    \begin{tiny}
+    \input{conversions}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Wejście i wyjście na konsolę}
+    \begin{itemize}
+        \pause
+    \item Domyślnym urządzeniem I/O jest konsola (klawiatura + ekran)
+        \pause
+    \item \Verb|print| wypisuje obiekty na konsolę
+        \pause
+    \item \Verb|input| wypisuje prompt i pobiera łańcuch z klawiatury
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Wejście i wyjście na konsolę}
+    \begin{tiny}
+    \input{print_input}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Operacje na iteratorach}
+    \begin{tiny}
+    \input{builtin_iterator}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Matematyczne}
+    \input{builtin_math}
+\end{frame}
+
+\begin{frame}{Inne}
+    \input{builtin_other}
+\end{frame}
+
 \end{document}
