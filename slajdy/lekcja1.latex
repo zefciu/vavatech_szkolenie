@@ -106,8 +106,7 @@
 \end{frame}
 
 \begin{frame}{Zadanie}
-    Napisz program który wypisze obwody i pola kół o promieniu 10 cm oraz 15 cm
-    Użyj zmiennych, aby nie musieć wielokrotnie podawać żadnego literału.
+
 \end{frame}
 
 \section{Typy danych}
@@ -189,7 +188,9 @@
 \end{frame}
 
 \begin{frame}{tuple}
+    \begin{tiny}
     \input{tuple}
+    \end{tiny}
 \end{frame}
 
 \begin{frame}{None}
@@ -204,7 +205,7 @@
 \end{frame}
 
 \begin{frame}{Zadanie}
-    \input{zadanie1}
+    zadanie1-2.py
 \end{frame}
 
 \subsection{Typy zmienne}
@@ -232,7 +233,9 @@
 \end{frame}
 
 \begin{frame}{Lista}
+    \begin{tiny}
     \input{list}
+    \end{tiny}
 \end{frame}
 
 \begin{frame}{Słownik}
@@ -249,11 +252,13 @@
 \end{frame}
 
 \begin{frame}{Słownik}
+    \begin{tiny}
     \input{dict}
+    \end{tiny}
 \end{frame}
 
 \begin{frame}{Zadanie 2}
-    \Verb|kate zadania/zadanie2.py|
+    \Verb|zadania/zadanie2.py|
 \end{frame}
 
 \end{document}

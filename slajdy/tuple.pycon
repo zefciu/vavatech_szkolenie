@@ -1,7 +1,7 @@
 >>> name = ('Guido', 'van Rossum')
 >>> name[0] # Odwołanie przez indeks
 'Guido'
->>> first_name, surname = name # Rozpakowanie kropki
+>>> first_name, surname = name # Rozpakowanie krotki
 >>> first_name
 'Guido'
 >>> a = 1
