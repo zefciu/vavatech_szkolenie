@@ -1,4 +1,4 @@
-plit('-')
+>>> 'ene-due-rike-fake'.split('-')
 ['ene', 'due', 'rike', 'fake']
 >>> '_'.join(_) # Podreślenie w konsoli oznacza ostatni wynik
 'ene_due_rike_fake'

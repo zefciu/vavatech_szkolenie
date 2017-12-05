@@ -1,6 +1,7 @@
 # Stwórz klasę Circle reprezentującą koło. Klasa ta powinna być inicjalizowana
 # promieniem oraz posiadać właściwość area -- pole. Dodawanie obiektów tej
 # klasy powinno dawać nam koło o *polu* równym sumie pól oryginalnych.
+# Metoda __add__(self, other)
 import math
 
 

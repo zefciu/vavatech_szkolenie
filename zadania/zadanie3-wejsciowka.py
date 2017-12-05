@@ -1,6 +1,13 @@
 
-def m(n):
-    ...
+def m(c):
+    """Jeśli po 20 iteracji abs(z) < 2: zwróć None
+    Jeśli po którejkolwiek iteracji abs(z) > 2: zwróć numer iteracji"""
+    result=0
+    for z in range (20):
+        result = result ** 2 +c
+        if abs(result) >2:
+            return z
+        
 
 from tkinter import *
 import colorsys
@@ -24,3 +31,4 @@ for i in range(500):
             color = '#{:02x}{:02x}{:02x}'.format(*rgb)
         img.put(color, (i, j))
 mainloop()
+

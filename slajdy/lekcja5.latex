@@ -1,0 +1,150 @@
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Berkeley}
+  \usecolortheme{crane}
+}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{polski}
+
+% For pygmentize
+\usepackage{fancyvrb}
+\usepackage{color}
+\usepackage{ccicons}
+
+\input{styles}
+\title{Python -- dobieranie narzędzi}
+\author[]{Szymon Pyżalski}
+
+\date{4 -- 8 XII 2017}
+\logo{\includegraphics[width=1.5cm]{vavatech_logo_small.png}}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+ Niniejsza prezentacja dostępna jest na licencji
+ Creative Commons  Uznanie autorstwa -- Na tych samych warunkach 4.0
+ Pewne prawa zastrzeżone.
+ https://creativecommons.org/licenses/by-sa/4.0/legalcode.pl
+ \ccbysa
+\end{frame}
+
+\section{Moduły i pakiety}
+\begin{frame}{Moduł}
+    \begin{itemize}
+        \pause
+    \item Modułem nazywamy plik pythona, który służy do importu obiektów.
+        \pause
+    \item Moduł może posiadać \emph{docstring}
+        \pause
+    \item Aby uniknąć wykonywania kodu przy imporcie używamy idiomu
+        \texttt{if \_\_name\_\_ == '\_\_main\_\_'}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Pakiet}
+    \begin{itemize}
+        \pause
+    \item Pakietem nazywamy katalog zawierający moduły
+        \pause
+    \item Pakiet musi zawierać plik \texttt{\_\_init\_\_.py} Plik ten może być
+        pusty
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Poszukiwanie modułów i pakietów}
+    \begin{itemize}
+        \pause
+    \item Pakiety znajdują się domyślnie w lokacji
+        \texttt{\$PREFIX/lib/pythonX.Y}
+        \pause
+    \item Możliwy jest import z bieżącego katalogu
+        \pause
+    \item Dodatkowo możemy ustawić zmienną środowiskową \texttt{PYTHONPATH}
+        \pause
+    \item Zmienna \texttt{sys.path} pokazuje nam pełną listę ścieżek
+        \pause
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Importowanie}
+    \begin{tiny}
+        \input{imp}
+    \end{tiny}
+\end{frame}
+
+\section{Narzędzia pythonisty}
+\subsection{pip}
+\begin{frame}{O pip}
+    \begin{itemize}
+        \pause
+    \item Menedżer pakietów dla pythona
+        \pause
+    \item Skrót od \emph{pip installs packages}
+        \pause
+    \item Instalowany razem z pythonem
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{pip -- instalowanie paczek}
+    \begin{tiny}
+        \input{pip_install}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{pip -- inne polecenia}
+    \begin{tiny}
+        \input{pip_other}
+    \end{tiny}
+\end{frame}
+
+\subsection{virtualenv}
+\begin{frame}{Pożytki z virtualenv}
+    \begin{itemize}
+        \pause
+    \item Izolowane środowisko dla projektu
+        \pause
+    \item Pomaga uniknąć \emph{dependency hell}.
+        \pause
+    \item Możliwość instalowania paczek bez \texttt{sudo}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{virtualenv -- użycie}
+    \begin{tiny}
+        \input{venv}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{virtualenvwrapper -- użycie}
+    \begin{tiny}
+        \input{venvwrapper}
+    \end{tiny}
+\end{frame}
+
+\subsection{Debugging}
+\begin{frame}{Startowanie debuggera}
+    \begin{itemize}
+            \pause \texttt{pdb.
+    \item 
+\end{frame}
+
+\subsection{Pomoc przy kodzie}
+\begin{frame}{Pomoc przy kodzie}
+    \begin{itemize}
+        \pause
+    \item \texttt{flake8} -- sprawdza jakość kodu
+        \pause
+    \item \texttt{jedi} -- zapewnia uzupełnianie składni (wtyczki do różnych
+        edytorów)
+        \pause
+\end{frame}
+
+\end{document}

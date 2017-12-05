@@ -100,10 +100,10 @@
     zadanie4-2.py
 \end{frame}
 
-\begin{frame}{Przeciążanie operatorów}
+\begin{frame}{}
     \begin{itemize}
     \pause
-    \item Przeciążania dokonujemy dzięki magicznym metodom
+    \item Przeciążania dokonujemy dzięki ,,magicznym'' metodom
     \pause
     \item Nie wszystkie operatory da się przeciążyć
     \pause
@@ -115,16 +115,6 @@
     zadanie4-3.py
 \end{frame}
 
-\begin{frame}{}
-    \begin{itemize}
-    \pause
-    \item Przeciążania dokonujemy dzięki ,,magicznym'' metodom
-    \pause
-    \item Nie wszystkie operatory da się przeciążyć
-    \pause
-    \item Przeciążajmy sensownie
-    \end{itemize}
-\end{frame}
 
 \begin{frame}{Enkapsulacja}
     \begin{itemize}
@@ -152,7 +142,7 @@
 
 \begin{frame}{Dziedziczenie}
     \begin{tiny}
-    \input{inheritance}
+    \input{default_dict}
     \end{tiny}
 \end{frame}
 
