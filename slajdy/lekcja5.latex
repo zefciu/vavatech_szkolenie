@@ -132,8 +132,34 @@
 \subsection{Debugging}
 \begin{frame}{Startowanie debuggera}
     \begin{itemize}
-            \pause \texttt{pdb.
-    \item 
+            \pause 
+            \item \texttt{pdb.set\_trace()} ustawia \emph{breakpoint}
+            \pause 
+            \item \texttt{pdb.pm()} -- tryb \emph{post mortem} pozwala zbadać,
+            co wywołało wyjątek
+            \pause
+            \item \texttt{pdb.run('cmd()')} -- uruchamia polecenie i wchodzi
+            do debugera
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Polecenia debuggera}
+    \begin{itemize}
+            \pause 
+            \item \texttt{n} następna linia
+            \pause 
+            \item \texttt{s} wejście do funkcji
+            \pause 
+            \item \texttt{r} do następnego \texttt{return}
+            \pause 
+            \item \texttt{c} kontynuuj (wyjście z debuggera)
+            \pause 
+            \item \texttt{u} \texttt{d} w górę lub w dół stosu wywołań
+            \pause 
+            \item \texttt{l} listing
+            \pause 
+            \item \texttt{pp} \emph{pretty-print}
+    \end{itemize}
 \end{frame}
 
 \subsection{Pomoc przy kodzie}
@@ -144,7 +170,27 @@
         \pause
     \item \texttt{jedi} -- zapewnia uzupełnianie składni (wtyczki do różnych
         edytorów)
-        \pause
+    \end{itemize}
+\end{frame}
+
+\section{Praca z plikami}
+    
+\begin{frame}{Pliki tekstowe}
+    \begin{tiny}
+        \input{file_ops}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{CSV}
+    \begin{tiny}
+        \input{csv_ops}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{JSON}
+    \begin{tiny}
+        \input{json_ops}
+    \end{tiny}
 \end{frame}
 
 \end{document}
