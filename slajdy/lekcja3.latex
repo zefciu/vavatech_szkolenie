@@ -15,7 +15,7 @@
 \usepackage{color}
 
 \input{styles}
-\title{Programowanie obiektowe w Pythonie}
+\title{Obsługa wyjątków i przydatne metody}
 \author[]{Szymon Pyżalski}
 
 \date{4 -- 8 XII 2017}
@@ -27,55 +27,134 @@
   \titlepage
 \end{frame}
 
-\begin{frame}
-  \titlepage
-\end{frame}
-
-\section{Teoria}
+\section{Wyjątki}
 \insertsectionhead
-
-\begin{frame}{Zarys teorii OOP}
+\begin{frame}{Wyjątek}
     \begin{itemize}
-    \pause
-    \item Abstrakcja programu opisana jest zależnościami między obiektami
-    \pause
-    \item Obiekty przynależą do klas
-    \pause
-    \item Klasy zdefiniowane są przez posiadane pola danych i metody
+            \pause
+        \item Wyjątki sygnalizują błędy i inne wyjątkowe sytuacje
+            \pause
+        \item Wyjątek może zostać złapany i obsłużony
+            \pause
+        \item Niezłapany wyjątek wędruje w górę drzewa wywołań
+            \pause
+        \item Jeśli wyjątek nie zostanie złapany nigdzie, przerywa działanie
+            programu
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Specyfika OOP w Pythonie}
-    \begin{itemize}
-    \item Wszystko jest obiektem!
-    \pause
-    \item Nie musimy deklarować nazw pól.
-    \pause
-    \item Istnieją klasy, ale ważne jest jakie metody zdefiniowaliśmy
-        \emph{(duck typing)}
-    \end{itemize}
-\end{frame}
-
-\section{Definiowanie obiektów}
-\insertsectionhead
-
-\begin{frame}{Prosty obiekt}
+\begin{frame}{Wyjątek}
     \begin{tiny}
-    \input{object_simple}
+        \input{exception}
     \end{tiny}
 \end{frame}
 
-\begin{frame}{Specjalne metody}
+\begin{frame}{Obsługa wyjątków w Pythonie}
     \begin{itemize}
-    \pause
-    \item \texttt{\_\_init\_\_} -- inicjalizator
-    \pause
-    \item \texttt{\_\_repr\_\_} -- reprezentacja jako string dla maszyny
-    \pause
-    \item \texttt{\_\_str\_\_} -- reprezentacja jako string dla człowieka
-    \pause
-    \item \texttt{\_\_int\_\_} \texttt{\_\_float\_\_} etc. -- konwersja typów
+            \pause
+        \item Nie łapiemy wyjątków, których nie chcemy obsłużyć
+            \pause
+        \item Pozwalamy tym wyjątkom się propagować
+            \pause
+        \item Wyciszamy wyjątki tylko i wyłącznie wtedy, gdy wiemy co robimy
     \end{itemize}
 \end{frame}
+
+\begin{frame}{Rzucanie wyjątku}
+    \begin{tiny}
+        \input{raise_}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Rzucanie wyjątku}
+    \begin{itemize}
+            \pause
+        \item Nie łapiemy wyjątków, których nie chcemy obsłużyć
+            \pause
+        \item Pozwalamy tym wyjątkom się propagować
+            \pause
+        \item Wyciszamy wyjątki tylko i wyłącznie wtedy, gdy wiemy co robimy
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Typy wyjątków}
+    \begin{itemize}
+            \pause
+        \item \texttt{Exception} Klasa bazowa dla prawie wszystkich wyjątków.
+            Nie łapiemy, chyba że piszemy debugger.
+            \pause
+        \item \texttt{TypeError} Zły typ danych lub złe argumenty dla funkcji.
+            \pause
+        \item \texttt{ValueError} Zła wartość
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Typy wyjątków}
+    \begin{itemize}
+            \pause
+        \item \texttt{KeyError} Brak klucza w słowniku.
+            \pause
+        \item \texttt{AttributeError} Brak właściwości lub metody (dostęp po
+            kropce)
+            \pause
+        \item \texttt{KeyboardInterrupt} Wciśnięto ctrl-C
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Zadanie}
+    zadanie3-1.py
+\end{frame}
+
+\section{Metody na łańcuchu}
+\insertsectionhead
+\begin{frame}{Łaczenie i dzielenie łańcucha}
+    \begin{tiny}
+        \input{split_join}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Duże i małe litery}
+    \begin{tiny}
+        \input{case}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Poszukiwanie i zamiana}
+    \begin{tiny}
+        \input{search}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Początek i koniec}
+    \begin{tiny}
+        \input{strip_start}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Formatowanie}
+    \begin{tiny}
+        \input{format}
+    \end{tiny}
+\end{frame}
+\section{Metody na słowniku}
+\insertsectionhead
+\begin{frame}{Podstawy}
+    \begin{tiny}
+        \input{dict_basic}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Wartości domyślne}
+    \begin{tiny}
+        \input{dict_defaults}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Inne}
+    \begin{tiny}
+        \input{dict_other}
+    \end{tiny}
+\end{frame}
+
 
 \end{document}

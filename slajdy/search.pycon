@@ -1,0 +1,8 @@
+>>> "Yo yo yo! What's up?".find('yo')
+3
+>>> 'yo' in "Yo yo yo! What's up?"
+True
+>>> "Yo yo yo! What's up?".count('yo')
+2
+>>> "Yo yo yo! What's up?".replace('yo', 'man', 1)
+"Yo man yo! What's up?"

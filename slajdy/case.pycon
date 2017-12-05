@@ -1,0 +1,12 @@
+>>> 'hello world'.upper()
+'HELLO WORLD'
+>>> 'hello world'.capitalize()
+'Hello world'
+>>> 'hello world'.title()
+'Hello World'
+>>> 'HELLO WORLD'.lower()
+'hello world'
+>>> 'Hello World'.istitle()
+True
+>>> 'Hello world'.istitle()
+False

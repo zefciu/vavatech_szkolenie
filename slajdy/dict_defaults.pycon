@@ -1,0 +1,16 @@
+>>> countries = {'pl': 'Polska', 'ge': 'Gruzja'}
+>>> countries['de']
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 'de'
+>>> countries.get('de')
+>>> countries.get('de', 'Nieznany')
+'Nieznany'
+>>> countries.setdefault('de', 'Niemcy')
+'Niemcy'
+>>> countries
+{'ge': 'Gruzja', 'pl': 'Polska', 'de': 'Niemcy'}
+>>> countries.setdefault('pl', 'III RP')
+'Polska'
+>>> countries
+{'ge': 'Gruzja', 'pl': 'Polska', 'de': 'Niemcy'}

@@ -1,0 +1,10 @@
+>>> countries = {'pl': 'Polska', 'ge': 'Gruzja'}
+>>> countries_copy = countries.copy()
+>>> countries.pop('ge')
+'Gruzja'
+>>> countries.pop('ge')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 'ge'
+>>> countries_copy
+{'ge': 'Gruzja', 'pl': 'Polska'}

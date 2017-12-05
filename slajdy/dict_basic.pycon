@@ -1,0 +1,8 @@
+>>> tranlit = {'pl': 'Polska', 'ge': 'Gruzja'}
+>>> countries = {'pl': 'Polska', 'ge': 'Gruzja'}
+>>> countries['de'] = 'Niemcy'
+>>> countries
+{'ge': 'Gruzja', 'pl': 'Polska', 'de': 'Niemcy'}
+>>> del countries['ge']
+>>> countries
+{'pl': 'Polska', 'de': 'Niemcy'}

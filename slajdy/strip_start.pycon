@@ -1,0 +1,8 @@
+>>> '     Hello     '.strip()
+'Hello'
+>>> '     Hello     '.lstrip()
+'Hello     '
+>>> '==     Hello   ++'.strip('=+')
+'     Hello   '
+>>> 'Hello'.startswith('He')
+True
