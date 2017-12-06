@@ -193,4 +193,21 @@
     \end{tiny}
 \end{frame}
 
+\section{Konfiguracja}
+
+\begin{frame}{Linia poleceń -- ,,na żywca''}
+    \begin{itemize}
+            \pause
+        \item Wartości zapisane są w \texttt{sys.argv}
+            \pause
+        \item \texttt{sys.argv[0]} to nazwa samego pliku
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Linia poleceń -- parser}
+    \begin{tiny}
+        \input{argparse_usage}
+    \end{tiny}
+\end{frame}
+
 \end{document}
