@@ -1,0 +1,15 @@
+>>> import sqlite3
+>>> c = sqlite3.connect('my_db.sqlite3')
+>>> cur = c.cursor()
+>>> cur.execute('CREATE TABLE people (id INTEGER PRIMARY KEY, first_name, last_name);')
+<sqlite3.Cursor object at 0x7fcb2ad4bce0>
+>>> cur.execute("INSERT INTO people(first_name, last_name) VALUES (?, ?);", ('Arya', 'Stark'))
+<sqlite3.Cursor object at 0x7fcb2ad4bce0>
+>>> cur.execute("INSERT INTO people(first_name, last_name) VALUES (?, ?);", ('Sansa', 'Stark'))
+<sqlite3.Cursor object at 0x7fcb2ad4bce0>
+>>> cur.execute("INSERT INTO people(first_name, last_name) VALUES (?, ?);", ('Tyrion', 'Lannister'))
+<sqlite3.Cursor object at 0x7fcb2ad4bce0>
+>>> cur.execute('SELECT * FROM people WHERE last_name=?', ('Stark',))
+<sqlite3.Cursor object at 0x7fcb2ad4bce0>
+>>> cur.fetchall()
+[(1, 'Arya', 'Stark'), (2, 'Sansa', 'Stark')]

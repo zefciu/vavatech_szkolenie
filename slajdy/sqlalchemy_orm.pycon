@@ -1,0 +1,21 @@
+>>> from sqlalchemy.ext.declarative import declarative_base
+>>> Base = declarative_base()
+>>> class People(Base):
+...     __tablename__ = 'people'
+...     id = sa.Column(sa.Integer, primary_key = True)
+...     first_name = sa.Column(sa.String(50))
+...     last_name = sa.Column(sa.String(50))
+... 
+>>> Base.metadata.create_all(engine)
+>>> from sqlalchemy.orm import sessionmaker
+>>> Session = sessionmaker(engine)
+>>> session = Session()
+>>> bilbo = People(first_name = 'Bilbo', last_name = 'Baggins')
+>>> session.add(bilbo)
+>>> frodo = People(first_name = 'Frodo', last_name = 'Baggins')
+>>> session.add(frodo)
+>>> sam = People(first_name = 'Samwise', last_name = 'Gamgee')
+>>> session.add(sam)
+>>> session.commit()
+>>> session.query(People).filter(People.last_name == 'Baggins').all()
+[<__main__.People object at 0x7f3ee10a3668>, <__main__.People object at 0x7f3ee104d828>]

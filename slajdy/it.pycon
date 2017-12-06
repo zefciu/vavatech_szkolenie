@@ -1,0 +1,11 @@
+>>> def take5(it):
+...     return list(itertools.islice(it, 0, 5))
+... 
+>>> take5(itertools.count(1))
+[1, 2, 3, 4, 5]
+>>> take5(itertools.cycle([1, 2]))
+[1, 2, 1, 2, 1]
+>>> list(itertools.chain([1, 2, 3], [4, 5, 6]))
+[1, 2, 3, 4, 5, 6]
+>>> list(itertools.permutations([1, 2, 3]))
+[(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)]

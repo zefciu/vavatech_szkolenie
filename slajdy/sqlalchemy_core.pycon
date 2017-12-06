@@ -1,0 +1,16 @@
+>>> engine = sa.create_engine('sqlite:///persons.sqlite3')
+>>> metadata = sa.MetaData()
+>>> people = sa.Table('people', metadata,  
+... sa.Column('id', sa.Integer, primary_key=True),
+... sa.Column('first_name', sa.String(50)),
+... sa.Column('last_name', sa.String(50)),
+... )
+>>> engine.execute(people.insert().values(first_name='Leto', last_name='Atreides')
+... )
+<sqlalchemy.engine.result.ResultProxy object at 0x7f3ee1847f98>
+>>> engine.execute(people.insert().values(first_name='Paul', last_name='Atreides'))
+<sqlalchemy.engine.result.ResultProxy object at 0x7f3ee1847cc0>
+>>> engine.execute(people.insert().values(first_name='Vladimir', last_name='Harkonnen'))
+<sqlalchemy.engine.result.ResultProxy object at 0x7f3ee1847ac8>
+>>> list(engine.execute(people.select().where(people.c.last_name=='Atreides')))
+[(1, 'Leto', 'Atreides'), (2, 'Paul', 'Atreides')]

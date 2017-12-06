@@ -1,0 +1,173 @@
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Berkeley}
+  \usecolortheme{crane}
+}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{polski}
+
+% For pygmentize
+\usepackage{fancyvrb}
+\usepackage{color}
+\usepackage{ccicons}
+
+\input{styles}
+\title{Python -- testy, iteratory, SQL}
+\author[]{Szymon Pyżalski}
+
+\date{4 -- 8 XII 2017}
+\logo{\includegraphics[width=1.5cm]{vavatech_logo_small.png}}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+ Niniejsza prezentacja dostępna jest na licencji
+ Creative Commons  Uznanie autorstwa -- Na tych samych warunkach 4.0
+ Pewne prawa zastrzeżone.
+ https://creativecommons.org/licenses/by-sa/4.0/legalcode.pl
+ \ccbysa
+\end{frame}
+
+\section{Testy}
+\begin{frame}{Pożytki z testów automatycznych}
+    \begin{itemize}
+        \item Unikanie regresji
+            \pause
+        \item Test jako forma specyfikacji
+            \pause
+        \item \emph{Test-Driven-Development}
+            \pause
+    \end{itemize}
+\end{frame}
+\begin{frame}{Rodzaje testów}
+    \begin{itemize}
+            \pause
+        \item Testy jednostkowe -- testujemy poszczególne elementy naszego
+            systemu: funkcje, lub klasy
+            \pause
+        \item Testy funkcjonalne -- testujemy funkcjonalność całości systemu
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Podstawowe pojęcia}
+    \begin{description}
+            \pause
+        \item[asercja] Założenie, które musi być spełnione, by test przeszedł
+            \pause
+        \item[fixture] Specjalny zestaw warunków, w których test zostanie
+            wykonany
+            \pause
+        \item[mock] Obiekt, który udaje inny obiekt. Np. połączenie sieciowe.
+    \end{description}
+\end{frame}
+
+\begin{frame}{Dostępne frameworki}
+    \begin{itemize}
+            \pause
+        \item unittest -- zawarty w bibliotece standardowej. Wzorowany na
+            JUnit. Stosunkowo dużo \emph{boilerplate}
+            \pause
+        \item nose -- dużo uproszczeń w stosunku do unittest. Automatyczne
+            wyszukiwanie testów. Brak konieczności pisania klas.
+            \pause
+        \item py.test -- magiczne rozpoznawanie asercji
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Zasady testowania}
+    \begin{itemize}
+            \pause
+        \item Powodzenie każdego testu powinno być niezależne od powodzenia
+            pozostałych (stąd używanie \emph{fixtures})
+            \pause
+        \item Używamy realistycznych danych
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Przykład użycia nose}
+    \begin{tiny}
+        \input{test_example}
+    \end{tiny}
+\end{frame}
+
+\section{Iteratory}
+\begin{frame}{Komprehensje}
+    \begin{tiny}
+        \input{comprehensions}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{itertools}
+    \begin{tiny}
+        \input{it}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Generatory}
+    \begin{tiny}
+        \input{gen}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Klasa iterowalna}
+    \begin{tiny}
+        \input{it_cls}
+    \end{tiny}
+\end{frame}
+
+\section{Bazy danych}
+\begin{frame}{Adapter}
+    \begin{itemize}
+            \pause
+        \item Odpowiada za łączenie się z bazą
+            \pause
+        \item Zapewnia ochronę przez SQL-injection
+            \pause
+        \item Kod specyficzny dla danej bazy
+    \end{itemize}
+\end{frame}
+\begin{frame}{Adapter}
+    \begin{tiny}
+        \input{sqlite}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Warstwa obiektowa}
+    \begin{itemize}
+            \pause
+        \item Stanowi obiektową reprezentację zapytań SQL
+            \pause
+        \item Uniwersalne zapytania tłumaczone na różne dialekty
+            \pause
+        \item Zwraca krotki
+    \end{itemize}
+\end{frame}
+\begin{frame}{Warstwa obiektowa}
+    \begin{tiny}
+        \input{sqlalchemy_core}
+    \end{tiny}
+\end{frame}
+\begin{frame}{ORM}
+    \begin{itemize}
+            \pause
+        \item Object relational mapping.
+            \pause
+        \item Klasy odpowiadają tablicom. Obiekty -- rzędom.
+            \pause
+        \item Zwykle leniwe wykonywanie zapytań.
+    \end{itemize}
+\end{frame}
+\begin{frame}{ORM}
+    \begin{tiny}
+        \input{sqlalchemy_orm}
+    \end{tiny}
+\end{frame}
+\end{document}

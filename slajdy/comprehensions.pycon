@@ -1,0 +1,10 @@
+>>> [2 ** i for i in range(10)]
+[1, 2, 4, 8, 16, 32, 64, 128, 256, 512]
+>>> [2 ** i for i in range(10) if i % 2]
+[2, 8, 32, 128, 512]
+>>> a = [2*i for i in itertools.count()]
+Killed
+>>> a = (2*i for i in itertools.count())
+<generator object <genexpr> at 0x7f6befdd3db0>
+>>> {i: 2 ** i for i in range(10)}
+{0: 1, 1: 2, 2: 4, 3: 8, 4: 16, 5: 32, 6: 64, 7: 128, 8: 256, 9: 512}
