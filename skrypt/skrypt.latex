@@ -1,8 +1,9 @@
-\documentclass{scrbook}
+\documentclass[openany]{scrbook}
 \usepackage[utf8]{inputenc}
 \usepackage{polski}
 \usepackage{minted}
 \usepackage{ccicons}
+\usepackage{hyperref}
 \begin{document}
 \title{Podstawy programowania w Pythonie}
 \author{Szymon Pyżalski}
@@ -52,10 +53,10 @@ techniczne.
 \subsection{Konsola interaktywna}
 Konsola interaktywna to narzędzie, które pozwala nam szybko i wygodnie wykonać
 proste operacje, przeczytać dokumentację, czy sprawdzić działanie pewnych
-obiektów. Do konsoli wchodzimy wykonując polecenie \verb|python| bez
+obiektów. Do konsoli wchodzimy wykonując polecenie \texttt{python} bez
 argumentów. Konsola uruchamia się też jako domyślne okno narzędzia IDLE.
 
-Znakiem zachęty w konsoli jest \verb|>>>| Każde polecenie, które wpisujemy
+Znakiem zachęty w konsoli jest \texttt{>>>} Każde polecenie, które wpisujemy
 w konsoli jest od razu wykonywane. Jeśli wpisaliśmy wyrażenie,
 które zwraca jakąś wartość, będzie ona wypisana.
 
@@ -66,26 +67,27 @@ które zwraca jakąś wartość, będzie ona wypisana.
 
 \section{Wywoływanie kodu z pliku}
 
-Pliki Pythona zapisujemy z rozszerzeniem \verb|.py|. Możemy je uruchomić
-poleceniem \verb|python nazwa_pliku.py|. Jeśli plik zawiera na początku tzw.
-she-bang \verb|#!/usr/bin/python3| i mamy uprawnienia do jego wykonania, możemy
-uruchomić plik jak inne programy konsolowe \verb|./nazwa_pliku.py|
+Pliki Pythona zapisujemy z rozszerzeniem \texttt{.py}. Możemy je uruchomić
+poleceniem \texttt{python nazwa\_pliku.py}. Jeśli plik zawiera
+na początku tzw. she-bang \texttt{\#!/usr/bin/python3} i mamy uprawnienia
+do jego wykonania, możemy uruchomić plik jak inne programy konsolowe \texttt{
+    ./nazwa\_pliku.py}
 
 W przypadku uruchamiania plików nie działa automatyczne wyświetlanie wartości
 wyrażeń. Jeśli chcemy wypisać informację na konsolę musimy to uczynić
-\emph{explicite}: \verb|print(wartosc)|
+\emph{explicite}: \texttt{print(wartosc)}
 
 \section{Elementy składni}
 \subsection{Literały}
 
 Jeśli chcemy użyć w naszym kodzie jakiejś konkretnej wartości, możemy ją
-zapisać przy pomocy literału. Przykłady literałów to np. \verb|1|,
-\verb|False|, \verb|'tekst'|.
+zapisać przy pomocy literału. Przykłady literałów to np. \texttt{1},
+\texttt{3.14}, \texttt{'tekst'}.
 
 \subsection{Identyfikatory}
 
 Identyfikator to ciąg znaków, który jest powiązany z jakąś wartością. Aby
-przypisać wartość do identyfikatora używany operatora przypisania \verb|=|
+przypisać wartość do identyfikatora używany operatora przypisania \texttt{=}
 
 \begin{minted}{pycon}
 >>> liczba = 2
@@ -94,20 +96,21 @@ przypisać wartość do identyfikatora używany operatora przypisania \verb|=|
 \end{minted}
 
 Identyfikator może składać się z liter, znaków podkreślenia oraz cyfr (poza
-pierwszym znakiem). Tak więc prawidłowe identyfikatory to np. \verb|response|, 
-\verb|version2|, \verb|new_object|. Dodatkowo operator nie może być słowem
+pierwszym znakiem). Tak więc prawidłowe identyfikatory to np. \texttt{response}, 
+\texttt{version2}, \texttt{new\_object}. Dodatkowo operator nie może być słowem
 kluczowym Pythona. Nie ma jednak większego sensu uczenia się listy tych słów na
 pamięć. Edytory tekstu kolorują słowa kluczowe, tak więc szybko zauważymy nasz
 błąd. Konwencja nakazuje, żeby identyfikatory zmiennych zaczynać od małej
 litery. Należy też dbać o to, żeby identyfikatory dobrze opisywały opiekt, z
-którym są powiązane. Unikamy nazw typu \verb|x|, \verb|asdfasdf|, \verb|dupa1|.
+którym są powiązane. Unikamy nazw typu \texttt{x}, \texttt{asdfasdf},
+\texttt{zmienna1}.
 
 
 \subsection{Operatory}
 
 Część operacji na obiektach możemy wykonać przy pomocy operatorów. Python
-posiada określoną pulę operatorów, z których część (jak \verb|+|, \verb|&|)
-składa się z symboli, a część (jak \verb|and|, \verb|in|) jest słowami
+posiada określoną pulę operatorów, z których część (jak \texttt{+}, \texttt{\&})
+składa się z symboli, a część (jak \texttt{and}, \texttt{in}) jest słowami
 kluczowymi. Operatory wykonują się według określonej kolejności. Np. operatory
 porównania wcześniej od operatorów porównania, a operatory logiczne po
 operatorach porównania. Dlatego wyrażenie:
@@ -125,44 +128,32 @@ wartość do użytej zmiennej. Np.
 liczba *= 2
 \end{minted}
 
-oznacza podwojenie wartości zawartej pod identyfikatorem \verb|liczba|
+oznacza podwojenie wartości zawartej pod identyfikatorem \texttt{liczba}
 
 \subsection{Wywołanie funkcji}
 
 Funkcje wywołujemy przez użycie nawiasów. Jeśli funkcja nie przyjmuje żadnych
-argumentów dajemy puste nawiasy. Np. \verb|print()| wypisze na ekran pustą
+argumentów dajemy puste nawiasy. Np. \texttt{print()} wypisze na ekran pustą
 linię. Jeśli podajemy kilka argumentów, oddzielamy je przecinkiem. Np.
-\verb|divmod(10, 3)| wykona operację dzielenia z resztą i zwróci wartości
-\verb|(3,1)|. Funkcje mogą też przyjmować argumenty nazwane. Np.
-\verb|int('10', base=2)| zinterpretuje łańcuch znaków \verb|'10'| jako liczbę w
-systemie dwójkowym i zwróci wartość \verb|2|.
+\texttt{divmod(10, 3)} wykona operację dzielenia z resztą i zwróci wartości
+\texttt{(3,1)}. Funkcje mogą też przyjmować argumenty nazwane. Np.
+\texttt{int('10', base=2)} zinterpretuje łańcuch znaków \texttt{'10'}
+jako liczbę w systemie dwójkowym i zwróci wartość \texttt{2}.
 
 Metody to funkcje zdefiniowane dla określonych obiektów. Do ich wywołania
-używamy kropki. Np. \verb|napis.upper()| zwróci wartość zapisaną pod
-identyfikatorem \verb|napis| wielkimi literami.
+używamy kropki. Np. \texttt{napis.upper()} zwróci wartość zapisaną pod
+identyfikatorem \texttt{napis} wielkimi literami.
 
 \subsection{Komentarze}
 
 Komentarze to informacje, które będą zignorowane przez interpreter Pythona.
 Stanowią one pomoc dla osoby czytającej kod. Komentarzem jest wszystko, co
-zaczyna się od znaku \verb|#| aż do końca linii:
+zaczyna się od znaku \texttt{\#} aż do końca linii:
 
 \begin{minted}{python}
 # Todo: Uprościć poniższy kod
 a -= 1 # Odrzucamy pierwszą wartość
 \end{minted}
-
-\section{Użyteczne funkcje}
-
-\section{Zadanie}
-
-\begin{enumerate}
-    \item Ustaw wartość zmiennej \verb|powitanie| na ,,Dzień dobry''
-    \item Ustaw wartość zmiennej \verb|powitanie2| na taką samą wartość jak
-        \verb|powitanie|
-    \item Dodaj do wartości zmiennej \verb|powitanie| łańcuch ,,Panu''
-\end{enumerate}
-
 
 
 \chapter{Najważniejsze typy danych w Pythonie}
@@ -184,10 +175,10 @@ obiekt o nowej wartości. Na przykład:
 \subsection{int}
 Typ ten reprezentuje liczby całkowite.
 
-Podstawowe operacje arytmetyczne umożliwiają nam operatory \verb|+|,  \verb|-|
-\verb|*| (mnożenie)  \verb|**| (potęgowanie). Jeśli chodzi o dzielenie w
-obrębie liczb całkowitych operator \verb|//| daje nam całkowitą wartość z
-dzielenia, a \verb|%| - resztę.
+Podstawowe operacje arytmetyczne umożliwiają nam operatory \texttt{+},
+\texttt{-} \texttt{*} (mnożenie)  \texttt{**} (potęgowanie). Jeśli chodzi
+o dzielenie w obrębie liczb całkowitych operator \texttt{//} daje nam
+całkowitą wartość z dzielenia, a \texttt{\%} - resztę.
 
 \begin{minted}{pycon}
 >>> 10 // 3
@@ -197,7 +188,7 @@ dzielenia, a \verb|%| - resztę.
 \end{minted}
 
 W odróżnieniu od niektórych innych
-języków nie ma on w Pythonie3 ograniczonego zakresu. Python sam dba o
+języków nie ma on w Pythonie 3 ograniczonego zakresu. Python sam dba o
 właściwą wewnętrzną reprezentację i uniemożliwia ,,przekręcenie'' wartości.
 
 \begin{minted}{pycon}
@@ -211,26 +202,22 @@ Reprezentuje napis - dowolny łańcuch znaków Unicode.
 
 Łańcuchy umieszczać możemy w pojedynczym lub podwójnym cudzysłowie
 
-\begin{minted}{pycon}
->>> "I don't think so"
+\begin{minted}{python}
 "I don't think so"
 \end{minted}
 
-\begin{minted}{pycon}
->>> 'Mówię "tak"'
+\begin{minted}{python}
 'Mówię "tak"'
 \end{minted}
 
 Potrójny znak cudzysłowu pozwala nam pisać łańcuchy wielowierszowe:
 
-\begin{minted}{pycon}
- """Litwo! Ojczyzno moja! ty jesteś jak zdrowie:
- ... Ile cię trzeba cenić, ten tylko się dowie,"""
- 'Litwo! Ojczyzno moja! ty jesteś jak zdrowie:\nIle cię trzeba cenić, ten
-    tylko się dowie,'
+\begin{minted}{python}
+"""Litwo! Ojczyzno moja! ty jesteś jak zdrowie:
+Ile cię trzeba cenić, ten tylko się dowie,"""
 \end{minted}
 
-Przy pomocy znaku \verb|\| możemy wprowadzać znaki specjalne.
+Przy pomocy znaku \texttt{\textbackslash} możemy wprowadzać znaki specjalne.
 
 \begin{tabular}{ | l | l | }
     \hline
@@ -247,8 +234,9 @@ Przy pomocy znaku \verb|\| możemy wprowadzać znaki specjalne.
 
 \end{tabular}
 
-Łańcuchy ,,surowe'' nie pozwalają na używanie ww. sekwencji
-
+Literały ,,surowe'', poprzedzone literą r nie pozwalają na używanie ww.
+sekwencji. Dzięki nim możemy łatwiej wprowadzać tekst zawierający dużo
+backslashy (np. wyrażenia regularne)
 
 \begin{minted}{pycon}
 >>> r'\n'
@@ -274,13 +262,15 @@ manipulacje:
 'CZEŚĆ'
 >>> "   cześć   ".strip()
 'cześć'
+>>> "cześć".startswith('cz')
+True
 >>> "nanana!".replace('na', 'la')
 'lalala!'
 \end{minted}
 
 \subsection{float}
 Float reprezentuje liczby zmiennoprzecinkowe. Do ich zapisu używamy kropki
-dziesiętnej (niezależnie od ustawień naszej maszyny).
+dziesiętnej.
 
 \begin{minted}{pycon}
 >>> 2.5
@@ -289,7 +279,7 @@ dziesiętnej (niezależnie od ustawień naszej maszyny).
 2.0
 \end{minted}
 
-Wartości typu \verb|float| zwracane są też przez operator \verb|/|. Nawet
+Wartości typu \texttt{float} zwracane są też przez operator \texttt{/}. Nawet
 jeśli wynik jest całkowity.
 
 \begin{minted}{pycon}
@@ -309,8 +299,8 @@ tylko w razie konieczności i uwzględniamy niedokładności.
 
 \subsection{bool}
 
-Obiekty tego typu mogą przyjmować tylko dwie wartości \verb|True| i
-\verb|False|. Są one zwracane przez operatory porównania.
+Obiekty tego typu mogą przyjmować tylko dwie wartości \texttt{True} i
+\texttt{False}. Są one zwracane przez operatory porównania.
 
 \begin{minted}{pycon}
 >>> 1 == 1
@@ -334,11 +324,9 @@ True
 False
 \end{minted}
 
-Wartości logiczne mają kluczowe znaczenie dla poleceń sterujących
-
 \subsection{None}
 
-Specjalny typ danych \verb|NoneType| zawiera tylko jeden obiekt \verb|None|.
+Specjalny typ danych \texttt{NoneType} zawiera tylko jeden obiekt \texttt{None}.
 Obiekt ten jest używany aby wskazać brak wartości.
 
 \subsection{tuple}
@@ -404,13 +392,15 @@ Typy zmienne mogą zmieniać swoją wartość po utworzeniu.
 \subsection{list}
 
 Lista podobnie jak krotka zawiera uporządkowane elementy innego typu. Od krotki
-różni się w zasadzie tylko tym, że jest obiektem zmiennym.
+różni się w zasadzie tylko tym, że jest obiektem zmiennym. Aby wykonać kopię
+listy używamy operacji \emph{slice} bez argumentów: \texttt{mojalista[:]}
 
 \subsection{dict}
 
 Słownik lub mapa to obiekt zawierający pary obiektów zwane kluczami i
 wartościami. Podstawowymi operacjami jest ustawienie i pobranie wartości dla
-danego klucza.
+danego klucza. Klucze muszą być obiektami niezmiennymi i być unikalne dla
+danego słownika.
 
 \begin{minted}{pycon}
 >>> a = {'pl': 'Polska', 'ge': 'Gruzja'}
@@ -423,16 +413,16 @@ danego klucza.
 
 Słownik nie zapamiętuje kolejności w której dodawane były klucze.
 
-Przy pomocy operatora \verb|in| możemy sprawdzić obecność danego klucza w
-słowniku. Metoda \verb|.get()| umożliwia warunkowe pobranie klucza. Metoda
-\verb|.setdefault()| ustawienie brakującej wartości.
+Przy pomocy operatora \texttt{in} możemy sprawdzić obecność danego klucza w
+słowniku. Metoda \texttt{.get()} umożliwia warunkowe pobranie klucza. Metoda
+\texttt{.setdefault()} -- ustawienie brakującej wartości.
 
 \begin{minted}{pycon}
 >>> 'ge' in a
 True
 >>> 'it' in a
 False
->>> a.get('ge', 'Nieznany')a
+>>> a.get('ge', 'Nieznany')
 'Gruzja'
 >>> a.get('it', 'Nieznany')
 'Nieznany'
@@ -443,6 +433,9 @@ False
 >>> a
 {'ge': 'Gruzja', 'it': 'Nieznany', 'es': 'Hiszpania', 'pl': 'Polska'}
 \end{minted}
+
+Metoda \texttt{copy} wykonuje kopię słownika, co jest przydatne, gdyż słownik
+jest obiektem zmiennym.
 
 \subsection{set}
 Zbiór to obiekt niezawierający powtórzeń i niepamiętający kolejności dodawania
@@ -490,7 +483,7 @@ Mniejsze
 ...
 \end{minted}
 
-Dyrektywę \verb|else| można łączyć z następnym \verb|if|.
+Dyrektywę \texttt{else} można łączyć z następnym \texttt{if}.
 
 \begin{minted}{pycon}
 >>> if a >= 20:
@@ -503,15 +496,15 @@ Dyrektywę \verb|else| można łączyć z następnym \verb|if|.
 Tak średnio
 \end{minted}
 
-Wyrażenie będące warunkiem nie musi być koniecznie typu \verb|bool|.
+Wyrażenie będące warunkiem nie musi być koniecznie typu \texttt{bool}.
 Możemy uprościć notację pamiętając o następujących zasadach:
 
 \begin{itemize}
-    \item Liczby o wartości 0 są uznawane za \verb|False|
+    \item Liczby o wartości 0 są uznawane za \texttt{False}
     \item Łańcuchy, zbiory, krotki etc. jeśli są puste uważane są za
-        \verb|False|
-    \item \verb|None| uważany jest za \verb|False|
-    \item Inne obiekty uważane są za \verb|True|
+        \texttt{False}
+    \item \texttt{None} uważany jest za \texttt{False}
+    \item Inne obiekty uważane są za \texttt{True}
 \end{itemize}
 
 \begin{minted}{pycon}
@@ -527,31 +520,22 @@ Pełna
 ...
 \end{minted}
 
-Powyższe tyczy się nie tylko instrukcji \verb|if| ale też \verb|while|
+Powyższe tyczy się nie tylko instrukcji \texttt{if} ale też \texttt{while}
 
 \section{while}
 
-Pętla \verb|while| wykonuje się tak długo, aż spełniony jest warunek.
+Pętla \texttt{while} wykonuje się tak długo, aż spełniony jest warunek.
 
 \begin{minted}{pycon}
 >>> a = 1
 >>> while a < 1000:
-...     print(a)
+...     print(a, end=',')
 ...     a *= 2
 ... 
-1
-2
-4
-8
-16
-32
-64
-128
-256
-512
+1,2,4,8,16,32,64,128,256,512
 \end{minted}
 
-Z pętli możemy też wyjść poleceniem \verb|break|
+Z pętli możemy też wyjść poleceniem \texttt{break}
 
 \begin{minted}{pycon}
 >>> while True:
@@ -563,46 +547,24 @@ Z pętli możemy też wyjść poleceniem \verb|break|
 ... 
 Podaj liczbę mniejszą od 6
 10
-Za duża
-Podaj liczbę mniejszą od 6
-7
-Za duża
 Podaj liczbę mniejszą od 6
 2
 >>> x
 2
 \end{minted}
 
-Z kolei polecenie \verb|continue| pozwala przejść do następnej iteracji pętli.
-\begin{minted}{pycon}
->>> zebrane = []
->>> a = 1
->>> while a < 200:
-...     a *= 2
-...     print('Dodać {}?'.format(a))
-...     resp = input()
-...     if resp != 't':
-...         continue
-...     zebrane.append(a)
-... 
-Dodać 2?
-t
-Dodać 4?
-n
-Dodać 8?
-n
-Dodać 16?
-t
-Dodać 32?
-t
-Dodać 64?
-t
-Dodać 128?
-t
-Dodać 256?
-n
->>> zebrane
-[2, 16, 32, 64, 128]
+Z kolei polecenie \texttt{continue} pozwala przejść do następnej iteracji pętli.
+\begin{minted}{python}
+# Utworzy listę wszystkich potęg dwójki < 1000 zawierających cyfrę 6
+collected = []
+a = 1
+while a < 1000:
+     a *= 2
+     if '6' not in str(a):
+         continue
+     zebrane.append(a)
+print(collected) 
+# [16, 64, 256]
 \end{minted}
 
 \section{for}
@@ -613,81 +575,54 @@ spełniać różne obiekty.
 \begin{minted}{pycon}
 >>> a = "Cześć"
 >>> for c in a:
-...     print(c)
+...     print(c, end=',')
 ... 
-C
-z
-e
-ś
-ć
->>> b = ['Pies', 'Kot', 'Ptak']
+C,z,e,ś,ć,
+>>> b = ['Pies', 'Kot', 'Wróbel']
 >>> for el in b:
-...     print(el)
+...     print(el, end=',')
 ... 
-Pies
-Kot
-Ptak
+Pies,Kot,Wróbel,
 \end{minted}
 
 Jeśli chcemy się po prostu przeiterować po liczbach naturalnych, możemy
-skorzystać z funkcji \verb|range()|
+skorzystać z funkcji \texttt{range()}
 
-\begin{minted}{pycon}
->>> for a in range(5):
-...     print(a)
-... 
-0
-1
-2
-3
-4
->>> for a in range(2, 5):
-...     print(a)
-... 
-2
-3
-4
->>> for a in range(2, 5, 2):
-...     print(a)
-... 
-2
-4
+\begin{minted}{python}
+for a in range(5): # Liczby od 0 do 4
+    ...
+for a in range(2, 5): # Liczby od 2 do 4
+    ...
+for a in range(2, 5, 2): # Liczby 2 i 4 (trzeci argument określa ,,krok'')
+    ...
 \end{minted}
 
-Aby ponumerować iterowane elementy użyjemy funkcji \verb|enumerate()|
+Aby ponumerować iterowane elementy użyjemy funkcji \texttt{enumerate()}
 
 \begin{minted}{pycon}
 >>> for n, el in enumerate(b):
-...     print("{}: {}".format(n, el))
+...     print("{}: {}".format(n, el), end=';')
 ... 
-0: Pies
-1: Kot
-2: Ptak
+0: Pies;1: Kot;2: Wróbel;
 \end{minted}
 
-Słowniki iterują po kluczach. Możemy jednak użyć metody \verb|values()| lub
-\verb|items()| by przeiterować również wartości
+Słowniki iterują po kluczach. Możemy jednak użyć metody \texttt{values()} lub
+\texttt{items()} by przeiterować również wartości
 
 \begin{minted}{pycon}
 >>> a = {'ge': 'Gruzja', 'pl': 'Polska', 'it': 'Włochy'}
 >>> for k in a:
-...     print(k)
+...     print(k, end=',')
 ... 
-ge
-it
-pl
+ge,it,pl,
 >>> for v in a.values():
-...     print(v)
+...     print(v, end=',')
 ... 
-Gruzja
-Włochy
-Polska
+Gruzja,Włochy,Polska,
 >>> for k, v in a.items():
-...     print("{}: {}".format(k, v))
+...     print("{}: {}".format(k, v), end=';')
 ... 
-ge: Gruzja
-it: Włochy
-pl: Polska
+ge: Gruzja;it: Włochy;pl: Polska
 \end{minted}
 
 \chapter{Definiowanie własnych funkcji}
@@ -708,7 +643,7 @@ Funkcja może przyjmować argumenty.
         print("Cześć {}!".format(name))
 \end{minted}
 
-Funkcja może też zwracać wartość. Użycie dyrektywy \verb|return| powoduje
+Funkcja może też zwracać wartość. Użycie dyrektywy \texttt{return} powoduje
 opuszczenie funkcji.
 
 \begin{minted}{python}
@@ -720,8 +655,8 @@ opuszczenie funkcji.
         return result
 \end{minted}
 
-Dyrektywa \verb|return| bez podanej wartości powoduje zwrócenie wartości
-\verb|None|. Podobny efekt osiągamy, gdy interpreter dociera do końca funkcji.
+Dyrektywa \texttt{return} bez podanej wartości powoduje zwrócenie wartości
+\texttt{None}. Podobny efekt osiągamy, gdy interpreter dociera do końca funkcji.
 \begin{minted}{pycon}
     >>> a = greeting('Kasia')
     Cześć Kasia!
@@ -730,7 +665,7 @@ Dyrektywa \verb|return| bez podanej wartości powoduje zwrócenie wartości
 \end{minted}
 
 Możliwe jest tworzenie funkcji, które przyjmują dowolną liczbę argumentów lub
-dowolne argumenty pozycyjne.
+dowolne argumenty nazwane.
 
 \begin{minted}{python}
     def greeting(*args):
@@ -739,27 +674,703 @@ dowolne argumenty pozycyjne.
             print("Cześć {}!".format(name))
 \end{minted}
 
+\begin{minted}{python}
+def debug_call(f, *args, **kwargs):
+    """Wywołuje funkcję z danymi argumentami wypisując jej argumenty przed
+    wywołaniem"""
+    print("Wywołam funkcję: {}".format(f))
+    print("Argumenty pozycyjne:")
+    for arg in args:
+        print('\t' + arg)
+    print("Argumenty pozycyjne:")
+    for k, v in kwargs.items():
+        print('\t{}: {}'.format(k, v))
+    f(*args, **kwargs)
+\end{minted}
+
 Łańcuch znaków, który znajduje się pod nazwą funkcji nazywamy
 \emph{docstringiem}. Powinien on opisywać co robi funkcja. Możemy przeczytać,
-dokumentację przy pomocy funkcji \verb|help()|
-
-\chapter{Programowanie obiektowe}
+dokumentację przy pomocy funkcji \texttt{help()}
 
 \chapter{Wyjątki}
 
-\chapter{Moduły i pakiety}
-\section{Polecenie import}
-\section{Biblioteka standardowa}
-\section{Definiowanie własnych modułów i pakietów}
-\section{Instalacja i dystrybucja pakietów }
+Wyjątki służą do przerwania normalnego wykonywania programu. Najczęściej
+sygnalizują błędy, choć mają też inne zastosowanie. Jeśli gdzieś w kodzie
+zostaje rzucony wyjątek, może on zostać złapany i obsłużony. Jeśli nie -- ulega
+on propagacji w stosie wywołań. Kolejne funkcje mają szansę go złapać, a jeśli
+nie zostanie złapany w ogóle -- powoduje przerwanie działania programu.
 
+W odróżnieniu od Javy Python nie wymaga deklarowania, jakie wyjątki może rzucić
+dana funkcja. Poza tym zasadą jest, iż nie należy łapać wyjątków, których nie
+chcemy obsłużyć (antywzorzec zwany \emph{Pokémon exception handling}).
+Wyjątkom takim pozwalamy się propagować. Nie należy wyjątków
+wyciszać, chyba że jest to naprawdę uzasadnione.
+
+Poniżej przedstawiono prosty przykład obsługi wyjątku. Kod ten próbuje
+przekonwertować łańcuch \texttt{s} na liczbę całkowitą \texttt{n}. Jeśli się to
+nie powiedzie (łańcuch nie zawiera reprezentacji liczby) -- wypisze komunikat.
+
+\begin{minted}{python}
+try:
+    n = int(s)
+except ValueError:
+    print('To nie liczba')
+\end{minted}
+
+Pełna konstrukcja obsługi wyjątku może zawierać cztery bloki:
+
+\begin{description}
+    \item[try] Blok, w którym możemy spodziewać się wyjątku
+    \item[except] Blok, który wywoła się, gdy pojawi się wyjątek
+    \item[else] Blok, który wywoła się, gdy nie pojawi się wyjątek
+    \item[finally] Blok, który wywoła się, niezależnie, czy pojawi się wyjątek
+\end{description}
+
+Aby rzucić wyjątek używamy słowa kluczowego \texttt{raise}. Słowo to bez
+podanego typu wyjątku w bloku \texttt{except} powoduje ponowne rzucenie
+wyjątku, który właśnie obsługujemy.
+
+\begin{minted}{python}
+if not isinstance(x, int):
+    raise TypeError('x musi być int')
+
+try:
+    return a > b
+except TypeError:
+    print('Błędne typy')
+    raise # propagujemy wyjątek dalej
+\end{minted}
+
+\chapter{Programowanie obiektowe}
+
+\section{Teoria}
+Programowanie obiektowe to paradygmat programowania oparty na istnieniu
+obiektów posiadających atrybuty (pola danych) oraz metody (funkcje wywoływane
+na konkretnym obiekcie). Większość języków obiektowych posiada też koncepcję
+klasy -- typu, do którego przynależy każdy obiekt oraz możliwości enkapsulacji
+-- ukrywania danych w sposób niedostępny dla innych obiektów.
+
+W języku Python wszystkie zmienne zawierają obiekty. Obiektami są najprostsze
+formy danych, jak liczby, a nawet funkcje i klasy. Obiekty Pythona zwykle nie
+mają zdefiniowanych atrybutów -- można do nich przypisywać atrybuty o dowolnej
+nazwie. Prawdziwa enkapsulacja nie jest możliwa -- poprzedzenie nazwy metody
+lub atrybutu znakiem podkreślenia stanowi sugestię, że dany atrybut jest
+prywatny. Jednak nie uniemożliwia dostępu do niego.
+
+\section{Prosty obiekt}
+
+Poniższa definicja tworzy klasę, którą możemy zinstancjonować podając jako
+argumenty imię i nazwisko. (\texttt{Person('James', 'Kirk')}) Klasa ta będzie
+wyświetlana jako imię i nazwisko oddzielone spacją. Dodatkowo będzie posiadać
+metodę zwracającą inicjały danej osoby.
+
+\begin{minted}{python}
+class Person:
+    """Reprezentuje osobę"""
+
+    def __init__(self, first_name, last_name):
+        self.first_name = first_name
+        self.last_name = last_name
+
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
+    
+    def get_initials(self):
+        """Zwraca inicjały danej osoby"""
+        return self.first_name[0] + self.last_name[0]
+\end{minted}
+
+\section{Właściwości}
+Właściwości to atrybuty obiektu, dostęp do których jest powiązany z logiką
+opisaną w metodach. Właściwość może mieć charakter tylko do odczytu, lub mieć
+zdefiniowaną również metodę ustawienia wartości, a także jej usunięcia.
+Aby stworzyć właściwość korzystamy z dekoratora \texttt{@property} dla
+oznaczenia gettera. Pozostałe dwie metody powinny nazywać się tak samo i 
+posiadać dekoratory \texttt{@nazwa.setter} i \texttt{@nazwa.deleter}, gdzie
+,,nazwa'' to nazwa metody.
+
+Poniższa klasa przechowuje pojedynczą wartość w atrybucie \texttt{\_x}. Dostęp
+do tego atrybutu ma miejsce przez właściwość \texttt{x}. Odczyt tej właściwości
+nie jest związany ze szczególną logiką. Jednakże przy zapisie sprawdzane jest,
+czy wartość leży w danym zakresie.
+
+\begin{minted}{python}
+class Validated:
+    """Przechowuje liczbę, którą waliduje przy zapisie"""
+
+    def __init__(self, x, lower, higher):
+        self._x = x
+        self.lower = lower
+        self.higher = higher
+
+    @property
+    def x(self):
+        return self._x
+
+    @x.setter
+    def x(self, value):
+        if value < self.lower or value > self.higher:
+            raise ValueError('Out of bounds')
+        self._x = value
+\end{minted}
+
+\section{Obiekty a operatory}
+
+Możliwe jest, aby nasze obiekty wspierały prawie wszystkie operatory, jakie
+mamy w Pythonie (wyjątek stanowią operatory logiczne). Dokonuje się tego przez
+,,magiczne metody'', które implementują logikę operatorów. Poniższa funkcja
+reprezentuje koło. Posiada ona właściwość ,,pole''. Dodanie dwóch obiektów typu
+,,koło'' powoduje utworzenie koła o polu równym sumie pól dodawanych obiektów.
+
+\begin{minted}{python}
+class Circle:
+
+    def __init__(self, radius):
+        self.radius = radius
+
+    @property
+    def area(self):
+        return math.pi * self.radius ** 2
+
+    def __add__(self, other):
+        return Circle(math.sqrt(self.radius ** 2 + other.radius ** 2))
+\end{minted}
+
+\section{Dziedziczenie}
+Klasy obiektów mogą dziedziczyć po innych klasach zawartą w nich logikę.
+Możliwe jest dziedziczenie po wielu klasach. Jeśli nadpisujemy metodę
+istniejącą w klasie bazowej, powinniśmy wywołać tę metodę z klasy bazowej przy
+użyciu funkcji \texttt{super}
+
+Poniższa klasa zachowuje się jak słownik. Jednakże próba wyciągnięcia wartości
+dla nieistniejącego klucza nie powoduje rzucenia \texttt{KeyError}, a zwrócenie
+wartości domyślnej ustawianej przy inicjalizacji.
+
+\begin{minted}{python}
+class DefaultDict(dict):
+    def __init__(self, *args, default=None, **kwargs):
+        super(DefaultDict, self).__init__(*args, **kwargs)
+        self.default = default
+
+    def __getitem__(self, key):
+        try:
+            return super(DefaultDict, self).__getitem__(key)
+        except KeyError:
+            return self.default
+\end{minted}
+
+\chapter{Moduły i pakiety}
+Modułem nazywamy plik Pythona, z którego możemy importować obiekty (klasy,
+funkcje, stałe). Moduł podobnie jak klasa i funkcja może posiadać swój
+\emph{doctstring}. Umieszczamy go na początku modułu.
+
+Pakiet to katalog zawierający moduły. Aby był rozpoznany jako pakiet musi
+zawierać plik \texttt{\_\_init\_\_.py}. Plik ten może być pusty, a może
+zawierać logikę inicjalizacyjną modułu i importy.
+
+Moduły i paczki mogą znajdować się w następujących lokalizacjach:
+\begin{itemize}
+    \item Katalogu \texttt{\$PREFIX/lib/pythonX.Y} i podkatalogach
+    \item Bieżącej lokalizacji
+    \item Lokalizacjach wskazanych przez zmienną środowiskową
+        \texttt{PYTHONPATH}
+\end{itemize}
+W celu dowiedzenia się, gdzie interpreter wyszukuje paczek i modułów możemy 
+sprawdzić zmienną \texttt{sys.path}. Możemy też edytować tę zmienną, by dodawać
+nowe lokalizacje z poziomu Pythona.
+
+\section{Polecenie import}
+Istnieje kilka sposobów importowania:
+\begin{itemize}
+    \item Import konkretnych obiektów
+        \begin{minted}{python}
+from os.path import join
+join('/usr', 'lib')
+        \end{minted}
+    \item Import modułu
+        \begin{minted}{python}
+import os.path
+os.path.join('/usr', 'lib')
+        \end{minted}
+    \item Import wszystkich obiektów z modułu
+        \begin{minted}{python}
+from os.path import *
+join('/usr', 'lib')
+        \end{minted}
+        Ta metoda nie jest zalecana, gdyż ,,zaśmieca'' przestrzeń nazw i może
+        powodować trudne do wykrycia bugi wynikające z konfliktu nazw między
+        modułami.
+    \item Nadanie modułowi bądź obiektowi aliasu
+        \begin{minted}{python}
+import os.path as opath
+op.join('/usr', 'lib')
+
+from os.path import join as path_join
+path_join('/usr', 'lib')
+        \end{minted}
+        Do zastosowania tej metody możemy być przymuszeni, gdy występuje
+        konflikt nazw, tj. gdy potrzebujemy dwóch modułów/obiektów o tej samej
+        nazwie.
+\end{itemize}
+
+\section{Biblioteka standardowa a paczki z PyPI}
+Python posiada bardzo bogatą bibliotekę standardową zgodnie z filozofią
+\emph{Batteries included}. Zawiera ona klasy i funkcje umożliwiające kalkulacje
+matematyczne, pracę z typami wbudowanymi, testowanie, komunikację i inne. Pełna
+dokumentacja biblioteki standardowej znajduje się pod adresem
+\url{https://docs.python.org/3/library/index.html}
+
+Oprócz biblioteki standardowej mamy do dyspozycji olbrzymią liczbę pakietów
+dostarczanych przez innych twórców. Pakiety te możemy wyszukiwać w indeksie pod
+adresem \url{https://pypi.python.org/pypi}.
 
 \chapter{Operacje I/O}
 \section{Praca na plikach}
+Funkcja \texttt{print} domyślnie wysyła dane na standardowe wyjście
+(najczęściej -- konsolę).  Aby pracować z plikami używamy funkcji wbudowanej
+\texttt{open}.
+
+Poniższy kod otworzy plik \texttt{filename} do odczytu i wypisze na standardowe
+wyjście (najczęściej ekran) ponumerowane linie kodu. Widzimy tutaj, że pliki są
+obiektami iterowalnymi, iterującymi po liniach.
+\begin{minted}{python}
+with open('filename', 'r', encoding='utf-8') as f:
+    for i, line in enumerate(f):
+        print('{:03} - {}'.format(i, line), end='')
+\end{minted}
+
+We fragmencie tym znajduje zastosowanie słowo kluczowe \texttt{with}. Słowo to
+może być wykorzystywane z niektórymi obiektami zwanymi \emph{menedżerami
+kontekstu} i tworzy ono konstrukcję dbającą o prawidłowe wyjście z bloku (w tym
+przypadku -- o zamknięcie pliku przy wyjściu).
+
+Fragment ten zawiera też podane \emph{explicite} kodowanie znaków. W przypadku
+braku takiej deklaracji o kodowaniu decydują ustawienia systemu operacyjnego.
+
+Następny fragment otwiera plik do zapisu i wypisuje w nim tekst.
+
+\begin{minted}{python}
+with open('filename', 'w') as f:
+    print('Hello!', file=f)
+\end{minted}
+
 \section{Serializacja obiektów}
+Biblioteka standardowa zawiera liczne serializatory i deserializatory danych.
 \subsection{pickle}
-\subsection{json i yaml}
-\section{Tworzenie poleceń}
+Pickle jest specyficznym dla Pythona formatem, który umożliwia serializację
+prawie wszystkich obiektów języka (poza niektórymi implementowanymi w
+języku C). Przykład zapisu obiektu \texttt{obj} do pliku:
+
+\begin{minted}{python}
+import pickle
+
+with open('obj.p', 'wb') as f:
+    pickle.dump(obj, f)
+\end{minted}
+
+Odczyt:
+
+\begin{minted}{python}
+import pickle
+
+with open('obj.p', 'rb') as f:
+    obj = pickle.load(f)
+\end{minted}
+
+Flaga \texttt{b} oznacza binarny tryb otwarcia pliku.
+
+\subsection{json}
+JSON jest bardzo popularnym formatem używanym w wielu językach. Semantyka
+serializacji do JSON-a jest podobna do semantyki \texttt{pickle}. Podobnie
+używamy funkcji \texttt{dump} oraz \texttt{load}. Funkcje te pracują na
+plikach. Jeśli chcemy wydobyć lub zapisać JSON-a do łańcucha, możemy użyć
+funkcji \texttt{dumps} \texttt{loads}.
+
+\subsection{csv}
+Mimo że format csv wydaje się trywialny, posiada on liczne warunki brzegowe,
+dlatego nie należy używać do pracy z nim metod \texttt{join} i \texttt{split}.
+Zamiast tego należy użyć stosownej biblioteki. Poniższy kod pokazuje
+przykładowy odczyt pliku CSV:
+
+\begin{minted}{python}
+with open('MOCK_DATA.csv') as f:
+    reader = csv.reader(f)
+    for id, first_name, last_name, email, ip_address in reader:
+        print(last_name)
+\end{minted}
+
+Oraz zapis (plik będzie zawierał liczby naturalne i kolejne potęgi dwójki:
+\begin{minted}{python}
+with open('new_data.csv', 'w') as f:
+    writer = csv.writer(f)
+    writer.writerows([(i, 2**i) for i in range(10)])
+\end{minted}
+
+\section{Wiersz poleceń}
+Aby umożliwić użytkownikom naszego skryptu podawanie argumentów w wierszu
+poleceń możemy skorzystać ze zmiennej \texttt{sys.argv} Zmienna ta jest listą
+argumentów w postaci łańcuchów. Należy pamiętać, że zerowy element tej listy to
+nazwa skryptu, jakiej użyto do wywołania naszego kodu.
+
+Bezpośrednie użycie \texttt{sys.argv} umożliwia nam szybkie stworzenie prostych
+skryptów przyjmujących kilka argumentów. Jeśli jednak chcemy stworzyć skrypt
+o bardziej złożonej logice, lepszym rozwiązaniem jest zastosowanie parsera. W
+bibliotece standardowej znajduje się moduł \texttt{argparse}, który odpowiada
+za:
+\begin{itemize}
+    \item Parsowanie argumentów
+    \item Walidację i wyświetlanie błędów
+    \item Generowanie pomocy
+\end{itemize}
+
+Dzięki \texttt{argparse} nasze skrypty nabierają bardziej profesjonalnego
+charakteru i stają się łatwiejsze w użyciu. Przykładowa konfiguracja
+\texttt{argparse}:
+\begin{minted}{python}
+import argparse
+
+parser = argparse.ArgumentParser(description='Convert types of data')
+parser.add_argument('infile')
+parser.add_argument('outfile')
+parser.add_argument('-i', '--input-format')
+parser.add_argument('-o', '--output-format')
+parser.add_argument(
+    '-p', '--pretty-print', action='store_true',
+    help='Pretty print if available')
+
+args = parser.parse_args()
+\end{minted}
+
+Konfiguracja ta będzie wymagała dwóch pozycyjnych argumentów oraz da możliwość
+podania dwóch argumentów opcjonalnych i jednej flagi.
+\section{Relacyjne bazy danych}
+Chcąc pracować z relacyjną bazą danych mamy do wyboru kilka możliwości:
+\subsection{Bezpośrednie wykorzystanie adaptera}
+Poniższy kod tworzy tabelę w sqlite3, wpisuje do niej trzy rzędy, a następnie
+przeprowadza prosty \texttt{SELECT}.
+\begin{minted}{python}
+import sqlite3
+c = sqlite3.connect('my_db.sqlite3')
+cur = c.cursor()
+cur.execute(
+    "CREATE TABLE people (id INTEGER PRIMARY KEY, first_name, last_name);"
+)
+cur.execute(
+    "INSERT INTO people(first_name, last_name) VALUES (?, ?);",
+    ('Arya', 'Stark'),
+)
+cur.execute(
+    "INSERT INTO people(first_name, last_name) VALUES (?, ?);",
+    ('Sansa', 'Stark'),
+)
+cur.execute(
+    "INSERT INTO people(first_name, last_name) VALUES (?, ?);",
+    ('Tyrion', 'Lannister'),
+)
+cur.commit()
+cur.execute('SELECT * FROM people WHERE last_name=?', ('Stark',))
+print(cur.fetchall())
+# [(1, 'Arya', 'Stark'), (2, 'Sansa', 'Stark')]
+\end{minted}
+Zadaniem adaptera jest nawiązanie połączenia z bazą danych oraz ochrona przez
+SQL-injection (aby ją uzyskać musimy używać metody formatowania oferowanej
+przez adapter; nie wolno nam formatować zapytań samodzielnie). Adaptery różnych
+baz mają bardzo podobną semantykę w Pythonie, jednakże ze względu na różne
+dialekty języka SQL kod pisany w ten sposób nie jest przenośny.
+\subsection{Użycie reprezentacji obiektowej zapytań}
+Poniższy kod wykonuje to samo, co kod powyżej
+\begin{minted}{python}
+engine = sa.create_engine('sqlite:///persons.sqlite3')
+metadata = sa.MetaData()
+people = sa.Table('people', metadata,  
+    sa.Column('id', sa.Integer, primary_key=True),
+    sa.Column('first_name', sa.String(50)),
+    sa.Column('last_name', sa.String(50)),
+)
+engine.execute(people.insert().values(first_name='Leto', last_name='Atreides'))
+engine.execute(people.insert().values(first_name='Paul', last_name='Atreides'))
+engine.execute(people.insert().values(first_name='Vladimir', last_name='Harkonnen'))
+print(list(engine.execute(people.select().where(people.c.last_name=='Atreides'))))
+# [(1, 'Leto', 'Atreides'), (2, 'Paul', 'Atreides')]
+\end{minted}
+Biblioteka \texttt{sqlalchemy\_core} zwalnia nas z konieczności ręcznego
+pisania zapytań SQL, a tym samym czyni nasz kod przenośnym. Nadal jednak
+operujemy na logice relacyjnej.
+\subsection{ORM}
+\begin{minted}{python}
+from sqlalchemy.ext.declarative import declarative_base
+Base = declarative_base()
+class People(Base):
+    __tablename__ = 'people'
+    id = sa.Column(sa.Integer, primary_key = True)
+    first_name = sa.Column(sa.String(50))
+    last_name = sa.Column(sa.String(50))
+
+    def __repr__(self):
+        return ' '.join([self.first_name, self.last_name])
+
+Base.metadata.create_all(engine)
+from sqlalchemy.orm import sessionmaker
+Session = sessionmaker(engine)
+session = Session()
+session.add(People(first_name = 'Bilbo', last_name = 'Baggins'))
+session.add(People(first_name = 'Frodo', last_name = 'Baggins'))
+session.add(People(first_name = 'Samwise', last_name = 'Gamgee'))
+session.commit()
+print(session.query(People).filter(People.last_name == 'Baggins').all())
+[Bilbo Baggins, Frodo Baggins]
+\end{minted}
+ORM, czyli \emph{object relational mapping} tłumaczy logikę bazy relacyjnej na
+język obiektowy. Tabele stają się klasami. Rzędy tabeli -- obiektami. Możemy ze
+definiowanymi klasami ORM-a robić wszystko to, co z innymi klasami. ORM nie
+daje nam jednak możliwości pisania niektórych, bardziej złożonych zapytań.
+\section{HTTP}
+Pracując z Pythonem możemy łatwo tworzyć zarówno klientów, jak i serwery HTTP.
+\subsection{Klient}
+W bibliotece standardowej znajduje się moduł \texttt{urllib}. Preferowaną
+metodą łączenia się z serwerami HTTP jest jednak paczka \texttt{requests}
+posiadająca przyjaźniejszą semantykę. Przykład użycia paczki do pobrania strony
+głównej serwisu Google:
+\begin{minted}{pycon}
+>>> import requests
+>>> resp = requests.get('http://google.pl')
+>>> resp.status_code
+200
+>>> resp.headers['Content-Type']
+'text/html; charset=ISO-8859-2'
+>>> resp.content[:20]
+b'<!doctype html><html'
+>>> resp.text[:20]
+'<!doctype html><html'
+\end{minted}
+\subsection{Serwer HTTP}
+W celu tworzenia aplikacji webowych korzystamy najczęściej z frameworków.
+Najpopularniejszym frameworkiem Pythona jest z pewnością \texttt{django}, który
+zawiera zintegrowany ORM, system szablonów i admina. Możemy jednak korzystać z
+lżejszych rozwiązań, jak np \texttt{pyramid}. Oto minimalna aplikacja webowa w
+tym frameworku:
+\begin{minted}{python}
+from wsgiref.simple_server import make_server
+from pyramid.config import Configurator
+from pyramid.response import Response
+
+def hello_world(request):
+    return Response(
+        json={'hello': 'world'}
+    )
+
+if __name__ == '__main__':
+    with Configurator() as config:
+        config.add_route('hello', '/')
+        config.add_view(hello_world, route_name='hello')
+        app = config.make_wsgi_app()
+    server = make_server('0.0.0.0', 6543, app)
+    server.serve_forever()
+\end{minted}
+Zadaniem frameworka jest ułatwienie pozyskania danych z zapytania i utworzenia
+odpowiedzi HTTP. W powyższym przykładzie po wejściu w przeglądarce na ścieżkę
+\texttt{/} pyramid automatycznie zakoduje dany słownik, ustawi
+\texttt{Content-Type} i wyśle odpowiedź HTTP.
+\chapter{Testowanie}
+
+Każdy duży projekt w Pythonie powinien być testowany automatycznie. Testy dają
+nam możliwość uniknięcia regresji (,,psucia'' funkcjonalności w czasie rozwoju
+projektu) oraz wspierają programistów w tworzeniu kodu. Testy tworzymy
+stawiając tzw. \emph{asercje} określające, jak testowany obiekt powinien się
+zachować w określonej sytuacji.
+
+Chociaż biblioteka standardowa zawiera bibliotekę \texttt{unittest}, jest ona
+dość niewygodna w użyciu. Zamiast niej możemy użyć wygodniejszych narzędzi, jak
+\texttt{nose} lub \texttt{py.text}. Przykładowa funkcja z testami
+jednostkowymi:
+\begin{minted}{python}
+from nose.tools import assert_almost_equal, assert_raises
+def mean(*args):
+    if not len(args):
+        raise TypeError('At least one argument required')
+    return sum(args) / len(args)
+
+def test_mean():
+    """Test example mean calculation"""
+    assert_almost_equal(
+        mean(10, 15, 33, 24, 2),
+        16.8,
+    )
+
+def test_mean_empty():
+    """Test mean behaviour when empty list is given"""
+    with assert_raises(TypeError):
+        mean()
+\end{minted}
+
+Pierwszy test sprawdza zachowanie funkcji przy prawidłowym wejściu, porównując
+wyjście z wyliczoną wartością (używamy funkcji \texttt{assert\_almost\_equal}
+ze względu na możliwy błąd zmiennoprzecinkowy. Drugi test sprawdza czy funkcja
+rzuca odpowiedni wyjątek, gdy otrzyma błędne dane.
+
+Podczas pisania testów warto trzymać się kilku zasad:
+\begin{itemize}
+    \item Nasze dane powinny być jak najbardziej realistyczne i przypominać
+        dane, jakie aplikacja otrzymuje na produkcji
+    \item Należy zwrócić szczególną uwagę na przypadki brzegowe, nie zadowalać
+        się testami wyłącznie prawidłowych i typowych zachowań
+    \item Powodzenie jednego testu nie powinno zależeć od powodzenia innych
+        testów, ani od kolejności wykonywania
+\end{itemize}
+
+\chapter{Tworzenie własnych iteratorów}
+Oprócz dostępnych obiektów iterowalnych z biblioteki standardowej (takich jak
+listy, pliki, słowniki etc.) Programista Pythona ma kilka możliwości tworzenia
+własnych iteratorów.
+\section{Komprehensje}
+Komprehensja to deklaratywna konstrukcja umożliwiając szybkie stworzenie listy,
+słownika lub zbioru. Np. poniższa konstrukcja:
+\begin{minted}{python}
+a = [2 ** i for i in range(10) if i % 2]
+\end{minted}
+zastępuje znacznie bardziej skomplikowaną i mniej czytelną:
+\begin{minted}{python}
+a = []
+for i in range(10):
+    if i % 2:
+        a.append(2 ** i)
+\end{minted}
+Ograniczeniem dla komprehensji list jest fakt, że są one generowane zachłannie
+i allokowana jest dla nich pamięć. Np. wywołanie linii:
+\begin{minted}{python}
+a = [2 ** i for i in itertools.count()]
+\end{minted}
+spowoduje zawieszenie działania programu aż do przepełnienia pamięci i
+unicestwienia procesu przez system operacyjny. Zastąpienie nawiasów
+kwadratowych okrągłymi pozwala nam jednak stworzyć obiekt, który generuje
+kolejne elementy w sposób leniwy
+\begin{minted}{python}
+a = (2 ** i for i in itertools.count())
+\end{minted}
+Zmienna \texttt{a} jest w tym przypadku iteratorem, który iteruje w
+nieskończoność po kolejnych potęgach dwójki.
+
+\section{itertools}
+Moduł \texttt{itertools} posiada wiele przydatnych funkcji operujących na
+iteratorach. Umożliwiają one łączenie, cięcie i zapętlanie iteratorów, a także
+dają kilka funkcji z dziedziny kombinatoryki.
+\begin{minted}{pycon}
+>>> def take5(it):
+...     return list(itertools.islice(it, 0, 5))
+... 
+>>> take5(itertools.count(1))
+[1, 2, 3, 4, 5]
+>>> take5(itertools.cycle([1, 2]))
+[1, 2, 1, 2, 1]
+>>> list(itertools.chain([1, 2, 3], [4, 5, 6]))
+[1, 2, 3, 4, 5, 6]
+>>> list(itertools.permutations([1, 2, 3]))
+[(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)]
+\end{minted}
+
+\section{Generatory}
+Generatorem nazywamy funkcję zawierającą słowo kluczowe \texttt{yield}. Funkcja
+taka nie może zawierać polecenia \texttt{return} z podaną wartością. Generatory
+zwracają iterator, który uruchamia funkcję i w momencie dotarcia do polecenia
+\texttt{yield} daje w iteracji kolejną wartość. Poniższy generator iteruje w
+nieskończoność po kolejnych wyrazach ciągu Fibonacciego:
+\begin{minted}{python}
+def fib():
+    """Iteruje po liczbach ciągu Fibonacciego"""
+    a = 0
+    b = 1
+    while True:
+        yield b
+        a, b = b, a + b
+\end{minted}
+\chapter{Narzędzia i dystrybucja}
+Aby sprawnie korzystać z ekosystemu Pythona, potrzebujemy pewnych narzędzi.
+\section{pip}
+\texttt{pip} jest menedżerem paczek dla pythona. Umożliwia on instalowanie
+paczek z PyPI, z gita, z pliku i z rozwijanego przez nas kodu.
+\begin{minted}{bash}
+# Instalacja z PyPI
+pip install django
+# Konkretna wersja
+pip install django==1.11
+# Instalacja z gita
+pip install git+https://github.com/django/django.git@stable/1.11.x
+# Instalacja z paczki na dysku
+pip install django.whl
+# Instalacja wymagań z pliku
+pip install -r requirements.txt
+# deinstalacja
+pip uninstall django
+\end{minted}
+Dodatkowe funkcje \texttt{pip} to możliwość przeszukiwania PyPI oraz bardzo
+ciekawa opcja zapisu listy zainstalowanych paczek do pliku
+\begin{minted}{bash}
+# deinstalacja
+pip uninstall django
+# wypisz zainstalowane paczki w formacie dla pliku wymagań
+pip freeze > requirements.txt
+# szukanie paczek
+pip search
+\end{minted}
+
+\section{virtualenv}
+Aby uniknąć problemów z konfliktami różnych wersji zależności między paczkami
+zalecane jest, aby każda aplikacja na danej maszynie pracowała w izolowanym
+środowisku. Taką możliwość daje nam \texttt{virtualenv}, który tworzy na dysku
+katalogi zawierające specjalną binarkę Pythona szukającą paczek w tym katalogu.
+\begin{minted}{bash}
+# Utwórz virtualenv
+virtualenv --python=/usr/bin/python3.6 ~/.virtualenvs/my_virtualenv
+# Aktywuj virtuaelnv
+source ~/.virtualenvs/my_virtualenv/bin/activate
+# Użyj pythona z virtualenv bez aktywacji
+~/.virtualenvs/my_virtualenv/bin/python
+# Dekaktywuj virtualenv
+deactivate
+\end{minted}
+Dodatkowa warstwa zwania \texttt{virtualenvwrapper} jeszcze bardziej ułatwia
+nam pracę:
+\begin{minted}{bash}
+# Utwórz virtualenv
+mkvirtualenv --python=/usr/bin/python3.6 my_virtualenv
+# Aktywuj virtuaelnv
+workon my_virtualenv
+# Dekaktywuj virtualenv
+deactivate
+# Usuń virtualenv
+rmvirtualenv my_virtualenv
+\end{minted}
+\section{pdb}
+Python posiada bardzo duże możliwości \emph{debuggingu}. Wbudowane narzędzie
+\texttt{pdb} aktywujemy poprzez wprowadzenie w programie kodu \texttt{import
+pdb; pdb.set\_trace()} lub \texttt{import pdb; pdb.pm()} dla analizy
+\emph{post-mortem} rzuconych wyjątków. Debugger oferuje nam m. in. następujące
+możliwości:
+\begin{itemize}
+    \item Listowanie kodu w miejscu zatrzymania (\texttt{l})
+    \item Wypisanie wartości dowolnej zmiennej (\texttt{p}, \texttt{pp})
+    \item Podróżowanie po stosie wywołań (\texttt{u}, \texttt{d},)
+    \item Kontrolowane wykonywanie kolejnych linii programu (\texttt{n},
+        \texttt{s}, \texttt{r})
+    \item Wykonywanie w zasadzie dowolnych poleceń Pythona
+\end{itemize}
+\section{setuptools}
+W celu dystrybucji naszych paczek posługiwać możemy się narzędziami
+\texttt{setuptools} narzędzia te umożliwiają:
+\begin{itemize}
+    \item Tworzenie paczek zawierających odpowiednie pliki
+    \item Generowanie metadanych dla paczki
+    \item Wgrywanie paczek na PyPI
+\end{itemize}
+Centralnym plikiem dystrybucji z użyciem \texttt{setuptools} jest plik
+\texttt{setup.py} zawierający wszystkie dane potrzebne do utworzenia,
+wyszukania i zainstalowania paczki:
+\begin{itemize}
+    \item Nazwę, wersję i opis dystrybucji
+    \item Kwalifikatory ułatwiające wyszukiwanie
+    \item Zależności
+    \item Kryteria doboru plików
+\end{itemize}
 
 \tableofcontents
 \end{document}
