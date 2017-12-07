@@ -170,4 +170,82 @@
         \input{sqlalchemy_orm}
     \end{tiny}
 \end{frame}
+
+\section{Dystrybucja paczek}
+\begin{frame}{Prosty workflow}
+    \begin{itemize}
+            \pause
+        \item Dystrybucja kodu przy pomocy VCS
+            \pause
+        \item Zależności przy pomocy \texttt{pip freeze}
+            \pause
+        \item Popularna przy aplikacjach django
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{setup.py}
+    \begin{itemize}
+            \pause
+        \item Dane potrzebne przy tworzeniu paczki (katalogi, pliki do ujęcia)
+            \pause
+        \item Dane ułatwiające znalezienie paczki (opis, słowa kluczowe,
+            kwalifikatory)
+            \pause
+        \item Dane potrzebne do instalacji (zależności, \emph{entry points})
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{setup.py}
+    \begin{tiny}
+        \input{example_setup}
+    \end{tiny}
+\end{frame}
+
+\section{HTTP}
+\begin{frame}{Python jako klient HTTP}
+    \begin{itemize}
+            \pause
+        \item Wbudowana biblioteka \texttt{urllib}
+            \pause
+        \item Znacznie przyjaźniejsza w użyciu biblioteka \texttt{requests}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{requests -- przykład}
+    \begin{tiny}
+        \input{req}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Frameworki HTTP}
+    \begin{itemize}
+            \pause
+        \item Framework stanowi interfejs między czystym protokołem http a
+            naszym kodem
+            \pause
+        \item Ułatwia wyciąganie danych z zapytania i tworzenie odpowiedzi
+            \pause
+        \item Niektóre frameworki zawierają zintegrowany ORM i inne narzędzia
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Frameworki HTTP}
+    \begin{description}
+            \pause
+        \item[django] Najpopularniejszy. Zintegrowany ORM, baza danych,
+            system szablonów, automatyczny admin.
+            \pause
+        \item[flask] Popularny microframework.
+            \pause
+        \item[pyramid] Niezopiniowany framework umożliwiający łatwą integrację
+            różnych narzędzi i inkrementalny wzrost projektu.
+    \end{description}
+\end{frame}
+
+\begin{frame}{Pyramid przykład}
+    \begin{tiny}
+        \input{pyr}
+    \end{tiny}
+\end{frame}
+
 \end{document}

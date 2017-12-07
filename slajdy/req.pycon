@@ -1,0 +1,10 @@
+>>> import requests
+>>> resp = requests.get('http://google.pl')
+>>> resp.status_code
+200
+>>> resp.headers['Content-Type']
+'text/html; charset=ISO-8859-2'
+>>> resp.content[:20]
+b'<!doctype html><html'
+>>> resp.text[:20]
+'<!doctype html><html'
