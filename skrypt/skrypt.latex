@@ -1,4 +1,5 @@
-\documentclass[openany]{scrbook}
+\documentclass[openany,twoside]{book}
+\usepackage{layout}
 \usepackage[utf8]{inputenc}
 \usepackage{polski}
 \usepackage{minted}
@@ -7,16 +8,18 @@
 \begin{document}
 \title{Podstawy programowania w Pythonie}
 \author{Szymon Pyżalski}
-\lowertitleback{
- Niniejszy skrypt dostępny jest na licencji
- Creative Commons  Uznanie autorstwa -- Na tych samych warunkach 4.0
- Pewne prawa zastrzeżone.
- https://creativecommons.org/licenses/by-sa/4.0/legalcode.pl
 
-\ccbysa}
 \maketitle
 
-\chapter{Lekcja 1: Wprowadzenie do języka}
+ \vspace*{\fill}
+ Niniejszy skrypt dostępny jest na licencji\\
+ Creative Commons  Uznanie autorstwa -- Na tych samych warunkach 4.0\\
+ Pewne prawa zastrzeżone.\\
+ https://creativecommons.org/licenses/by-sa/4.0/legalcode.pl\\
+ \ccbysa
+ \layout
+
+\chapter{Wprowadzenie do języka}
 \section{Charakterystyka języka Python}
 Python powstał w roku 1991 jako prywatny projekt Guido van Rossuma. Obecnie
 jest rozwijany przez Python Software Foundation, w której Guido spełnia
@@ -28,15 +31,15 @@ zastosowanie przede wszystkim w programowaniu webowym, obróbce danych,
 tworzeniu skryptów oraz aplikacji desktopowych. Można go używać także
 w programowaniu aplikacji mobilnych oraz mikrokontrolerów.
 
-Jest językiem wysokiego poziomu. Znaczy to, że jego kod ma jak
+Jest językiem wysokiego poziomu. Znaczy to, że jego logika ma jak
 najbardziej oddawać sposób myślenia programisty bez wnikania w szczegóły
 techniczne.
+
 
 \subsection{Zalety języka}
 \begin{enumerate}
     \item Łatwy do nauczenia.
-    \item Duża siła wyrazu -- możliwość tworzenia złożone logiki w małej ilości
-        kodu.
+    \item Zwięzłość -- możliwość tworzenia złożonej logiki w małej ilości kodu.
     \item Łatwy \emph{debugging}. Możliwość ,,podejrzenia'' działania programu.
     \item Silna społeczność.
     \item Dobra dokumentacja.
@@ -45,6 +48,7 @@ techniczne.
 \subsection{Wady języka}
 \begin{enumerate}
     \item Stosunkowo powolny.
+    \item Ograniczone możliwości optymalizacji.
     \item Łatwiej niż w językach statycznie typowanych o niewykryte błędy.
     \item Dwie wersje języka wzajemnie niekompatybilne.
 \end{enumerate}
@@ -70,29 +74,30 @@ które zwraca jakąś wartość, będzie ona wypisana.
 Pliki Pythona zapisujemy z rozszerzeniem \texttt{.py}. Możemy je uruchomić
 poleceniem \texttt{python nazwa\_pliku.py}. Jeśli plik zawiera
 na początku tzw. she-bang \texttt{\#!/usr/bin/python3} i mamy uprawnienia
-do jego wykonania, możemy uruchomić plik jak inne programy konsolowe \texttt{
-    ./nazwa\_pliku.py}
+do jego wykonania, możemy uruchomić plik jak inne programy konsolowe
+\texttt{./nazwa\_pliku.py}
 
 W przypadku uruchamiania plików nie działa automatyczne wyświetlanie wartości
 wyrażeń. Jeśli chcemy wypisać informację na konsolę musimy to uczynić
-\emph{explicite}: \texttt{print(wartosc)}
+\emph{explicite}:\\ \texttt{print(wartosc)}
 
-\section{Elementy składni}
-\subsection{Literały}
+\chapter{Elementy składni}
+\section{Literały}
 
 Jeśli chcemy użyć w naszym kodzie jakiejś konkretnej wartości, możemy ją
 zapisać przy pomocy literału. Przykłady literałów to np. \texttt{1},
 \texttt{3.14}, \texttt{'tekst'}.
 
-\subsection{Identyfikatory}
+\section{Identyfikatory}
 
 Identyfikator to ciąg znaków, który jest powiązany z jakąś wartością. Aby
 przypisać wartość do identyfikatora używany operatora przypisania \texttt{=}
 
 \begin{minted}{pycon}
->>> liczba = 2
->>> 3 + a
-5
+>>> LICZBA_RZEDOW = 5 # Przypisanie nie zwraca wartości
+>>> MIEJSC_W_RZEDZIE = 3
+>>> LICZBA_RZEDOW * MIEJSCE_W_RZEDZIE
+15
 \end{minted}
 
 Identyfikator może składać się z liter, znaków podkreślenia oraz cyfr (poza
@@ -106,7 +111,7 @@ którym są powiązane. Unikamy nazw typu \texttt{x}, \texttt{asdfasdf},
 \texttt{zmienna1}.
 
 
-\subsection{Operatory}
+\section{Operatory}
 
 Część operacji na obiektach możemy wykonać przy pomocy operatorów. Python
 posiada określoną pulę operatorów, z których część (jak \texttt{+}, \texttt{\&})
@@ -130,21 +135,45 @@ liczba *= 2
 
 oznacza podwojenie wartości zawartej pod identyfikatorem \texttt{liczba}
 
-\subsection{Wywołanie funkcji}
+\section{Wywołanie funkcji}
 
 Funkcje wywołujemy przez użycie nawiasów. Jeśli funkcja nie przyjmuje żadnych
-argumentów dajemy puste nawiasy. Np. \texttt{print()} wypisze na ekran pustą
-linię. Jeśli podajemy kilka argumentów, oddzielamy je przecinkiem. Np.
-\texttt{divmod(10, 3)} wykona operację dzielenia z resztą i zwróci wartości
-\texttt{(3,1)}. Funkcje mogą też przyjmować argumenty nazwane. Np.
-\texttt{int('10', base=2)} zinterpretuje łańcuch znaków \texttt{'10'}
-jako liczbę w systemie dwójkowym i zwróci wartość \texttt{2}.
+argumentów dajemy puste nawiasy. 
+\begin{minted}{python}
+    # Wypisz pustą linię na ekran
+    print()
+\end{minted}
+Jeśli podajemy kilka argumentów, oddzielamy je przecinkiem. Np.
+\begin{minted}{pycon}
+    >>> # Dzielenie z resztą
+    >>> wartosc, reszta = divmod(10, 3)
+    >>> wartosc
+    3
+    >>> reszta
+    1
+
+\end{minted}
+
+Funkcje mogą też przyjmować argumenty nazwane. Np.
+\begin{minted}{pycon}
+    >>> # Zinterpretuj łańcuch jako liczbę dwójkową
+    >>> int('10', base=2)
+    2
+\end{minted}
+
 
 Metody to funkcje zdefiniowane dla określonych obiektów. Do ich wywołania
-używamy kropki. Np. \texttt{napis.upper()} zwróci wartość zapisaną pod
-identyfikatorem \texttt{napis} wielkimi literami.
+używamy kropki. Przykład:
 
-\subsection{Komentarze}
+
+\begin{minted}{pycon}
+    >>> # Przekształć na wersaliki
+    >>> 'cześć'.upper()
+    'CZEŚĆ'
+\end{minted}
+
+
+\section{Komentarze}
 
 Komentarze to informacje, które będą zignorowane przez interpreter Pythona.
 Stanowią one pomoc dla osoby czytającej kod. Komentarzem jest wszystko, co
@@ -155,8 +184,14 @@ zaczyna się od znaku \texttt{\#} aż do końca linii:
 a -= 1 # Odrzucamy pierwszą wartość
 \end{minted}
 
+\section{Zadanie}
+
+Napisz program, który wyliczy i wypisze pole i obwód kół o promieniu 10 i 15.
+Postaraj się wykorzystać zmienne tak, aby nie musieć nigdy kilkakrotnie
+wpisywać tej samej wartości.
 
 \chapter{Najważniejsze typy danych w Pythonie}
+
 \section{Typy niezmienne}
 Typy niezmienne reprezentują najbardziej podstawowe rodzaje informacji.
 Obiekty tych typów nie mogą być modyfikowane. Można co najwyżej stworzyć nowy
@@ -189,7 +224,7 @@ całkowitą wartość z dzielenia, a \texttt{\%} - resztę.
 
 W odróżnieniu od niektórych innych
 języków nie ma on w Pythonie 3 ograniczonego zakresu. Python sam dba o
-właściwą wewnętrzną reprezentację i uniemożliwia ,,przekręcenie'' wartości.
+właściwą maszynową reprezentację i uniemożliwia ,,przekręcenie'' wartości.
 
 \begin{minted}{pycon}
 >>> 7 ** 77
@@ -268,6 +303,33 @@ True
 'lalala!'
 \end{minted}
 
+Najpotężniejszą z metod jest metoda \texttt{format}, która umożliwia wstawianie
+do łańcucha różnych wartości przy okazji w określony sposób je formatując.
+Przykłady użycia:
+
+\begin{minted}{pycon}
+>>> '{0} -- {1}'.format(1, 2)
+'1 -- 2'
+>>> '{} -- {}'.format(1, 2)
+'1 -- 2'
+>>> '{lewy} -- {prawy}'.format(lewy=1, prawy=2)
+'1 -- 2'
+>>> '{:03} -- {:03}'.format(1, 2)
+'001 -- 002'
+>>> '{lewy:02x} -- {prawy:02o}'.format(lewy=255, prawy=255)
+'ff -- 377'
+\end{minted}
+
+W pythonie 3.6 wprowadzona została uproszczona składnia formatowania, którą
+możemy zastosować, kiedy łańcuch formatujący jest literałem.
+
+\begin{minted}{pycon}
+>>> psy=4
+>>> koty=2
+>>> f'Liczba psów: {psy}; liczba kotów: {koty}'
+'Liczba psów: 4; liczba kotów: 2'
+\end{minted}
+
 \subsection{float}
 Float reprezentuje liczby zmiennoprzecinkowe. Do ich zapisu używamy kropki
 dziesiętnej.
@@ -300,7 +362,7 @@ tylko w razie konieczności i uwzględniamy niedokładności.
 \subsection{bool}
 
 Obiekty tego typu mogą przyjmować tylko dwie wartości \texttt{True} i
-\texttt{False}. Są one zwracane przez operatory porównania.
+\texttt{False}. Są one zwracane np. przez operatory porównania.
 
 \begin{minted}{pycon}
 >>> 1 == 1
@@ -346,21 +408,22 @@ Krotka to obiekt składający się z kilku obiektów dowolnego typu.
 
 Można jej użyć do opisu prostych struktur danych, w których łatwo się nam
 ,,połapać''. Możemy użyć nawiasów kwadratowych do uzyskania określonego
-elementu krotki, albo użyć tzw. rozpakowania.
+elementu lub fragmentu (tzw. \emph{slice}) krotki, albo zastosować tzw. rozpakowanie.
 
 \begin{minted}{pycon}
->>> a = 'Guido', 'van Rossum'
->>> a[1]
-'van Rossum'
->>> name, surname = a
+>>> a = 'Guido', 'van', Rossum'
+>>> a[1:2]
+('van', Rossum')
+>>> name, tussenvoegsel, surname = a
 >>> name
 'Guido'
 >>> surname
-'van Rossum'
+'Rossum'
 \end{minted}
 
 Rozpakowanie krotki jest często używane aby dokonać jednoczesnego przypisania
-do dwóch zmiennych.
+do dwóch zmiennych. W wielu innych językach do tego celu musielibyśmy użyć trzeciej
+zmiennej.
 
 \begin{minted}{pycon}
 >>> a = 1
@@ -372,20 +435,34 @@ do dwóch zmiennych.
 1
 \end{minted}
 
+\subsection{Zadanie}
+
+Mając dane dwie krotki:
+
+\begin{minted}{pycon}
+HERMENEGILDA = ('Hermenegilda', 'Końciubińska')
+ANTONI = ('Antoni', 'Gżegżółka')
+\end{minted}
+
+\begin{enumerate}
+    \item Wypisz imię i nazwisko obu osób ze spacją
+    \item Sprawdź która z osób ma dłuższe nazwisko
+    \item Wypisz każdą z osób w formie ,,nazwisko imię''
+\end{enumerate}
+
+
+
 \section{Typy zmienne}
 
 Typy zmienne mogą zmieniać swoją wartość po utworzeniu.
-\begin{minted}{pycon}
 
+\begin{minted}{pycon}
 >>> a = []
 >>> b = a # Obie zmiene pokazują na ten sam obiekt
->>> a.append(1)
->>> a = []
->>> b = a
->>> a.append(1)
+>>> a.append(1) # Zmieniamy obiekt a
 >>> a
 [1]
->>> b
+>>> b # Obiekt b również zmienił się
 [1]
 \end{minted}
 
@@ -393,7 +470,17 @@ Typy zmienne mogą zmieniać swoją wartość po utworzeniu.
 
 Lista podobnie jak krotka zawiera uporządkowane elementy innego typu. Od krotki
 różni się w zasadzie tylko tym, że jest obiektem zmiennym. Aby wykonać kopię
-listy używamy operacji \emph{slice} bez argumentów: \texttt{mojalista[:]}
+listy używamy operacji \emph{slice} bez argumentów:
+
+\begin{minted}{pycon}
+>>> a = []
+>>> b = a[:] # Wykonujemy kopię
+>>> a.append(1)
+>>> a
+[1]
+>>> b # Kopia nie zmieniła się
+[]
+\end{minted}
 
 \subsection{dict}
 
@@ -434,8 +521,7 @@ False
 {'ge': 'Gruzja', 'it': 'Nieznany', 'es': 'Hiszpania', 'pl': 'Polska'}
 \end{minted}
 
-Metoda \texttt{copy} wykonuje kopię słownika, co jest przydatne, gdyż słownik
-jest obiektem zmiennym.
+Metoda \texttt{copy} wykonuje kopię słownika.
 
 \subsection{set}
 Zbiór to obiekt niezawierający powtórzeń i niepamiętający kolejności dodawania
@@ -453,6 +539,7 @@ obiektów. Dodawanie obiektów już istniejących nie zmienia zbioru.
 Na zbiorach możemy wykonywać operacje znane z teorii mnogości.
 
 \begin{minted}{pycon}
+>>> zwierzeta = {'Papuga', 'Pies', 'Nietoperz', 'Kot', 'Kangur'}
 >>> lozyskowe = {'Pies', 'Nietoperz', 'Kot'}
 >>> latajace = {'Papuga', 'Nietoperz', 'Helikopter', 'Samolot'}
 >>> zwierzeta - lozyskowe
@@ -463,12 +550,41 @@ Na zbiorach możemy wykonywać operacje znane z teorii mnogości.
 {'Papuga', 'Nietoperz', 'Helikopter', 'Samolot', 'Pies', 'Kangur', 'Kot'}
 \end{minted}
 
+\subsection{Zadanie}
+
+Mając dane słowniki:
+
+\begin{minted}{pycon}
+GOŚCIE = [
+    'Marek',
+    'Joanna',
+    'Krzysztof',
+    'Agnieszka',
+    'Grzegorz',
+    'Justyna'
+]
+
+PAŃSTWA = {
+    'Wielka Brytania': 'Great Britain',
+    'Niemcy': 'Deutchland',
+    'Węgry': 'Magyarország',
+    'Irlandia': 'Éire',
+}
+
+PAŃSTWA_2 = {
+    'Hiszpania': 'España',
+    'Francja': 'France',
+    'Finlandia': 'Suomi',
+}
+
+\end{minted}
+
 
 \chapter{Instrukcje sterujące}
 \section{if-else}
 
 Instrukcja ta wykonuje blok instrukcji, jeśli warunek jest spełniony.
-W przeciwnym wypadku wykonuje inny blok instrukcji (można go pominąć)
+W przeciwnym wypadku wykonuje inny blok instrukcji oznaczony \texttt{else} (można go pominąć)
 
 \begin{minted}{pycon}
 >>> a = 10
@@ -520,7 +636,7 @@ Pełna
 ...
 \end{minted}
 
-Powyższe tyczy się nie tylko instrukcji \texttt{if} ale też \texttt{while}
+Powyższe tyczy się nie tylko instrukcji \texttt{if} ale również \texttt{while}
 
 \section{while}
 
@@ -535,7 +651,9 @@ Pętla \texttt{while} wykonuje się tak długo, aż spełniony jest warunek.
 1,2,4,8,16,32,64,128,256,512
 \end{minted}
 
-Z pętli możemy też wyjść poleceniem \texttt{break}
+Z pętli możemy też wyjść poleceniem \texttt{break}. Popularnym idiomem
+pythonowym jest zastosowanie \texttt{break} w pętli nieskończonej
+\texttt{while True:}
 
 \begin{minted}{pycon}
 >>> while True:
@@ -554,6 +672,7 @@ Podaj liczbę mniejszą od 6
 \end{minted}
 
 Z kolei polecenie \texttt{continue} pozwala przejść do następnej iteracji pętli.
+
 \begin{minted}{python}
 # Utworzy listę wszystkich potęg dwójki < 1000 zawierających cyfrę 6
 collected = []
@@ -606,6 +725,7 @@ Aby ponumerować iterowane elementy użyjemy funkcji \texttt{enumerate()}
 0: Pies;1: Kot;2: Wróbel;
 \end{minted}
 
+
 Słowniki iterują po kluczach. Możemy jednak użyć metody \texttt{values()} lub
 \texttt{items()} by przeiterować również wartości
 
@@ -624,6 +744,28 @@ Gruzja,Włochy,Polska,
 ... 
 ge: Gruzja;it: Włochy;pl: Polska
 \end{minted}
+
+\section{Zadanie}
+Mając dany słownik:
+
+\begin{minted}{pycon}
+PAŃSTWA = {
+    'Wielka Brytania': 'Great Britain',
+    'Niemcy': 'Deutchland',
+    'Hiszpania': 'España',
+    'Węgry': 'Magyarország',
+    'Irlandia': 'Éire',
+    'Francja': 'France',
+    'Finlandia': 'Suomi',
+}
+\end{minted}
+
+\begin{enumerate}
+    \item Wypisz wszystkie nazwy państw w obcych językach
+    \item Wypisz nazwy parami "nazwa polska - nazwa obca"
+    \item Wypisz polskie nazwy o długości krótszej bądź równej 6 liter
+    \item Wypisz wszystkie liczby ciągu Fibonacciego mniejsze lub równie 1000
+\end{enumerate}
 
 \chapter{Definiowanie własnych funkcji}
 
@@ -903,7 +1045,7 @@ join('/usr', 'lib')
     \item Nadanie modułowi bądź obiektowi aliasu
         \begin{minted}{python}
 import os.path as opath
-op.join('/usr', 'lib')
+opath.join('/usr', 'lib')
 
 from os.path import join as path_join
 path_join('/usr', 'lib')
