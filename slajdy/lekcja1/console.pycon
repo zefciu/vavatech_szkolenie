@@ -1,0 +1,5 @@
+$ python
+>>> 'Cześć świecie!'
+'Cześć świecie'
+>>> 2 + 2
+4

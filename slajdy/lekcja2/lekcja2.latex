@@ -1,0 +1,255 @@
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Berkeley}
+  \usecolortheme{crane}
+}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{polski}
+
+% For pygmentize
+\usepackage{fancyvrb}
+\usepackage{color}
+
+\input{styles}
+\title{Obsługa wyjątków, przydatne metody i programowanie obiektowe}
+\author[]{Szymon Pyżalski}
+
+\date{25 -- 29 VI 2018}
+\logo{\includegraphics[width=1.5cm]{../vavatech_logo_small.png}}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Wyjątki}
+\insertsectionhead
+\begin{frame}{Wyjątek}
+    \begin{itemize}
+            \pause
+        \item Wyjątki sygnalizują błędy i inne wyjątkowe sytuacje
+            \pause
+        \item Wyjątek może zostać złapany i obsłużony
+            \pause
+        \item Niezłapany wyjątek wędruje w górę drzewa wywołań
+            \pause
+        \item Jeśli wyjątek nie zostanie złapany nigdzie, przerywa działanie
+            programu
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Wyjątek}
+    \begin{tiny}
+        \input{exception}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Obsługa wyjątków w Pythonie}
+    \begin{itemize}
+            \pause
+        \item Nie łapiemy wyjątków, których nie chcemy obsłużyć
+            \pause
+        \item Pozwalamy tym wyjątkom się propagować
+            \pause
+        \item Wyciszamy wyjątki tylko i wyłącznie wtedy, gdy wiemy co robimy
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Rzucanie wyjątku}
+    \begin{tiny}
+        \input{raise_}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Typy wyjątków}
+    \begin{itemize}
+            \pause
+        \item \texttt{Exception} Klasa bazowa dla prawie wszystkich wyjątków.
+            Nie łapiemy, chyba że piszemy debugger.
+            \pause
+        \item \texttt{TypeError} Zły typ danych lub złe argumenty dla funkcji.
+            \pause
+        \item \texttt{ValueError} Zła wartość
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Typy wyjątków}
+    \begin{itemize}
+            \pause
+        \item \texttt{KeyError} Brak klucza w słowniku.
+            \pause
+        \item \texttt{AttributeError} Brak właściwości lub metody (dostęp po
+            kropce)
+            \pause
+        \item \texttt{KeyboardInterrupt} Wciśnięto ctrl-C
+    \end{itemize}
+\end{frame}
+
+\section{Metody na łańcuchu}
+\insertsectionhead
+\begin{frame}{Łaczenie i dzielenie łańcucha}
+    \begin{tiny}
+        \input{split_join}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Duże i małe litery}
+    \begin{tiny}
+        \input{case}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Poszukiwanie i zamiana}
+    \begin{tiny}
+        \input{search}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Początek i koniec}
+    \begin{tiny}
+        \input{strip_start}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Formatowanie}
+    \begin{tiny}
+        \input{format}
+    \end{tiny}
+\end{frame}
+\section{Metody na słowniku}
+\insertsectionhead
+\begin{frame}{Podstawy}
+    \begin{tiny}
+        \input{dict_basic}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Wartości domyślne}
+    \begin{tiny}
+        \input{dict_defaults}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Inne}
+    \begin{tiny}
+        \input{dict_other}
+    \end{tiny}
+\end{frame}
+
+\section{Programowanie obiektowe}
+\begin{frame}{Zarys teorii OOP}
+    \begin{itemize}
+    \pause
+    \item Abstrakcja programu opisana jest zależnościami między obiektami
+    \pause
+    \item Obiekty przynależą do klas
+    \pause
+    \item Klasy zdefiniowane są przez posiadane pola danych i metody
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Specyfika OOP w Pythonie}
+    \begin{itemize}
+    \item Wszystko jest obiektem!
+    \pause
+    \item Nie musimy deklarować nazw pól.
+    \pause
+    \item Istnieją klasy, ale ważne jest jakie metody zdefiniowaliśmy
+        \emph{(duck typing)}
+    \end{itemize}
+\end{frame}
+
+\section{Definiowanie obiektów}
+\insertsectionhead
+
+\begin{frame}{Prosty obiekt}
+    \begin{tiny}
+    \input{object_simple}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Specjalne metody}
+    \begin{itemize}
+    \pause
+    \item \texttt{\_\_init\_\_} -- inicjalizator
+    \pause
+    \item \texttt{\_\_repr\_\_} -- reprezentacja jako string dla maszyny
+    \pause
+    \item \texttt{\_\_str\_\_} -- reprezentacja jako string dla człowieka
+    \pause
+    \item \texttt{\_\_int\_\_} \texttt{\_\_float\_\_} etc. -- konwersja typów
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Properties}
+    \begin{itemize}
+    \pause
+    \item Umożliwiają zaawansowaną logikę ustawiania i odczytu danych z obiektu
+    \pause
+    \item Dekorator \texttt{@property} oznacza gettera.
+    \pause
+    item Dekoratory \texttt{@nazwa.setter} i \texttt{@nazwa.deleter}
+    oznaczają pozostałe dwie metody
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Properties}
+    \begin{tiny}
+    \input{properties}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{}
+    \begin{itemize}
+    \pause
+    \item Przeciążania dokonujemy dzięki ,,magicznym'' metodom
+    \pause
+    \item Nie wszystkie operatory da się przeciążyć
+    \pause
+    \item Przeciążajmy sensownie
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Enkapsulacja}
+    \begin{itemize}
+    \pause
+    \item Obiekty bez znaku podkreślnika są publiczne
+    \pause
+    \item Obiekty zaczynające się od jednego podkreślnika są na zasadzie
+        konwencji prywatne/chronione
+    \pause
+    \item Obiekty zaczynające się od dwóch podkreślników podlegają ,,\emph{name
+        mangling}''. Nadal nie są jednak naprawdę prywatne.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Dziedziczenie}
+    \begin{itemize}
+    \pause
+    \item Klasa może dziedziczyć po jednej lub więcej klas basowych
+    \pause
+    \item Domyślną klasą bazową jest \texttt{object}
+    \pause
+    \item Klasy bazowe wołamy ręcznie przy pomocy \texttt{super}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Dziedziczenie}
+    \begin{tiny}
+    \input{default_dict}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Dziedziczenie wielokrotne}
+    \begin{tiny}
+    \input{multiple_inh}
+    \end{tiny}
+\end{frame}
+
+\end{document}

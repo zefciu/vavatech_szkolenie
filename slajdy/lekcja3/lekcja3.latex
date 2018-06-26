@@ -1,0 +1,426 @@
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Berkeley}
+  \usecolortheme{crane}
+}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{polski}
+
+% For pygmentize
+\usepackage{fancyvrb}
+\usepackage{color}
+\usepackage{ccicons}
+
+\input{styles}
+\title{Python -- dobieranie narzędzi, testowanie, SQL}
+\author[]{Szymon Pyżalski}
+
+\date{24 -- 29 VI 2018}
+\logo{\includegraphics[width=1.5cm]{../vavatech_logo_small.png}}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+ Niniejsza prezentacja dostępna jest na licencji
+ Creative Commons  Uznanie autorstwa -- Na tych samych warunkach 4.0
+ Pewne prawa zastrzeżone.
+ https://creativecommons.org/licenses/by-sa/4.0/legalcode.pl
+ \ccbysa
+\end{frame}
+
+\section{Moduły i pakiety}
+\begin{frame}{Moduł}
+    \begin{itemize}
+        \pause
+    \item Modułem nazywamy plik pythona, który służy do importu obiektów.
+        \pause
+    \item Moduł może posiadać \emph{docstring}
+        \pause
+    \item Aby uniknąć wykonywania kodu przy imporcie używamy idiomu
+        \texttt{if \_\_name\_\_ == '\_\_main\_\_'}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Pakiet}
+    \begin{itemize}
+        \pause
+    \item Pakietem nazywamy katalog zawierający moduły
+        \pause
+    \item Pakiet musi zawierać plik \texttt{\_\_init\_\_.py} Plik ten może być
+        pusty
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Poszukiwanie modułów i pakietów}
+    \begin{itemize}
+        \pause
+    \item Pakiety znajdują się domyślnie w lokacji
+        \texttt{\$PREFIX/lib/pythonX.Y}
+        \pause
+    \item Możliwy jest import z bieżącego katalogu
+        \pause
+    \item Dodatkowo możemy ustawić zmienną środowiskową \texttt{PYTHONPATH}
+        \pause
+    \item Zmienna \texttt{sys.path} pokazuje nam pełną listę ścieżek
+        \pause
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Importowanie}
+    \begin{tiny}
+        \input{imp}
+    \end{tiny}
+\end{frame}
+
+\section{Narzędzia pythonisty}
+\subsection{pip}
+\begin{frame}{O pip}
+    \begin{itemize}
+        \pause
+    \item Menedżer pakietów dla pythona
+        \pause
+    \item Skrót od \emph{pip installs packages}
+        \pause
+    \item Instalowany razem z pythonem
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{pip -- instalowanie paczek}
+    \begin{tiny}
+        \input{pip_install}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{pip -- inne polecenia}
+    \begin{tiny}
+        \input{pip_other}
+    \end{tiny}
+\end{frame}
+
+\subsection{virtualenv}
+\begin{frame}{Pożytki z virtualenv}
+    \begin{itemize}
+        \pause
+    \item Izolowane środowisko dla projektu
+        \pause
+    \item Pomaga uniknąć \emph{dependency hell}.
+        \pause
+    \item Możliwość instalowania paczek bez \texttt{sudo}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{virtualenv -- użycie}
+    \begin{tiny}
+        \input{venv}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{virtualenvwrapper -- użycie}
+    \begin{tiny}
+        \input{venvwrapper}
+    \end{tiny}
+\end{frame}
+
+\subsection{Debugging}
+\begin{frame}{Startowanie debuggera}
+    \begin{itemize}
+            \pause 
+            \item \texttt{pdb.set\_trace()} ustawia \emph{breakpoint}
+            \pause 
+            \item \texttt{pdb.pm()} -- tryb \emph{post mortem} pozwala zbadać,
+            co wywołało wyjątek
+            \pause
+            \item \texttt{pdb.run('cmd()')} -- uruchamia polecenie i wchodzi
+            do debugera
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Polecenia debuggera}
+    \begin{itemize}
+            \pause 
+            \item \texttt{n} następna linia
+            \pause 
+            \item \texttt{s} wejście do funkcji
+            \pause 
+            \item \texttt{r} do następnego \texttt{return}
+            \pause 
+            \item \texttt{c} kontynuuj (wyjście z debuggera)
+            \pause 
+            \item \texttt{u} \texttt{d} w górę lub w dół stosu wywołań
+            \pause 
+            \item \texttt{l} listing
+            \pause 
+            \item \texttt{pp} \emph{pretty-print}
+    \end{itemize}
+\end{frame}
+
+\subsection{Pomoc przy kodzie}
+\begin{frame}{Pomoc przy kodzie}
+    \begin{itemize}
+        \pause
+    \item \texttt{flake8} -- sprawdza jakość kodu
+        \pause
+    \item \texttt{jedi} -- zapewnia uzupełnianie składni (wtyczki do różnych
+        edytorów)
+    \end{itemize}
+\end{frame}
+
+\section{Praca z plikami}
+    
+\begin{frame}{Pliki tekstowe}
+    \begin{tiny}
+        \input{file_ops}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{CSV}
+    \begin{tiny}
+        \input{csv_ops}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{JSON}
+    \begin{tiny}
+        \input{json_ops}
+    \end{tiny}
+\end{frame}
+
+\section{Konfiguracja}
+
+\begin{frame}{Linia poleceń -- ,,na żywca''}
+    \begin{itemize}
+            \pause
+        \item Wartości zapisane są w \texttt{sys.argv}
+            \pause
+        \item \texttt{sys.argv[0]} to nazwa samego pliku
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Linia poleceń -- parser}
+    \begin{tiny}
+        \input{argparse_usage}
+    \end{tiny}
+\end{frame}
+
+\section{Testy}
+\begin{frame}{Pożytki z testów automatycznych}
+    \begin{itemize}
+        \item Unikanie regresji
+            \pause
+        \item Test jako forma specyfikacji
+            \pause
+        \item \emph{Test-Driven-Development}
+            \pause
+    \end{itemize}
+\end{frame}
+\begin{frame}{Rodzaje testów}
+    \begin{itemize}
+            \pause
+        \item Testy jednostkowe -- testujemy poszczególne elementy naszego
+            systemu: funkcje, lub klasy
+            \pause
+        \item Testy funkcjonalne -- testujemy funkcjonalność całości systemu
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Podstawowe pojęcia}
+    \begin{description}
+            \pause
+        \item[asercja] Założenie, które musi być spełnione, by test przeszedł
+            \pause
+        \item[fixture] Specjalny zestaw warunków, w których test zostanie
+            wykonany
+            \pause
+        \item[mock] Obiekt, który udaje inny obiekt. Np. połączenie sieciowe.
+    \end{description}
+\end{frame}
+
+\begin{frame}{Dostępne frameworki}
+    \begin{itemize}
+            \pause
+        \item unittest -- zawarty w bibliotece standardowej. Wzorowany na
+            JUnit. Stosunkowo dużo \emph{boilerplate}
+            \pause
+        \item nose -- dużo uproszczeń w stosunku do unittest. Automatyczne
+            wyszukiwanie testów. Brak konieczności pisania klas.
+            \pause
+        \item py.test -- magiczne rozpoznawanie asercji
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Zasady testowania}
+    \begin{itemize}
+            \pause
+        \item Powodzenie każdego testu powinno być niezależne od powodzenia
+            pozostałych (stąd używanie \emph{fixtures})
+            \pause
+        \item Używamy realistycznych danych
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Przykład użycia nose}
+    \begin{tiny}
+        \input{test_example}
+    \end{tiny}
+\end{frame}
+
+\section{Iteratory}
+\begin{frame}{Komprehensje}
+    \begin{tiny}
+        \input{comprehensions}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{itertools}
+    \begin{tiny}
+        \input{it}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Generatory}
+    \begin{tiny}
+        \input{gen}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Klasa iterowalna}
+    \begin{tiny}
+        \input{it_cls}
+    \end{tiny}
+\end{frame}
+
+\section{Bazy danych}
+\begin{frame}{Adapter}
+    \begin{itemize}
+            \pause
+        \item Odpowiada za łączenie się z bazą
+            \pause
+        \item Zapewnia ochronę przez SQL-injection
+            \pause
+        \item Kod specyficzny dla danej bazy
+    \end{itemize}
+\end{frame}
+\begin{frame}{Adapter}
+    \begin{tiny}
+        \input{sqlite}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Warstwa obiektowa}
+    \begin{itemize}
+            \pause
+        \item Stanowi obiektową reprezentację zapytań SQL
+            \pause
+        \item Uniwersalne zapytania tłumaczone na różne dialekty
+            \pause
+        \item Zwraca krotki
+    \end{itemize}
+\end{frame}
+\begin{frame}{Warstwa obiektowa}
+    \begin{tiny}
+        \input{sqlalchemy_core}
+    \end{tiny}
+\end{frame}
+\begin{frame}{ORM}
+    \begin{itemize}
+            \pause
+        \item Object relational mapping.
+            \pause
+        \item Klasy odpowiadają tablicom. Obiekty -- rzędom.
+            \pause
+        \item Zwykle leniwe wykonywanie zapytań.
+    \end{itemize}
+\end{frame}
+\begin{frame}{ORM}
+    \begin{tiny}
+        \input{sqlalchemy_orm}
+    \end{tiny}
+\end{frame}
+
+\section{Dystrybucja paczek}
+\begin{frame}{Prosty workflow}
+    \begin{itemize}
+            \pause
+        \item Dystrybucja kodu przy pomocy VCS
+            \pause
+        \item Zależności przy pomocy \texttt{pip freeze}
+            \pause
+        \item Popularna przy aplikacjach django
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{setup.py}
+    \begin{itemize}
+            \pause
+        \item Dane potrzebne przy tworzeniu paczki (katalogi, pliki do ujęcia)
+            \pause
+        \item Dane ułatwiające znalezienie paczki (opis, słowa kluczowe,
+            kwalifikatory)
+            \pause
+        \item Dane potrzebne do instalacji (zależności, \emph{entry points})
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{setup.py}
+    \begin{tiny}
+        \input{example_setup}
+    \end{tiny}
+\end{frame}
+
+\section{HTTP}
+\begin{frame}{Python jako klient HTTP}
+    \begin{itemize}
+            \pause
+        \item Wbudowana biblioteka \texttt{urllib}
+            \pause
+        \item Znacznie przyjaźniejsza w użyciu biblioteka \texttt{requests}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{requests -- przykład}
+    \begin{tiny}
+        \input{req}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Frameworki HTTP}
+    \begin{itemize}
+            \pause
+        \item Framework stanowi interfejs między czystym protokołem http a
+            naszym kodem
+            \pause
+        \item Ułatwia wyciąganie danych z zapytania i tworzenie odpowiedzi
+            \pause
+        \item Niektóre frameworki zawierają zintegrowany ORM i inne narzędzia
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Frameworki HTTP}
+    \begin{description}
+            \pause
+        \item[django] Najpopularniejszy. Zintegrowany ORM, baza danych,
+            system szablonów, automatyczny admin.
+            \pause
+        \item[flask] Popularny microframework.
+            \pause
+        \item[pyramid] Niezopiniowany framework umożliwiający łatwą integrację
+            różnych narzędzi i inkrementalny wzrost projektu.
+    \end{description}
+\end{frame}
+
+\begin{frame}{Pyramid przykład}
+    \begin{tiny}
+        \input{pyr}
+    \end{tiny}
+\end{frame}
+
+\end{document}
+

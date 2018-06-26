@@ -1,0 +1,13 @@
+>>> name = ('Guido', 'van Rossum')
+>>> name[0] # Odwołanie przez indeks
+'Guido'
+>>> first_name, surname = name # Rozpakowanie krotki
+>>> first_name
+'Guido'
+>>> a = 1
+>>> b = 2
+>>> a, b = b, a # Rozpakowanie użyte w celu zamiany dwóch wartości
+>>> a
+2
+>>> b
+1

@@ -1,13 +1,7 @@
-
 def m(c):
     """Jeśli po 20 iteracji abs(z) < 2: zwróć None
     Jeśli po którejkolwiek iteracji abs(z) > 2: zwróć numer iteracji"""
-    result=0
-    for z in range (20):
-        result = result ** 2 +c
-        if abs(result) >2:
-            return z
-        
+    pass
 
 from tkinter import *
 import colorsys

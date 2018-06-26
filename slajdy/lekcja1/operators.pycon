@@ -1,0 +1,10 @@
+>>> 5 * 7
+35
+>>> "Witaj" + ' ' + 'świecie!'
+'Witaj świecie!'
+>>> 2 ** 3
+8
+>>> 3 > 2
+True
+>>> 3 > 2 or 4 >= 5
+False

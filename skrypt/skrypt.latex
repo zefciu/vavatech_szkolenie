@@ -15,9 +15,8 @@
  Niniejszy skrypt dostępny jest na licencji\\
  Creative Commons  Uznanie autorstwa -- Na tych samych warunkach 4.0\\
  Pewne prawa zastrzeżone.\\
- https://creativecommons.org/licenses/by-sa/4.0/legalcode.pl\\
+ \url{https://creativecommons.org/licenses/by-sa/4.0/legalcode.pl}\\
  \ccbysa
- \layout
 
 \chapter{Wprowadzenie do języka}
 \section{Charakterystyka języka Python}
@@ -579,6 +578,36 @@ PAŃSTWA_2 = {
 
 \end{minted}
 
+\section{Uwagi dotyczące typów}
+
+Każdy obiekt w pythonie posiada swój typ. Możemy sprawdzić typ obiektu przy
+pomocy funkcji \texttt{type}
+
+\begin{minted}{pycon}
+>>> type(1)
+<class 'int'>
+\end{minted}
+
+Również obiekty typów posiadają swój typ. Ten specjalny typ jest typem dla
+samego siebie.
+
+\begin{minted}{pycon}
+    >>> type(int)
+    <class 'type'>
+    >>> type(type)
+    <class 'type'>
+\end{minted}
+
+Inną przydatną funkcją jest \texttt{isinstance}, która sprawdza, czy dany
+obiekt należy do danego typu:
+
+\begin{minted}{pycon}
+    >>> isinstance(2, int)
+    True
+    >>> isinstance(True, float)
+    False
+\end{minted}
+
 
 \chapter{Instrukcje sterujące}
 \section{if-else}
@@ -589,17 +618,17 @@ W przeciwnym wypadku wykonuje inny blok instrukcji oznaczony \texttt{else} (moż
 \begin{minted}{pycon}
 >>> a = 10
 >>> if a > 20:
-...     print('Większe')
+...     print('a jest większe od 20')
 ... else:
-...     print('Mniejsze')
+...     print('a jest mniejsze od 20')
 ... 
-Mniejsze
+a jest mniejsze od 20
 >>> if a > 20:
-...     print('Większe')
+...     print('a jest większe od 20')
 ...
 \end{minted}
 
-Dyrektywę \texttt{else} można łączyć z następnym \texttt{if}.
+Dyrektywę \texttt{else} można łączyć z następnym \texttt{if} jako \texttt{elif}.
 
 \begin{minted}{pycon}
 >>> if a >= 20:
@@ -626,14 +655,18 @@ Możemy uprościć notację pamiętając o następujących zasadach:
 \begin{minted}{pycon}
 >>> a = [1, 3, 5]
 >>> b = []
->>> 
 >>> if a:
-...     print('Pełna')
+...     print('Lista zawiera elementy')
+... else:
+...     print('Lista jest pusta')
 ... 
-Pełna
+Lista zawiera elementy
 >>> if b:
-...     print('Pełna')
-...
+...     print('Lista zawiera elementy')
+... else:
+...     print('Lista jest pusta')
+... 
+Lista jest pusta
 \end{minted}
 
 Powyższe tyczy się nie tylko instrukcji \texttt{if} ale również \texttt{while}
@@ -688,7 +721,7 @@ print(collected)
 
 \section{for}
 
-Instrukcja ta pozwala nam wykonać operację dla \emph{iteratora}. Rolę tę mogą
+Instrukcja ta pozwala nam wykonać operację dla \emph{iteratora}. Rolę iteratora mogą
 spełniać różne obiekty.
 
 \begin{minted}{pycon}
@@ -767,6 +800,21 @@ PAŃSTWA = {
     \item Wypisz wszystkie liczby ciągu Fibonacciego mniejsze lub równie 1000
 \end{enumerate}
 
+\section{Projekt}
+
+Mając daną następującą grę:
+
+\begin{enumerate}
+    \item Gra dwóch graczy
+    \item Zaczynamy grę od wartości 36
+    \item Gracz w swojej kolejce musi odjąć od liczby wartość od 1 do 5
+    \item Drugi gracz otrzymuje pomniejszoną liczbę
+    \item Gracz, który pierwszy po swoim odjęciu uzyska 0 wygrywa
+\end{enumerate}
+
+Napisz program grający z człowiekiem. Program powinien grać doskonale, a w
+przypadku niemożliwości znalezienia dobrej strategii podawać zawsze 2
+
 \chapter{Definiowanie własnych funkcji}
 
 Funkcja to fragment programu, który wykonuje określone zadanie.
@@ -834,19 +882,39 @@ def debug_call(f, *args, **kwargs):
 \emph{docstringiem}. Powinien on opisywać co robi funkcja. Możemy przeczytać,
 dokumentację przy pomocy funkcji \texttt{help()}
 
+\section{Zadanie}
+
+\begin{enumerate}
+    \item Napisz funkcję, która wyliczy piersze n liczb pierwszych
+    \item Napisz funkcję, która dla danej listy zwróci listę zawierającą co n-ty lub
+     co 2 (domyślnie) element. 
+    \item Napisz funkcję, która przyjmuje liczbę c i sprawdza jak zachowuje się
+        ta liczba przy kolejnych operacjach:
+        \(n <- n^2 + c\)
+        Wartością początkową n ma być 0.
+        Funkcja ma zwrócić numer pierwszej iteracji, dla której \(|n| > 2\), a
+        jeśli wartości tej nie udało się osiągnąć po 20 iteracjach – None.
+\end{enumerate}
+
+\section{Projekt}
+
+Popraw projekt „gry w 36” tak aby możliwa była także gra dwóch graczy komputerowych,
+lub dwóch ludzi. Wykorzystaj w tym celu możliwości, jakie dają funkcje.
+
+
 \chapter{Wyjątki}
 
 Wyjątki służą do przerwania normalnego wykonywania programu. Najczęściej
 sygnalizują błędy, choć mają też inne zastosowanie. Jeśli gdzieś w kodzie
 zostaje rzucony wyjątek, może on zostać złapany i obsłużony. Jeśli nie -- ulega
-on propagacji w stosie wywołań. Kolejne funkcje mają szansę go złapać, a jeśli
+on \emph{propagacji} w stosie wywołań. Kolejne funkcje mają szansę go złapać, a jeśli
 nie zostanie złapany w ogóle -- powoduje przerwanie działania programu.
 
 W odróżnieniu od Javy Python nie wymaga deklarowania, jakie wyjątki może rzucić
 dana funkcja. Poza tym zasadą jest, iż nie należy łapać wyjątków, których nie
 chcemy obsłużyć (antywzorzec zwany \emph{Pokémon exception handling}).
 Wyjątkom takim pozwalamy się propagować. Nie należy wyjątków
-wyciszać, chyba że jest to naprawdę uzasadnione.
+wyciszać, chyba że mamy naprawdę dobry powód aby tak czynić.
 
 Poniżej przedstawiono prosty przykład obsługi wyjątku. Kod ten próbuje
 przekonwertować łańcuch \texttt{s} na liczbę całkowitą \texttt{n}. Jeśli się to
@@ -864,9 +932,11 @@ Pełna konstrukcja obsługi wyjątku może zawierać cztery bloki:
 \begin{description}
     \item[try] Blok, w którym możemy spodziewać się wyjątku
     \item[except] Blok, który wywoła się, gdy pojawi się wyjątek
-    \item[else] Blok, który wywoła się, gdy nie pojawi się wyjątek
-    \item[finally] Blok, który wywoła się, niezależnie, czy pojawi się wyjątek
+    \item[else] Blok, który wywoła się, gdy \emph{nie} pojawi się wyjątek
+    \item[finally] Blok, który wywoła się, \emph{niezależnie}, czy pojawi się wyjątek
 \end{description}
+
+Wszystkie bloki oprócz \texttt{try} są opcjonalne.
 
 Aby rzucić wyjątek używamy słowa kluczowego \texttt{raise}. Słowo to bez
 podanego typu wyjątku w bloku \texttt{except} powoduje ponowne rzucenie
@@ -874,7 +944,7 @@ wyjątku, który właśnie obsługujemy.
 
 \begin{minted}{python}
 if not isinstance(x, int):
-    raise TypeError('x musi być int')
+    raise TypeError('x musi być liczbą całkowitą')
 
 try:
     return a > b
@@ -883,21 +953,35 @@ except TypeError:
     raise # propagujemy wyjątek dalej
 \end{minted}
 
+\section{Zadania}
+\begin{enumerate}
+    \item Napisz funkcję, która wczyta liczbę całkowitą z klawiatury, powtarzając prompt do skutku jeśli
+        użytkownik podał wartość, która nie jest liczbą. Po podaniu wartości
+        funkcja zwraca obiekt typu \texttt{int}
+    \item Napisz funkcję, która pobiera dowolną liczbę argumentów i liczy ich średnią.
+        Jeśli użytkownik nie poda żadnego argumentu -- rzuca \texttt{TypeError}
+\end{enumerate}
+
 \chapter{Programowanie obiektowe}
 
 \section{Teoria}
-Programowanie obiektowe to paradygmat programowania oparty na istnieniu
-obiektów posiadających atrybuty (pola danych) oraz metody (funkcje wywoływane
-na konkretnym obiekcie). Większość języków obiektowych posiada też koncepcję
-klasy -- typu, do którego przynależy każdy obiekt oraz możliwości enkapsulacji
--- ukrywania danych w sposób niedostępny dla innych obiektów.
+Programowanie obiektowe to paradygmat programowania na istnieniu obiektów.
+Obiekty posiadając atrybuty (dane związane z obiektem) oraz metody
+(funkcje wywoływane na konkretnym obiekcie). Obiekty i relacje między nimi
+pozwalają nam tworzyć abstrakcję przy pomocy której opisujemy logikę naszej
+aplikacji. Obiekty mogę reprezentować realnie istniejące byty (użytkowników,
+przedmioty) jak i koncepcje abstrakcyjne.
 
-W języku Python wszystkie zmienne zawierają obiekty. Obiektami są najprostsze
-formy danych, jak liczby, a nawet funkcje i klasy. Obiekty Pythona zwykle nie
-mają zdefiniowanych atrybutów -- można do nich przypisywać atrybuty o dowolnej
-nazwie. Prawdziwa enkapsulacja nie jest możliwa -- poprzedzenie nazwy metody
-lub atrybutu znakiem podkreślenia stanowi sugestię, że dany atrybut jest
-prywatny. Jednak nie uniemożliwia dostępu do niego.
+Większość języków obiektowych posiada klasy -- typu, do którego przynależy każdy obiekt
+oraz możliwości enkapsulacji -- ukrywania danych w sposób niedostępny dla innych obiektów.
+
+W języku Python wszystkie zmienne wskazują na obiekty. Obiektami są nawet
+najprostsze formy danych, jak liczby czy łańcuchy. Obiektami są również funkcje
+i klasy.  Obiekty Pythona zwykle nie mają zdefiniowanych atrybutów -- można do
+nich przypisywać atrybuty o dowolnej nazwie. Prawdziwa enkapsulacja nie jest
+możliwa -- poprzedzenie nazwy metody lub atrybutu znakiem podkreślenia stanowi
+sugestię, że dany nie powinien być używany ,,z zewnątrz'', jednak nie
+uniemożliwia takiego wykorzystania.
 
 \section{Prosty obiekt}
 
@@ -922,14 +1006,28 @@ class Person:
         return self.first_name[0] + self.last_name[0]
 \end{minted}
 
+\subsection{Zadanie}
+
+Stwórz obiekt o nazwie \texttt{Person}, który będzie reprezentował osobę.
+Obiekt powinien być inicjalizowany trzema argumentami: imieniem, nazwiskiem i
+wiekiem. Powinien definiować następujące metody:
+
+\begin{description}
+    \item[get\_full\_name] Zwraca pełne imię i nazwisko osoby
+    \item[can\_drink\_beer] Sprawdza, czy osoba jest pełnoletnia (zwraca wartość
+        \texttt{bool}))
+    \item[add\_year] Postarza osobę o rok
+\end{description}
+
+
 \section{Właściwości}
 Właściwości to atrybuty obiektu, dostęp do których jest powiązany z logiką
 opisaną w metodach. Właściwość może mieć charakter tylko do odczytu, lub mieć
 zdefiniowaną również metodę ustawienia wartości, a także jej usunięcia.
 Aby stworzyć właściwość korzystamy z dekoratora \texttt{@property} dla
-oznaczenia gettera. Pozostałe dwie metody powinny nazywać się tak samo i 
-posiadać dekoratory \texttt{@nazwa.setter} i \texttt{@nazwa.deleter}, gdzie
-,,nazwa'' to nazwa metody.
+oznaczenia gettera (metody odczytu właściwości). Pozostałe dwie metody powinny
+nazywać się tak samo i posiadać dekoratory \texttt{@nazwa.setter}
+i \texttt{@nazwa.deleter}, gdzie ,,nazwa'' to nazwa metody.
 
 Poniższa klasa przechowuje pojedynczą wartość w atrybucie \texttt{\_x}. Dostęp
 do tego atrybutu ma miejsce przez właściwość \texttt{x}. Odczyt tej właściwości
@@ -956,6 +1054,18 @@ class Validated:
         self._x = value
 \end{minted}
 
+\subsection{Zadanie}
+
+Zmodyfikuj obiekt \texttt{Person}
+
+\begin{itemize}
+    \item Zamiast metody \texttt{get\_full\_name} stwórz właściwość do zapisu i
+        odczytu \texttt{full\_name}
+    \item Spraw, żeby wartość \texttt{age} była walidowana i odrzucała wartości
+        większe niż 150 rzucając \texttt{ValueError}
+\end{itemize}
+
+
 \section{Obiekty a operatory}
 
 Możliwe jest, aby nasze obiekty wspierały prawie wszystkie operatory, jakie
@@ -975,8 +1085,9 @@ class Circle:
         return math.pi * self.radius ** 2
 
     def __add__(self, other):
-        return Circle(math.sqrt(self.radius ** 2 + other.radius ** 2))
+        return Circle((self.radius ** 2 + other.radius ** 2) ** 0.5)
 \end{minted}
+
 
 \section{Dziedziczenie}
 Klasy obiektów mogą dziedziczyć po innych klasach zawartą w nich logikę.
@@ -1000,6 +1111,19 @@ class DefaultDict(dict):
         except KeyError:
             return self.default
 \end{minted}
+
+\section{Projekt}
+
+Projekt polega na stworzeniu prostej gry typu roguelike. Do zaimplementowania:
+
+\begin{itemize}
+    \item Wyświetlanie planszy z graczem i potworami
+    \item Poruszanie się gracza
+    \item Poruszanie się potworów
+    \item Atak, zmniejszanie HP
+    \item Śmierć potworów i gracza
+\end{itemize}
+
 
 \chapter{Moduły i pakiety}
 Modułem nazywamy plik Pythona, z którego możemy importować obiekty (klasy,
@@ -1313,6 +1437,16 @@ Zadaniem frameworka jest ułatwienie pozyskania danych z zapytania i utworzenia
 odpowiedzi HTTP. W powyższym przykładzie po wejściu w przeglądarce na ścieżkę
 \texttt{/} pyramid automatycznie zakoduje dany słownik, ustawi
 \texttt{Content-Type} i wyśle odpowiedź HTTP.
+\section{Projekt}
+Stwórz skrypt, który będzie konwertował różne typy danych
+\begin{itemize}
+    \item Obsługa typu CSV, JSON, Sqlite w zapisie i odczycie
+    \item Możliwość zapisu do formatu HTML (tabelka)
+    \item Serwer HTTP wystawiający dane w tych formatach
+    \item Możliwość pobrania danych przez HTTP
+\end{itemize}
+
+
 \chapter{Testowanie}
 
 Każdy duży projekt w Pythonie powinien być testowany automatycznie. Testy dają

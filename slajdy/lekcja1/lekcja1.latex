@@ -1,0 +1,400 @@
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Berkeley}
+  \usecolortheme{crane}
+}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{polski}
+
+% For pygmentize
+\usepackage{fancyvrb}
+\usepackage{color}
+
+\input{styles}
+\title{Podstawy Pythona}
+
+\author[]{Szymon Pyżalski}
+
+\date {25 -- 29 VI 2018}
+\logo {\includegraphics[width=1.5cm]{../vavatech_logo_small.png}}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage 
+\end{frame}
+
+\section{Wprowadzenie do Pythona}
+\insertsectionhead
+\begin{frame}{Historia języka}
+    \begin{itemize}
+        \pause
+        \item Język zaczął być tworzony w roku 1989 przez Guido van Rossuma.
+        \pause
+        \item Pierwsza publikacja kodu miała miejsce w 1991 roku
+        \pause
+        \item Wersja 2.0 zostaje opublikowana w 2000 roku. Ustalone zostają
+            zasady prac nad językiem.
+        \pause
+        \item W roku 2001 powstaje Python Software Foundation
+        \pause
+        \item W 2008 zostaje wydana wersja 3.0 niekompatybilna z wersją 2.0
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Cechy Pythona}
+    \begin{itemize}
+        \pause
+        \item Język ogólnego przeznaczenia
+        \pause
+        \item Język wysokiego poziomu
+        \pause
+        \item Dynamiczne, silne typowanie
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Zalety}
+    \begin{itemize}
+        \pause
+        \item Łatwy do nauczenia
+        \pause
+        \item Zwięzły kod
+        \pause
+        \item Duża czytelność i łatwość współpracy
+        \pause
+        \item Łatwy \emph{debugging}
+        \pause
+        \item Silna i prężna społeczność
+        \pause
+        \item Dobra dokumentacja
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Wady}
+    \begin{itemize}
+        \pause
+        \item Powolne wykonywanie
+        \pause
+        \item Mniej błędów wykrywanych na etapie kompilacji
+        \pause
+        \item Niekompatybilność wersji 3.0 i 2.0
+        \pause
+        \item Brak dobrej implementacji wielowątkowości
+    \end{itemize}
+\end{frame}
+
+\section{Pierwsze kroki}
+\begin{frame}{Konsola interaktywna}
+    \input{console.tex}
+\end{frame}
+
+\begin{frame}{Skrypty}
+    \input{script.tex}
+\end{frame}
+
+\section{Podstawowe elementy języka}
+\begin{frame}{Literał}
+    \input{literals.tex}
+\end{frame}
+
+\begin{frame}{Operatory}
+    \input{operators.tex}
+\end{frame}
+
+\begin{frame}{Identyfikator}
+    \input{assignment.tex}
+\end{frame}
+
+
+\section{Typy danych}
+\subsection{Typy niezmienne}
+\begin{frame}{Typy niezmienne}
+    \begin{itemize}
+        \pause
+        \item Najbardziej podstawowe typy danych
+        \pause
+        \item Nie można zmodyfikować wartości obiektu
+        \pause
+        \item Możliwe jest tylko stworzenie obiektu o nowej wartości
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{int}
+    \begin{itemize}
+        \pause
+        \item Liczba całkowita
+        \pause
+        \item Nieograniczona wartość
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{str}
+    \begin{itemize}
+        \pause
+            \item Łańcuch znaków unicode (od Pythona 3.0)
+        \pause
+            \item Ujęty w pojedyncze lub podwójne cudzysłowy
+        \pause
+    \item Znaki specjalne przy pomocy \Verb|\PYZbs{}| 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{str - możliwe operacje}
+    \begin{itemize}
+        \pause
+            \item Dodawanie łańcuchów (konkatenacja)
+        \pause
+            \item Mnożenie łańcucha przez liczbę całkowitą
+        \pause
+            \item Formatowanie łańcucha
+        \pause
+            \item Długość łańcucha \Verb|len(s)|
+        \pause
+            \item Inne metody
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{float}
+    \begin{itemize}
+        \pause
+            \item Liczba zmiennoprzecinkowa
+        \pause
+            \item Ograniczona dokładność
+        \pause
+            \item Błędy
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{float - problemy}
+    \input{float}
+\end{frame}
+
+\begin{frame}{bool}
+    \begin{itemize}
+        \pause
+            \item Wartości logiki dwuwartościowej
+        \pause
+            \item Dwie wartości \Verb|True| i \Verb|False|
+        \pause
+            \item Wszystkie inne wartości da się skonwertować do \Verb|bool|
+        \pause
+            \item \Verb|bool('') == False; bool(0) == False|
+        \pause
+            \item Operatory \Verb|not|, \Verb|and|, \Verb|or|
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{tuple}
+    \begin{tiny}
+    \input{tuple}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{None}
+    \begin{itemize}
+        \pause
+            \item Reprezentuje brak wartości
+        \pause
+            \item \Verb|bool(None) == False|
+        \pause
+            \item Jedyny przedstawiciel typu \Verb|NoneType|
+    \end{itemize}
+\end{frame}
+
+
+\subsection{Typy zmienne}
+\begin{frame}{Typy zmienne}
+    \begin{itemize}
+        \pause
+            \item Reprezentują zwykle bardziej złożone dane
+        \pause
+            \item Ich wartość może się zmieniać
+        \pause
+            \item Uwaga na referencje!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Typ niezmienny}
+    \input{unmutable}
+\end{frame}
+
+\begin{frame}{Typ zmienny}
+    \input{mutable}
+\end{frame}
+
+\begin{frame}{Typ zmienny (kopia)}
+    \input{mutable-copy}
+\end{frame}
+
+\begin{frame}{Lista}
+    \begin{tiny}
+    \input{list}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Słownik}
+    \begin{itemize}
+        \pause
+            \item Opisuje pary klucz - wartość
+        \pause
+            \item Klucze muszą być unikalne
+        \pause
+            \item Klucze muszą być obiektami niezmiennymi
+        \pause
+            \item Nie pamięta kolejności
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Słownik}
+    \begin{tiny}
+    \input{dict}
+    \end{tiny}
+\end{frame}
+
+
+\section{Instrukcje sterujące}
+\insertsectionhead
+\begin{frame}{if}
+    \begin{itemize}
+        \pause
+            \item Powoduje wykonanie bloku instrukcji, jeśli warunek jest
+                spełniony
+        \pause
+            \item Opcjonalna klauzula \Verb|else| -- w przeciwnym wypadku
+        \pause
+            \item Połączenie \Verb|else| i \Verb|if| -- \Verb|elif|
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{if}
+    \input{if_statement}
+\end{frame}
+
+\begin{frame}{while}
+    \begin{itemize}
+        \pause
+            \item Wykonuje się \emph{dopóki} warunek jest spełniony
+        \pause
+            \item Może się nie wykonać w ogóle
+        \pause
+            \item Możliwe opuszczenie bloku przy pomocy \Verb|break| i
+                \Verb|continue|
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{while}
+    \input{while_statement}
+\end{frame}
+
+\begin{frame}{for}
+    \begin{itemize}
+        \pause
+            \item Przyjmuje jako argument obiekt \Verb|iterowalny|
+        \pause
+            \item Przypisuje kolejne wartości zmiennej
+        \pause
+            \item Możliwe opuszczenie bloku przy pomocy \Verb|break| i
+                \Verb|continue|
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{for}
+    \input{for_statement}
+\end{frame}
+
+
+\section{Funkcja -- teoria}
+\insertsectionhead
+
+\begin{frame}{Czym jest funkcja}
+    \begin{itemize}
+        \pause
+    \item Funkcja w znaczeniu matematycznym
+        \pause
+    \item Procedura
+        \pause
+    \item Funkcja jako uogólnienie dwóch powyższych
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Argumenty}
+    \begin{itemize}
+        \pause
+    \item Argumenty pozycyjne \Verb|funkcja(arg1, arg2)|
+        \pause
+    \item Argumenty nazwane \Verb|funcja(x=argx, y=argy)|
+        \pause
+    \item Wartości domyślne argumentów
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Wartość zwracana}
+    \begin{itemize}
+        \pause
+    \item Funkcja może zwracać wartość dowolnego typu
+        \pause
+    \item Funkcje, które nie mają do zwrócenia niczego interesującego, zwracają
+        \Verb|None|
+        \pause
+    \item W każdym przypadku możemy zignorować wartość nie przypisując jej do
+        niczego.
+    \end{itemize}
+\end{frame}
+\section{Funkcje i typy wbudowane}
+\insertsectionhead
+
+\begin{frame}{Konwersje typów}
+    \begin{tiny}
+    \input{conversions}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Wejście i wyjście na konsolę}
+    \begin{itemize}
+        \pause
+    \item Domyślnym urządzeniem I/O jest konsola (klawiatura + ekran)
+        \pause
+    \item \Verb|print| wypisuje obiekty na konsolę
+        \pause
+    \item \Verb|input| wypisuje prompt i pobiera łańcuch z klawiatury
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Wejście i wyjście na konsolę}
+    \begin{tiny}
+    \input{print_input}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Operacje na iteratorach}
+    \begin{tiny}
+    \input{builtin_iterator}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}{Matematyczne}
+    \input{builtin_math}
+\end{frame}
+
+\begin{frame}{Inne}
+    \input{builtin_other}
+\end{frame}
+
+
+\begin{frame}{Definiowanie własnych funkcji}
+    \input{function_simplest}
+\end{frame}
+
+\begin{frame}{Definiowanie własnych funkcji}
+    \input{function_arg}
+\end{frame}
+
+\begin{frame}{Definiowanie własnych funkcji}
+    \input{function_args_kwargs}
+\end{frame}
+
+\end{document}
