@@ -7,6 +7,9 @@ class Person:
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
+
+    def __repr__(self):
+        return 'Person: ' + self.first_name + ' ' + self.last_name
     
     def get_initials(self):
         """Zwraca inicjały danej osoby"""

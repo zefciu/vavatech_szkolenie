@@ -3,40 +3,6 @@
 # jeśli podaliśmy wartość < 100. Przy błędzie rzuć ValueError
 
 
-class Person:
-    def __init__(self, first_name, last_name, age):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.age = age
-
-    def can_drink_beer(self):
-        return self.age >= 18
-
-    def add_year(self):
-        self.age += 1
-
-    @property
-    def age(self):
-        return self._age
-
-    @age.setter
-    def age(self, value):
-        if value >= 100:
-            raise ValueError('Too old')
-        self._age = value
-
-    @property
-    def full_name(self):
-        return ' '.join([self.first_name, self.last_name])
-
-    @full_name.setter
-    def full_name(self, value):
-        bits = value.split(' ')
-        if len(bits) != 2:
-            raise ValueError('Malformed full name')
-        self.first_name, self.last_name = bits
-
-
 if __name__ == '__main__':
     import unittest
 
