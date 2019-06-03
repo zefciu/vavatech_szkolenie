@@ -1,7 +1,25 @@
-# Popraw klasę Person tak, żeby posiadała ona własność full_name, którą możemy
-# odczytać i ustawiać. Dodatkowo własność age powinna być ustawialna ale tylko
+# Popraw klasę Person tak, żeby posiadała
+# ona własność full_name, którą możemy
+# odczytać i ustawiać. Dodatkowo własność
+# age powinna być ustawialna ale tylko
 # jeśli podaliśmy wartość < 100. Przy błędzie rzuć ValueError
 
+
+class Person():
+    
+    def __init__(self, first_name, last_name, age):
+        self.first_name = first_name
+        self.last_name = last_name
+        if age > 100:
+            raise ValueError('Too old')
+        self.age = age
+
+    def get_full_name(self):
+        return ' '.join([self.first_name, self.last_name])
+    
+    def set_full_name(self, full_name):
+        self.first_name, self.last_name = full_name.split(' ')
+        
 
 if __name__ == '__main__':
     import unittest

@@ -5,6 +5,7 @@ DIRS = [
     'lekcja1',
     'lekcja2',
     'lekcja3',
+    'lekcja4',
 ]
 
 

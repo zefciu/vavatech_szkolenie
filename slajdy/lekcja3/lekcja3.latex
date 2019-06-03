@@ -16,7 +16,7 @@
 \usepackage{ccicons}
 
 \input{styles}
-\title{Python -- dobieranie narzędzi, testowanie, SQL}
+\title{Warsztat pracy pythonisty}
 \author[]{Szymon Pyżalski}
 
 \date{24 -- 29 VI 2018}
@@ -173,43 +173,6 @@
     \end{itemize}
 \end{frame}
 
-\section{Praca z plikami}
-    
-\begin{frame}{Pliki tekstowe}
-    \begin{tiny}
-        \input{file_ops}
-    \end{tiny}
-\end{frame}
-
-\begin{frame}{CSV}
-    \begin{tiny}
-        \input{csv_ops}
-    \end{tiny}
-\end{frame}
-
-\begin{frame}{JSON}
-    \begin{tiny}
-        \input{json_ops}
-    \end{tiny}
-\end{frame}
-
-\section{Konfiguracja}
-
-\begin{frame}{Linia poleceń -- ,,na żywca''}
-    \begin{itemize}
-            \pause
-        \item Wartości zapisane są w \texttt{sys.argv}
-            \pause
-        \item \texttt{sys.argv[0]} to nazwa samego pliku
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Linia poleceń -- parser}
-    \begin{tiny}
-        \input{argparse_usage}
-    \end{tiny}
-\end{frame}
-
 \section{Testy}
 \begin{frame}{Pożytki z testów automatycznych}
     \begin{itemize}
@@ -297,53 +260,6 @@
     \end{tiny}
 \end{frame}
 
-\section{Bazy danych}
-\begin{frame}{Adapter}
-    \begin{itemize}
-            \pause
-        \item Odpowiada za łączenie się z bazą
-            \pause
-        \item Zapewnia ochronę przez SQL-injection
-            \pause
-        \item Kod specyficzny dla danej bazy
-    \end{itemize}
-\end{frame}
-\begin{frame}{Adapter}
-    \begin{tiny}
-        \input{sqlite}
-    \end{tiny}
-\end{frame}
-
-\begin{frame}{Warstwa obiektowa}
-    \begin{itemize}
-            \pause
-        \item Stanowi obiektową reprezentację zapytań SQL
-            \pause
-        \item Uniwersalne zapytania tłumaczone na różne dialekty
-            \pause
-        \item Zwraca krotki
-    \end{itemize}
-\end{frame}
-\begin{frame}{Warstwa obiektowa}
-    \begin{tiny}
-        \input{sqlalchemy_core}
-    \end{tiny}
-\end{frame}
-\begin{frame}{ORM}
-    \begin{itemize}
-            \pause
-        \item Object relational mapping.
-            \pause
-        \item Klasy odpowiadają tablicom. Obiekty -- rzędom.
-            \pause
-        \item Zwykle leniwe wykonywanie zapytań.
-    \end{itemize}
-\end{frame}
-\begin{frame}{ORM}
-    \begin{tiny}
-        \input{sqlalchemy_orm}
-    \end{tiny}
-\end{frame}
 
 \section{Dystrybucja paczek}
 \begin{frame}{Prosty workflow}
@@ -372,53 +288,6 @@
 \begin{frame}{setup.py}
     \begin{tiny}
         \input{example_setup}
-    \end{tiny}
-\end{frame}
-
-\section{HTTP}
-\begin{frame}{Python jako klient HTTP}
-    \begin{itemize}
-            \pause
-        \item Wbudowana biblioteka \texttt{urllib}
-            \pause
-        \item Znacznie przyjaźniejsza w użyciu biblioteka \texttt{requests}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{requests -- przykład}
-    \begin{tiny}
-        \input{req}
-    \end{tiny}
-\end{frame}
-
-\begin{frame}{Frameworki HTTP}
-    \begin{itemize}
-            \pause
-        \item Framework stanowi interfejs między czystym protokołem http a
-            naszym kodem
-            \pause
-        \item Ułatwia wyciąganie danych z zapytania i tworzenie odpowiedzi
-            \pause
-        \item Niektóre frameworki zawierają zintegrowany ORM i inne narzędzia
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Frameworki HTTP}
-    \begin{description}
-            \pause
-        \item[django] Najpopularniejszy. Zintegrowany ORM, baza danych,
-            system szablonów, automatyczny admin.
-            \pause
-        \item[flask] Popularny microframework.
-            \pause
-        \item[pyramid] Niezopiniowany framework umożliwiający łatwą integrację
-            różnych narzędzi i inkrementalny wzrost projektu.
-    \end{description}
-\end{frame}
-
-\begin{frame}{Pyramid przykład}
-    \begin{tiny}
-        \input{pyr}
     \end{tiny}
 \end{frame}
 
