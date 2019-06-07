@@ -26,13 +26,14 @@ kierowniczą rolę.
 
 Należy do języków ogólnego przeznaczenia. Oznacza to, że nie jest on
 wyspecjalizowany do jakiegoś konkretnego rodzaju zadań. Znajduje on
-zastosowanie przede wszystkim w programowaniu webowym, obróbce danych,
-tworzeniu skryptów oraz aplikacji desktopowych. Można go używać także
-w programowaniu aplikacji mobilnych oraz mikrokontrolerów.
+zastosowanie przede wszystkim w programowaniu webowym (django, Pyramid),
+obróbce danych (numpy, pandas), tworzeniu skryptów oraz aplikacji desktopowych
+(tkinter PyQT). Można go używać także
+w programowaniu aplikacji mobilnych (kivy) oraz mikrokontrolerów (micropython). 
 
 Jest językiem wysokiego poziomu. Znaczy to, że jego logika ma jak
-najbardziej oddawać sposób myślenia programisty bez wnikania w szczegóły
-techniczne.
+najbardziej oddawać sposób myślenia człowieka, podczas gdy szczegóły
+implementacyjne oraz optymalizacja pozostają w gestii interpretera języka.
 
 
 \subsection{Zalety języka}
@@ -56,7 +57,12 @@ techniczne.
 \subsection{Konsola interaktywna}
 Konsola interaktywna to narzędzie, które pozwala nam szybko i wygodnie wykonać
 proste operacje, przeczytać dokumentację, czy sprawdzić działanie pewnych
-obiektów. Do konsoli wchodzimy wykonując polecenie \texttt{python} bez
+obiektów. Do konsoli wchodzimy:
+\begin{enumerate}
+    \item Wykonując polecenie \texttt{python} bez argumentów w shellu
+    \item Uruchamiając IDLE (domyślne okno aplikacji)
+    \item Z menu \emph{Tools} programu PyCharm
+\end{enumerate}
 argumentów. Konsola uruchamia się też jako domyślne okno narzędzia IDLE.
 
 Znakiem zachęty w konsoli jest \texttt{>>>} Każde polecenie, które wpisujemy
@@ -70,11 +76,14 @@ które zwraca jakąś wartość, będzie ona wypisana.
 
 \section{Wywoływanie kodu z pliku}
 
-Pliki Pythona zapisujemy z rozszerzeniem \texttt{.py}. Możemy je uruchomić
-poleceniem \texttt{python nazwa\_pliku.py}. Jeśli plik zawiera
-na początku tzw. she-bang \texttt{\#!/usr/bin/python3} i mamy uprawnienia
-do jego wykonania, możemy uruchomić plik jak inne programy konsolowe
+Pliki Pythona zapisujemy z rozszerzeniem \texttt{.py}. Możemy je uruchomić:
+\begin{enumerate}
+    \item poleceniem \texttt{python nazwa\_pliku.py}.
+    \item Dodając do pliku tzw. she-bang \texttt{\#!/usr/bin/python3}
+        i nadając mu uprawnienia do wykonywania
+    \item Przy pomocy opcji „run” w PyCharm
 \texttt{./nazwa\_pliku.py}
+\end{enumerate}
 
 W przypadku uruchamiania plików nie działa automatyczne wyświetlanie wartości
 wyrażeń. Jeśli chcemy wypisać informację na konsolę musimy to uczynić
@@ -85,7 +94,9 @@ wyrażeń. Jeśli chcemy wypisać informację na konsolę musimy to uczynić
 
 Jeśli chcemy użyć w naszym kodzie jakiejś konkretnej wartości, możemy ją
 zapisać przy pomocy literału. Przykłady literałów to np. \texttt{1},
-\texttt{3.14}, \texttt{'tekst'}.
+\texttt{3.14}, \texttt{'tekst'}. Tylko część typów wbudowanych posiada
+możliwość wyrażenia wartości w ten sposób. Konkretne formy literałów będą
+omówione przey opisie typów.
 
 \section{Identyfikatory}
 
@@ -817,6 +828,8 @@ przypadku niemożliwości znalezienia dobrej strategii podawać zawsze 2
 
 \chapter{Definiowanie własnych funkcji}
 
+\section{Składnia definicji funkcji}
+
 Funkcja to fragment programu, który wykonuje określone zadanie.
 
 \begin{minted}{python}
@@ -882,6 +895,72 @@ def debug_call(f, *args, **kwargs):
 \emph{docstringiem}. Powinien on opisywać co robi funkcja. Możemy przeczytać,
 dokumentację przy pomocy funkcji \texttt{help()}
 
+\section{Annotacje typów}
+
+Python od wersji 3.5 pozwala na \emph{opcjonalne} annotacje typów. Jeśli
+funkcje zawierają annotacje, możliwe jest sprawdzenie poprawności ich
+wykonywania. Annotacje stanowią też rodzaj dokumentacji. Należy pamiętać, że
+użycie annotacji typów nie sprawia, że nasz kod staje się statycznie typowany.
+
+Poniżej funkcja obliczająca silnię z annotacjami:
+
+\begin{minted}{python}
+    def factorial(n: int) -> int:
+        """Oblicza silnię danej liczby naturalnej."""
+        result = 1
+        for i in range(n + 1):
+            result *= i
+        return result
+\end{minted}
+
+
+Funkcja ta została oznaczona jako przyjmująca argument typu int i zwracająca
+argument tego samego typu. Jeśli teraz w kodzie umieścimy błędne wywołania:
+
+\begin{minted}{python}
+    print(factorial('abc'))
+    a = factorial(10)
+    print(a + 'abc')
+\end{minted}
+
+Otrzymamy komunikaty
+
+\begin{minted}{bash}
+$ mypy fact.py
+fact.py:9: error: Argument 1 to "factorial" has incompatible type "str"; expected "int"
+fact.py:11: error: Unsupported operand types for + ("int" and "str")
+\end{minted}
+
+Jak widać, narzędzie \texttt{mypy} wykrywa zarówno fakt przekazania do funkcji
+argumentu nieprawidłowego typu, jak i też wykorzystania wartości zwracanej
+przez funkcję w nieprawidłowy sposób.
+
+Biblioteka standardowa zawiera moduł \texttt{typing}, który daje nam możliwość
+bardziej złożonych annotacji, niż tylko proste typy.
+
+\begin{minted}{python}
+    from typing import List, Dict, Tuple, Optional, Callable
+    x: List[int] = [1, 2, 3, 4]
+    y: Tuple[int, str] = (1, 'a')
+    z: Dict[int, str] = {1: 'a', 2: 'b'}
+    a: Optional[str] = None
+    def inc(a: int) -> int:
+        return a + 1
+    f: Callable[[int], int] = inc
+\end{minted}
+
+W przypadku wartości opcjonalnych zwrócić uwagę
+
+Możemy też dokonywać annotacji bardziej ogólnych. Np.
+
+\begin{minted}{python}
+    from typing import Iterable
+    x: Iterable[int] = [1, 2, 3]
+    y: Iterable[int] = range(1, 10)
+    z: Iterable[int] = {1: 'a', 2: 'b'}
+\end{minted}
+
+
 \section{Zadanie}
 
 \begin{enumerate}
@@ -899,7 +978,8 @@ dokumentację przy pomocy funkcji \texttt{help()}
 \section{Projekt}
 
 Popraw projekt „gry w 36” tak aby możliwa była także gra dwóch graczy komputerowych,
-lub dwóch ludzi. Wykorzystaj w tym celu możliwości, jakie dają funkcje.
+lub dwóch ludzi. Wykorzystaj w tym celu możliwości, jakie dają funkcje. Funkcje
+powinny być annotowane co do typu.
 
 
 \chapter{Wyjątki}
@@ -965,12 +1045,12 @@ except TypeError:
 \chapter{Programowanie obiektowe}
 
 \section{Teoria}
-Programowanie obiektowe to paradygmat programowania na istnieniu obiektów.
-Obiekty posiadając atrybuty (dane związane z obiektem) oraz metody
+Programowanie obiektowe to paradygmat programowania oparty na istnieniu
+obiektów.  Obiekty posiadając atrybuty (dane związane z obiektem) oraz metody
 (funkcje wywoływane na konkretnym obiekcie). Obiekty i relacje między nimi
 pozwalają nam tworzyć abstrakcję przy pomocy której opisujemy logikę naszej
 aplikacji. Obiekty mogę reprezentować realnie istniejące byty (użytkowników,
-przedmioty) jak i koncepcje abstrakcyjne.
+towary) jak i koncepcje abstrakcyjne (enkoder, polityka bezpieczeństwa).
 
 Większość języków obiektowych posiada klasy -- typu, do którego przynależy każdy obiekt
 oraz możliwości enkapsulacji -- ukrywania danych w sposób niedostępny dla innych obiektów.
@@ -1122,6 +1202,17 @@ Projekt polega na stworzeniu prostej gry typu roguelike. Do zaimplementowania:
     \item Poruszanie się potworów
     \item Atak, zmniejszanie HP
     \item Śmierć potworów i gracza
+\end{itemize}
+
+\section{Projekt 2}
+
+Projekt polega na stworzeniu gry blackjack. Do zaimplementowania
+
+\begin{itemize}
+    \item Ocena ręki
+    \item Interfejs użytkownika
+    \item Strategia rozdającego
+    \item Obsługa stawek
 \end{itemize}
 
 
@@ -1647,6 +1738,85 @@ wyszukania i zainstalowania paczki:
     \item Zależności
     \item Kryteria doboru plików
 \end{itemize}
+
+Poniższy plik \texttt{setup.py} opisuje paczkę, która:
+
+\begin{itemize}
+    \item Udostępniana jest na licencji MIT.
+    \item Jest na wstępnym etapie rozwoju nie gwarantującym żadnej stabilności (alpha)
+    \item Przeznaczona jest dla Pythona 3.5
+    \item Wymaga pakietu \texttt{peppercorn} do działania
+    \item Znajduje się na dysku w pakietach: \texttt{contrib}, \texttt{docs} i
+        \texttt{tests}
+    \item Wymaga do działania niepythonowego pliku \texttt{package_data.dat}
+\end{itemize}
+
+\chapter{Wprowadzenie do django}
+
+Django jest najpopularniejszym frameworkiem webodym dostępnym dla języka
+Python. Praktycznie każdy programista Pythona w którymś momencie spotka się z
+kodem w django. Dlatego warto znać założenia tej technologii.
+
+\section{Architektura django}
+
+Architektura django opiera się na następujących komponentach:
+
+\subsection{Model}
+
+Modele określają strukturę danych naszej aplikacji. Modele są klasami w
+djangowym systemie ORM. 
+
+\begin{minted}{python}
+    from django.db import models
+
+    class Client(models.Model):
+        first_name = models.CharField(max_length=30)
+        last_name = models.CharField(max_length=30)
+        balance = models.DecimalField(max_digits=10, decimal_places=2)
+
+    class Order(models.Model):
+        client = models.ForeignKey(Client)
+        value = models.DecimalField(max_digits=10, decimal_places=2)
+\end{minted}
+
+Powyżej definiujemy dwa modele powiązane relacją one-to-many. W djangowym ORM
+modele otrzymują automatycznie kolumnę \texttt{id}, zatem nie musimy jej
+ręcznie dodawać.
+
+\subsection{Widok}
+
+Widoki to funkcje lub klasy, które obsługują zapytania. Widok przyjmuje jako
+argument obiekt \texttt{Request} reprezentujący zapytanie, zwraca zaś obiekt
+\texttt{Response} zawierający odpowiedź. Np.
+
+\begin{minted}{python}
+    from django.http import Http404
+    from django.shortcuts import render
+    from client.models import Client
+
+    def detail(request, poll_id):
+        try:
+            c = Client.objects.get(pk=client_id)
+        except Client.DoesNotExist:
+        raise Http404("Client does not exist")
+        return render(request, 'client/client_details.html', {'client': c})
+\end{minted}
+
+Powyższy widok pobiera obiekt typu \texttt{Client} i tworzy stronę HTML na
+podstawie stosownego szablonu. Aby uniknąć powtarzania generycznej logiki
+możemy użyć widoków bazujących na klasach. Analogiczny widok będzie prezentował
+się tak:
+
+\begin{minted}{python}
+    from django.views.generic.detail import DetailView
+    from client.models import Client
+    
+
+    class ClientDetailView(DetailView):
+        template_name = 'client/client_details.html'
+        model = Client
+\end
+
 
 \tableofcontents
 \end{document}
