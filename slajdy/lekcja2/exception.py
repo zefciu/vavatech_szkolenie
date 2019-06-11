@@ -5,7 +5,7 @@ except ValueError:
 
 try:
     # Tu może pojawić się wyjątek
-except: TypWyjątku:
+except TypWyjątku:
     # Wywoła się gdy pojawi się wyjątek
 else:
     # Wywoła się, gdy nie było wyjątku

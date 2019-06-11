@@ -82,7 +82,6 @@ Pliki Pythona zapisujemy z rozszerzeniem \texttt{.py}. Możemy je uruchomić:
     \item Dodając do pliku tzw. she-bang \texttt{\#!/usr/bin/python3}
         i nadając mu uprawnienia do wykonywania
     \item Przy pomocy opcji „run” w PyCharm
-\texttt{./nazwa\_pliku.py}
 \end{enumerate}
 
 W przypadku uruchamiania plików nie działa automatyczne wyświetlanie wartości
@@ -565,14 +564,6 @@ Na zbiorach możemy wykonywać operacje znane z teorii mnogości.
 Mając dane słowniki:
 
 \begin{minted}{pycon}
-GOŚCIE = [
-    'Marek',
-    'Joanna',
-    'Krzysztof',
-    'Agnieszka',
-    'Grzegorz',
-    'Justyna'
-]
 
 PAŃSTWA = {
     'Wielka Brytania': 'Great Britain',
@@ -588,6 +579,13 @@ PAŃSTWA_2 = {
 }
 
 \end{minted}
+
+\begin{enumerate}
+    \item Wypisz listę polskich nazw państw
+    \item Wypisz listę zagranicznych nazw państw
+    \item Wypisz nazwy parami
+    \item Połącz oba słowniki w jeden
+\end{enumerate}
 
 \section{Uwagi dotyczące typów}
 
@@ -1748,7 +1746,7 @@ Poniższy plik \texttt{setup.py} opisuje paczkę, która:
     \item Wymaga pakietu \texttt{peppercorn} do działania
     \item Znajduje się na dysku w pakietach: \texttt{contrib}, \texttt{docs} i
         \texttt{tests}
-    \item Wymaga do działania niepythonowego pliku \texttt{package_data.dat}
+    \item Wymaga do działania niepythonowego pliku \texttt{package\_data.dat}
 \end{itemize}
 
 \chapter{Wprowadzenie do django}
@@ -1760,6 +1758,13 @@ kodem w django. Dlatego warto znać założenia tej technologii.
 \section{Architektura django}
 
 Architektura django opiera się na następujących komponentach:
+
+\subsection{Aplikacja}
+
+Aplikacjami w django nazywamy komponenty, które grupują modele, widoki,
+szablony, a także zawierają często swój plik \texttt{urls.py}. Aplikacje
+pozwalają na separację logiki. Niektóre aplikacje mogą być wykorzystywane w
+kilku projektach.
 
 \subsection{Model}
 
@@ -1773,6 +1778,7 @@ djangowym systemie ORM.
         first_name = models.CharField(max_length=30)
         last_name = models.CharField(max_length=30)
         balance = models.DecimalField(max_digits=10, decimal_places=2)
+        vip = models.BooleanField()
 
     class Order(models.Model):
         client = models.ForeignKey(Client)
@@ -1799,7 +1805,7 @@ argument obiekt \texttt{Request} reprezentujący zapytanie, zwraca zaś obiekt
             c = Client.objects.get(pk=client_id)
         except Client.DoesNotExist:
         raise Http404("Client does not exist")
-        return render(request, 'client/client_details.html', {'client': c})
+        return render(request, 'clients/client_details.html', {'client': c})
 \end{minted}
 
 Powyższy widok pobiera obiekt typu \texttt{Client} i tworzy stronę HTML na
@@ -1813,10 +1819,77 @@ się tak:
     
 
     class ClientDetailView(DetailView):
-        template_name = 'client/client_details.html'
+        template_name = 'clients/client_details.html'
         model = Client
-\end
+\end{minted}
 
+Jak widzimy generyczne widoki django przejmują na siebie tzw.
+\emph{boilerplate}, czyli powtarzalną logikę.
+
+\subsection{szablon}
+
+Szablony są plikami, najczęściej HTML zawierającymi dynamiczne elementy
+wypełniane przez django. Takimi elementami mogą być zmienne umieszczane w
+podwójnym nawiasie klamrowym lub tagi umieszczane w nawiasie klamrowym z
+procentem. Załóżmy, że przekazaliśmy listę klientów do naszego szablonu jako
+zmienną \texttt{clients}
+
+\begin{minted}{html+django}
+    <table>
+        {% for client in clients %}
+            <tr
+            {% if client.vip %}class="gold" {% endif %}
+            >
+            <td>{{ client.first_name }}</td>
+            <td>{{ client.last_name }}</td>
+            <td>{{ client.balance }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+\end{minted}
+Powyższy szablon wygeneruje tabelę HTML, która zawierać będzie imię, nazwisko i
+stan konta klientów. Dodatkowo rzędy użytkowników oznaczonych jako VIP będą
+miały klasę HTML \texttt{gold}, co umożliwi ostylowanie tych rzędów w CSS.
+
+\subsection{pliki urls.py}
+Pliki te zawierają listę wzorców adresów URL, do których przyrównywany jest
+adres URL zapytania. Załóżmy, że mamy dwa pliki \texttt{urls.py}. Główny plik
+naszego projektu zawiera linię:
+
+\begin{minted}{python}
+    path('client/', include('clients.urls')),
+\end{minted}
+
+Zaś plik w aplikacji \texttt{client} zawiera:
+
+\begin{minted}{python}
+    path('details/<int:client_id>', client_detail.as_view()),
+\end{minted}
+
+Jeśli przy takiej konfiguracji użytkownik wpisze w przeglądarce url
+\texttt{/client/details/15}, otrzyma dane z widoku \texttt{client\_detail}
+z wartością \texttt{15} przekazaną jako \texttt{client\_id}.
+
+\section{Cykl życiowy projektu django}
+
+Aby utworzyć projekt django używamy polecenia \texttt{django-admin
+startproject} polecenie to tworzy nam szkielet projektu zawierający plik
+\texttt{manage.py}. Następnie możemy wyedytować plik \texttt{settings.py} aby
+zmienić konfigurację bazy danych, dodać generyczne aplikacje etc. Własne
+aplikacje tworzymy poleceniem \texttt{python manage.py startapp}
+
+Po każdej zmianie modeli django należy utworzyć pliki migracji. Wykorzystujemy
+do tego polecenie \texttt{python manage.py makemigrations}. Polecenie to tworzy
+pliki w katalogu \texttt{migrations} aplikacji. Pliki te należy dystrybuować
+razem z aplikacją. Aby nanieść zmiany z migracji na bazę danych wykonujemy
+polecenie \texttt{python manage.py migrate}
+
+\section{Projekt}
+
+Stwórz prosty \emph{message-board} umożliwiający dodawanie postów przez
+użytkowników z ich podpisami. W kolejnych iteracjach dodaj możliwość
+rejestracji użytkowników, banowania ich, tagowania, filtrowania postów po
+tagach.
 
 \tableofcontents
 \end{document}

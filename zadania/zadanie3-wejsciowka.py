@@ -3,7 +3,7 @@ def m(c):
     Jeśli po którejkolwiek iteracji abs(z) > 2: zwróć numer iteracji"""
     pass
 
-from tkinter import *
+from tkinter import Tk, Canvas, PhotoImage, mainloop
 import colorsys
 
 master = Tk()
@@ -17,7 +17,7 @@ for i in range(500):
     for j in range(500):
         point = complex(((i - 250) / 100), ((j - 250) / 100))
         result = m(point)
-        if result == None:
+        if result is None:
             color = '#000000'
         else:
             hue = result / 20
@@ -25,4 +25,3 @@ for i in range(500):
             color = '#{:02x}{:02x}{:02x}'.format(*rgb)
         img.put(color, (i, j))
 mainloop()
-
